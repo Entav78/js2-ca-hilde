@@ -1,3 +1,6 @@
+import { register } from "../../api/auth/register.js";
+
+
 /**
  * Registers a new user with the provided details.
  *
