@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from "vitest";
-import { register } from "../register";
+import { Register } from "../register.js";
 
 global.fetch = vi.fn();
 
-describe("register", () => {
+describe("Register Class", () => {
   it("should return a user object when registration is successful", async () => {
     const mockResponse = {
       name: "test user",
@@ -18,11 +18,14 @@ describe("register", () => {
         alt: "My banner alt text",
       },
     };
+
     fetch.mockResolvedValueOnce({
       json: async () => mockResponse,
       ok: true,
     });
-    const result = await register({
+
+    const registerInstance = new Register(API_AUTH_REGISTER);
+    const result = await registerInstance.register({
       name: "Test user",
       email: "test@stud.noroff.no",
       password: "password",
@@ -47,8 +50,10 @@ describe("register", () => {
       json: async () => ({ message: "Registration failed" }),
     });
 
+    const registerInstance = new Register(API_AUTH_REGISTER);
+
     await expect(
-      register({
+      registerInstance.register({
         name: "Test User",
         email: "test@example.com",
         password: "password",
@@ -56,3 +61,4 @@ describe("register", () => {
     ).rejects.toThrow();
   });
 });
+
