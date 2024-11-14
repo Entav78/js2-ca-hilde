@@ -2,8 +2,9 @@ import { describe, it, expect, vi } from "vitest";
 import { Register } from "../register.js";
 
 global.fetch = vi.fn();
+const API_AUTH_REGISTER = "https://example.com/api/register";
 
-describe("Register Class", () => {
+describe("Register", () => {
   it("should return a user object when registration is successful", async () => {
     const mockResponse = {
       name: "test user",

@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from "vitest";
-import { login } from "../login";
+import { Login } from "../login";
 
 global.fetch = vi.fn();
 
-describe("login", () => {
+describe("Login", () => {
   it("should return a user object when email and password are provided", async () => {
     const mockResponse = {
       token: "123abc",
@@ -14,7 +14,8 @@ describe("login", () => {
       ok: true,
     });
 
-    const result = await login({
+    const loginInstance = new Login(); 
+    const result = await loginInstance.login({
       email: "test@example.com",
       password: "password",
     });
@@ -28,8 +29,9 @@ describe("login", () => {
       json: async () => ({ message: "Invalid credentials" }),
     });
 
+    const loginInstance = new Login();
     await expect(
-      login({ email: "wrong@example.com", password: "wrongpassword" })
+      loginInstance.login({ email: "wrong@example.com", password: "wrongpassword" })
     ).rejects.toThrow();
   });
 });
