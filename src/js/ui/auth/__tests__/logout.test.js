@@ -1,5 +1,10 @@
 import { onLogout } from "../logout";
 import { describe, test, expect, beforeEach, vi } from "vitest";
+import router from "../../../router";
+
+vi.mock("../../../router", () => ({
+  default: vi.fn(),
+}));
 
 describe("onLogout", () => {
   beforeEach(() => {
@@ -23,5 +28,6 @@ describe("onLogout", () => {
     expect(localStorage.getItem("token")).toBe("mockedToken");
     onLogout();
     expect(localStorage.getItem("token")).toBeFalsy();
+    expect(router).toHaveBeenCalled("/");
   });
 });
