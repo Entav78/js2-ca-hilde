@@ -3,6 +3,38 @@ export class PostService {
     this.baseURL = baseURL;
   }
 
+   /**
+   * Creates a new post by sending the data to the API.
+   * @param {Object} data - The post parameters.
+   * @param {string} data.title - The title of the post (required).
+   * @param {string} [data.body] - The body of the post (optional).
+   * @param {string[]} [data.tags] - Array of tags associated with the post (optional).
+   * @param {Object} [data.media] - Media object containing URL and alt text (optional).
+   * @returns {Promise<Object>} The created post data from the API.
+   * @throws {Error} If the API request fails.
+   */
+  
+   async createPost(data) {
+    if (!data || !data.title) throw new Error("Title is required to create a post.");
+
+    try {
+      const response = await fetch(this.baseURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error(`Failed to create post: ${response.statusText}`);
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error in createPost:", error);
+      throw error;
+    }
+  }
+
   /**
    * Reads a single post by its ID.
    * @param {string|number} id - The ID of the post to read.
@@ -73,3 +105,8 @@ export class PostService {
     }
   }
 }
+
+  
+
+  
+

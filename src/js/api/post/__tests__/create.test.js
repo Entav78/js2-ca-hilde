@@ -1,11 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { createPost } from "../create";
+import { PostService } from "../postService";
 
 global.fetch = vi.fn();
 
-describe("createPost", () => {
+describe("PostService - createPost", () => {
+  let postService;
+
   beforeEach(() => {
     fetch.mockClear();
+    postService = new PostService();
   });
 
   it("should create a post with required title and default optional fields", async () => {
@@ -16,50 +19,38 @@ describe("createPost", () => {
       json: async () => mockResponse,
     });
 
-    const postData = {
-      title: "Test Post",
-    };
+    const postData = { title: "Test Post" };
 
-    const result = await createPost(postData);
+    const result = await postService.createPost(postData);
 
     expect(result).toEqual(mockResponse);
-  });
-
-  it("should create a post with all provided fields", async () => {
-    const mockResponse = {
-      id: 2,
-      title: "Post with media",
-    };
-
-    fetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => mockResponse,
-    });
-
-    const postData = {
-      title: "Post with media",
-      body: "This is a body",
-      tags: ["tag1", "tag2"],
-      media: {
-        url: "https://url.com/image.jpg",
-        alt: "An image",
+    expect(fetch).toHaveBeenCalledWith("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    };
-
-    const result = await createPost(postData);
-
-    expect(result).toEqual(mockResponse);
+      body: JSON.stringify(postData),
+    });
   });
 
   it("should throw an error if API request fails", async () => {
     fetch.mockResolvedValueOnce({
       ok: false,
+      statusText: "Server Error",
     });
 
-    const postData = {
-      title: "Failing Post",
-    };
+    const postData = { title: "Failing Post" };
 
-    await expect(createPost(postData)).rejects.toThrow();
+    await expect(postService.createPost(postData)).rejects.toThrow(
+      "Failed to create post: Server Error"
+    );
+    expect(fetch).toHaveBeenCalledWith("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
   });
 });
+
