@@ -7,5 +7,7 @@ export const mockFetch = (mockResponse, ok = true) => {
 };
 
 export const clearFetchMocks = () => {
-  fetch.mockClear();
+  if (fetch && fetch.mockClear) {
+    fetch.mockClear();
+  }
 };

@@ -1,5 +1,5 @@
 export class PostService {
-  constructor(baseURL = "/api/posts") {
+  constructor(baseURL = "/api/post") {
     this.baseURL = baseURL;
   }
 
@@ -13,7 +13,7 @@ export class PostService {
    * @returns {Promise<Object>} The created post data from the API.
    * @throws {Error} If the API request fails.
    */
-  
+
    async createPost(data) {
     if (!data || !data.title) throw new Error("Title is required to create a post.");
 

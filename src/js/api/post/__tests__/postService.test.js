@@ -22,7 +22,7 @@ describe("PostService", () => {
 
       const result = await postService.readPost(1);
 
-      expect(fetch).toHaveBeenCalledWith("/api/posts/1");
+      expect(fetch).toHaveBeenCalledWith("/api/post/1");
       expect(result).toEqual(mockResponse);
     });
 
@@ -48,7 +48,7 @@ describe("PostService", () => {
 
       const result = await postService.readPosts();
 
-      expect(fetch).toHaveBeenCalledWith("/api/posts?limit=12&page=1");
+      expect(fetch).toHaveBeenCalledWith("/api/post?limit=12&page=1");
       expect(result).toEqual(mockResponse);
     });
 
@@ -62,7 +62,7 @@ describe("PostService", () => {
 
       const result = await postService.readPosts(5, 2, "customTag");
 
-      expect(fetch).toHaveBeenCalledWith("/api/posts?limit=5&page=2&tag=customTag");
+      expect(fetch).toHaveBeenCalledWith("/api/post?limit=5&page=2&tag=customTag");
       expect(result).toEqual(mockResponse);
     });
 
@@ -84,7 +84,7 @@ describe("PostService", () => {
 
       const result = await postService.readPostsByUser("testUser");
 
-      expect(fetch).toHaveBeenCalledWith("/api/posts?user=testUser&limit=12&page=1");
+      expect(fetch).toHaveBeenCalledWith("/api/post?user=testUser&limit=12&page=1");
       expect(result).toEqual(mockResponse);
     });
 
