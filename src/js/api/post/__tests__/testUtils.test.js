@@ -1,4 +1,5 @@
-// testUtils.js
+import { vi } from "vitest";
+
 export const mockFetch = (mockResponse, ok = true) => {
   global.fetch = vi.fn().mockResolvedValueOnce({
     ok,

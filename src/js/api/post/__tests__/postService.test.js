@@ -1,24 +1,19 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { PostService } from "../postService"; // Adjust the path to your PostService file
-
-global.fetch = vi.fn();
+import { describe, it, expect, beforeEach } from "vitest";
+import { PostService } from "../postService";
+import { mockFetch, clearFetchMocks } from "./testUtils.test.js"; // Use your mock utilities
 
 describe("PostService", () => {
   let postService;
 
   beforeEach(() => {
-    fetch.mockClear(); // Reset mock between tests
+    clearFetchMocks(); // Ensure fetch is reset
     postService = new PostService("/api/post"); // Initialize PostService with a base URL
   });
 
   describe("readPost", () => {
     it("should fetch a single post by ID", async () => {
       const mockResponse = { id: 1, title: "Test Post" };
-
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      mockFetch(mockResponse);
 
       const result = await postService.readPost(1);
 
@@ -31,20 +26,16 @@ describe("PostService", () => {
     });
 
     it("should throw an error if API request fails", async () => {
-      fetch.mockResolvedValueOnce({ ok: false, statusText: "Not Found" });
+      mockFetch(null, false);
 
-      await expect(postService.readPost(999)).rejects.toThrow("Failed to fetch post: Not Found");
+      await expect(postService.readPost(999)).rejects.toThrow("Failed to fetch post");
     });
   });
 
   describe("readPosts", () => {
     it("should fetch multiple posts with default parameters", async () => {
       const mockResponse = [{ id: 1, title: "Post 1" }, { id: 2, title: "Post 2" }];
-
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      mockFetch(mockResponse);
 
       const result = await postService.readPosts();
 
@@ -54,11 +45,7 @@ describe("PostService", () => {
 
     it("should fetch posts with custom parameters", async () => {
       const mockResponse = [{ id: 3, title: "Custom Post" }];
-
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      mockFetch(mockResponse);
 
       const result = await postService.readPosts(5, 2, "customTag");
 
@@ -67,20 +54,16 @@ describe("PostService", () => {
     });
 
     it("should throw an error if API request fails", async () => {
-      fetch.mockResolvedValueOnce({ ok: false, statusText: "Server Error" });
+      mockFetch(null, false);
 
-      await expect(postService.readPosts()).rejects.toThrow("Failed to fetch posts: Server Error");
+      await expect(postService.readPosts()).rejects.toThrow("Failed to fetch posts");
     });
   });
 
   describe("readPostsByUser", () => {
     it("should fetch posts by username", async () => {
       const mockResponse = [{ id: 1, title: "User Post" }];
-
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      mockFetch(mockResponse);
 
       const result = await postService.readPostsByUser("testUser");
 
@@ -93,11 +76,47 @@ describe("PostService", () => {
     });
 
     it("should throw an error if API request fails", async () => {
-      fetch.mockResolvedValueOnce({ ok: false, statusText: "Not Found" });
+      mockFetch(null, false);
 
       await expect(postService.readPostsByUser("nonExistentUser")).rejects.toThrow(
-        "Failed to fetch posts by user: Not Found"
+        "Failed to fetch posts by user"
+      );
+    });
+  });
+
+  describe("createPost", () => {
+    it("should create a post successfully", async () => {
+      const mockResponse = { id: 1, title: "New Post" };
+      mockFetch(mockResponse);
+
+      const postData = { title: "New Post", body: "This is a new post." };
+      const result = await postService.createPost(postData);
+
+      expect(fetch).toHaveBeenCalledWith("/api/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+      expect(result).toEqual(mockResponse);
+    });
+
+    it("should throw an error if API request fails", async () => {
+      mockFetch(null, false);
+
+      const postData = { title: "Failing Post" };
+
+      await expect(postService.createPost(postData)).rejects.toThrow("Failed to create post");
+    });
+
+    it("should throw an error if title is missing", async () => {
+      const postData = { body: "Missing title" };
+
+      await expect(postService.createPost(postData)).rejects.toThrow(
+        "Title is required to create a post."
       );
     });
   });
 });
+
