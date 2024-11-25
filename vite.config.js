@@ -19,4 +19,7 @@ export default defineConfig({
       },
     },
   },
+  test: {
+    environment: "jsdom", // Use jsdom for DOM testing
+  },
 });

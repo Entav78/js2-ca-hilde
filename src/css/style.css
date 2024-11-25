@@ -1,1 +1,30 @@
 @import url(_reset.css);
+
+#navContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  border: 1px solid black;
+  width: 100%;
+  height: auto;
+}
+
+#homeButton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#homeButton:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s ease;
+}
