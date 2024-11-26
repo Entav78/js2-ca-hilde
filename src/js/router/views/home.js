@@ -63,7 +63,10 @@ function initializeNavigation() {
     const isLoggedIn = !!localStorage.getItem("token");
     const nav = new Navigation(navigationContainer);
     console.log("Is user logged in:", isLoggedIn);
-    nav.createNavbar(isLoggedIn, { includeHomeButton: false }); // Exclude the Home button on the home page
+    nav.createNavbar(isLoggedIn, { 
+      includeHomeButton: false,
+      includeCreatePostButton: isLoggedIn,
+     }); 
     console.log("Navigation setup completed.");
   } else {
     console.error("Navigation container not found.");

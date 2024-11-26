@@ -12,40 +12,40 @@
   height: auto;
 }
 
-.home-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.home-button:hover {
-  background-color: #0056b3;
-  transition: background-color 0.3s ease;
-}
-
 .logout-button,
-.login-button {
+.login-button,
+.home-button,
+.create-post-button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #ff4d4d;
+  background-color: #494949;
   color: white;
   border: none;
   border-radius: 5px;
   text-align: center;
-  margin-left: 10px;
-  /* Optional spacing */
+  margin: 10px;
 }
 
 .logout-button:hover,
-.login-button:hover {
-  background-color: #cc0000;
+.login-button:hover,
+.home-button:hover,
+.create-post-button:hover {
+  background-color: #000000;
   transition: background-color 0.3s ease;
+}
+
+.logout-button:focus,
+.login-button:focus,
+.home-button:focus,
+.create-post-button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.home-button.active,
+.create-post-button.active {
+  background-color: #007bff;
+  color: white;
 }
