@@ -14,6 +14,7 @@ export class Navigation {
     const homeButton = document.createElement("button");
     homeButton.id = "goToHome";
     homeButton.textContent = "Home";
+    console.log("Home button text:", homeButton.textContent);
 
     homeButton.addEventListener("click", () => {
       console.log("Home button clicked.");

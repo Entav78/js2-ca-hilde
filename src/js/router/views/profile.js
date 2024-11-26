@@ -5,19 +5,17 @@ authGuard();
 
 console.log("profile.js is running.");
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded.");
-  const container = document.getElementById("navContainer");
-  console.log("navContainer found:", container);
+console.log("Testing if DOM is already loaded.");
+const container = document.getElementById("navContainer");
+console.log("navContainer found without DOMContentLoaded:", container);
 
-  if (container) {
-    const navigation = new Navigation("navContainer");
-    navigation.createHomeButton();
-    console.log("Navigation setup completed.");
-  } else {
-    console.error("navContainer not found.");
-  }
-});
+if (container) {
+  const navigation = new Navigation("navContainer");
+  navigation.createHomeButton();
+  console.log("Navigation setup completed.");
+} else {
+  console.error("navContainer not found.");
+}
 
 
 
