@@ -63,7 +63,7 @@ function initializeNavigation() {
     const isLoggedIn = !!localStorage.getItem("token");
     const nav = new Navigation(navigationContainer);
     console.log("Is user logged in:", isLoggedIn);
-    nav.createNavbar(isLoggedIn);
+    nav.createNavbar(isLoggedIn, { includeHomeButton: false }); // Exclude the Home button on the home page
     console.log("Navigation setup completed.");
   } else {
     console.error("Navigation container not found.");
@@ -79,9 +79,8 @@ if (document.readyState === "loading") {
   initializeNavigation();
 }
 
+// Comment out PostService and PostsRenderer temporarily for debugging
+// const postService = new PostService();
+// const postsRenderer = new PostsRenderer("homeContainer"); // Assuming 'homeContainer' is a valid ID or class
+// postsRenderer.init(async () => await postService.readPosts(10, 1, "example-tag"));
 
-    // Comment out PostService and PostsRenderer temporarily for debugging
-    // const postService = new PostService();
-    // const postsRenderer = new PostsRenderer("homeContainer"); // Assuming 'homeContainer' is a valid ID or class
-    // postsRenderer.init(async () => await postService.readPosts(10, 1, "example-tag"));
-/*});*/
