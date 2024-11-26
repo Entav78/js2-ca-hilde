@@ -1,6 +1,6 @@
 @import url(_reset.css);
 
-#navContainer {
+.navigation-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,19 +12,40 @@
   height: auto;
 }
 
-#goToHome {
+.home-button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   background-color: #007bff;
-  color: rgb(0, 0, 0);
+  color: white;
   border: none;
   border-radius: 5px;
   text-align: center;
 }
 
-#goToHome:hover {
+.home-button:hover {
   background-color: #0056b3;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button,
+.login-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 10px;
+  /* Optional spacing */
+}
+
+.logout-button:hover,
+.login-button:hover {
+  background-color: #cc0000;
   transition: background-color 0.3s ease;
 }
