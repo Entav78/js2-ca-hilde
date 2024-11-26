@@ -41,7 +41,7 @@ export class PostsRenderer {
     const titleElement = document.createElement("h3");
     titleElement.textContent = post.title;
     titleElement.addEventListener("click", () => {
-      window.location.href = `/post/?id=${post.id}`;
+      window.location.pathname = `/post/?id=${post.id}`;
     });
 
     postElement.appendChild(titleElement);

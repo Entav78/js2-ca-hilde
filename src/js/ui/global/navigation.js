@@ -1,30 +1,54 @@
 export class Navigation {
-  constructor(containerId) {
-    this.containerId = containerId;
+  constructor(container) {
+    this.container = container; 
   }
 
-  createHomeButton() {
-    const container = document.getElementById(this.containerId);
-
-    if (!container) {
-      console.error(`Container with ID '${this.containerId}' not found.`);
+  createNavbar(isLoggedIn) {
+    if (!this.container) {
+      console.error("Navigation container not found.");
       return;
     }
 
+    this.container.innerHTML = "";
+
+    const nav = document.createElement("nav");
+
+    this.createHomeButton(nav);
+
+    if (isLoggedIn) {
+      const logoutButton = document.createElement("button");
+      logoutButton.textContent = "Logout";
+      logoutButton.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        window.location.reload();
+      });
+      nav.appendChild(logoutButton);
+    } else {
+      const loginLink = document.createElement("button");
+      loginLink.textContent = "Login";
+      loginLink.addEventListener("click", () => {
+        window.location.pathname = "/auth/login/";
+      });
+      nav.appendChild(loginLink);
+    }
+
+    this.container.appendChild(nav);
+  }
+
+  createHomeButton(nav) {
     const homeButton = document.createElement("button");
-    homeButton.id = "goToHome";
     homeButton.textContent = "Home";
-    console.log("Home button text:", homeButton.textContent);
-
     homeButton.addEventListener("click", () => {
-      console.log("Home button clicked.");
-      window.location.pathname = "/"; // Use window.location since router is already in app.js
+      window.location.pathname = "/";
     });
-
-    container.appendChild(homeButton);
-    console.log("Home button added to navigation.");
+    nav.appendChild(homeButton);
   }
 }
+
+
+
+
+
 
 
 

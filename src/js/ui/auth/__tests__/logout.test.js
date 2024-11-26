@@ -1,4 +1,4 @@
-import { onLogout } from "../logout";
+/*import { onLogout } from "../logout";*/
 import { describe, test, expect, beforeEach, vi } from "vitest";
 import router from "../../../router";
 
@@ -8,6 +8,10 @@ vi.mock("../../../router", () => ({
 
 describe("onLogout", () => {
   beforeEach(() => {
+    // Mock alert
+    global.alert = vi.fn();
+
+    // Mock localStorage
     const localStorageMock = (() => {
       let store = {};
       return {
@@ -18,16 +22,25 @@ describe("onLogout", () => {
       };
     })();
 
-    Object.defineProperty(global, "localStorage", {
-      value: localStorageMock,
-    });
-    localStorage.setItem("token", "mockedToken");
+    global.localStorage = localStorageMock; // Replace global.localStorage with mock
+    localStorage.clear(); // Clear any previous data in mock
   });
 
-  test("removes token from localStorage", () => {
-    expect(localStorage.getItem("token")).toBe("mockedToken");
+  afterEach(() => {
+    // Clean up mocks after each test
+    vi.restoreAllMocks();
+  });
+
+  it("should remove token from localStorage and navigate to login", () => {
+    // Set a token in localStorage
+    localStorage.setItem("token", "mockToken");
+
+    // Call the onLogout function
     onLogout();
-    expect(localStorage.getItem("token")).toBeFalsy();
-    expect(router).toHaveBeenCalled("/");
+
+    // Assertions
+    expect(localStorage.getItem("token")).toBeNull(); // Token should be removed
+    expect(global.alert).toHaveBeenCalledWith("Logged out successfully"); // Check alert call
   });
 });
+

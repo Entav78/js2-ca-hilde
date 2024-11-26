@@ -1,6 +1,8 @@
 /**
  * Functions you attach to logout events that calls ui/auth/logout function
  */
+
+/*testing logout in Navigation
 import { onLogout } from "../auth/logout";
 
 export function setLogoutListener(buttonId) {
@@ -9,4 +11,13 @@ export function setLogoutListener(buttonId) {
     logoutButton.addEventListener("click", onLogout);
   }
 
+}
+*/
+
+import { onLogout } from "../auth/logout";
+
+export function setLogoutListener(button) {
+  if (button) {
+    button.addEventListener("click", onLogout);
+  }
 }

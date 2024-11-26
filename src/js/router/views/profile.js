@@ -1,21 +1,22 @@
-import { authGuard } from "../../utilities/authGuard";
 import { Navigation } from "../../ui/global/navigation";
 
-authGuard();
+console.log("running profile page...")
+document.addEventListener("DOMContentLoaded", () => {
+  const isLoggedIn = !!localStorage.getItem("token"); 
+  const navContainer = document.getElementById("navContainer");
+  console.log("Navigation container:", navContainer);
 
-console.log("profile.js is running.");
+  if (!navContainer) {
+    console.error("Navigation container not found.");
+    return;
+  }
 
-console.log("Testing if DOM is already loaded.");
-const container = document.getElementById("navContainer");
-console.log("navContainer found without DOMContentLoaded:", container);
+  const navigation = new Navigation(navContainer);
+  navigation.createNavbar(isLoggedIn);
 
-if (container) {
-  const navigation = new Navigation("navContainer");
-  navigation.createHomeButton();
-  console.log("Navigation setup completed.");
-} else {
-  console.error("navContainer not found.");
-}
+  console.log("Navigation setup completed in profile.js.");
+});
+
 
 
 

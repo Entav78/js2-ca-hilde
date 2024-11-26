@@ -1,5 +1,7 @@
+import { API_SOCIAL_POSTS } from "../constants";
+
 export class PostService {
-  constructor(baseURL = "/api/post") {
+  constructor(baseURL = API_SOCIAL_POSTS) {
     this.baseURL = baseURL;
   }
 
@@ -16,24 +18,29 @@ export class PostService {
 
    async createPost(data) {
     if (!data || !data.title) throw new Error("Title is required to create a post.");
-
+  
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("You must be logged in to create a post.");
+  
     try {
       const response = await fetch(this.baseURL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Pass the token in the header
         },
         body: JSON.stringify(data),
       });
-
+  
       if (!response.ok) throw new Error(`Failed to create post: ${response.statusText}`);
-
+  
       return await response.json();
     } catch (error) {
       console.error("Error in createPost:", error);
       throw error;
     }
   }
+  
 
   /**
    * Reads a single post by its ID.
@@ -41,18 +48,25 @@ export class PostService {
    * @returns {Promise<object>} The response data.
    * @throws {Error} If the API request fails.
    */
+
   async readPost(id) {
     if (!id) throw new Error("Post ID is required.");
-
+  
     try {
-      const response = await fetch(`${this.baseURL}/${id}`);
+      const response = await fetch(`${this.baseURL}/${id}`, {
+        method: "GET", // No headers needed for public access
+      });
+  
       if (!response.ok) throw new Error(`Failed to fetch post: ${response.statusText}`);
+  
       return await response.json();
     } catch (error) {
       console.error("Error in readPost:", error);
       throw error;
     }
   }
+  
+
 
   /**
    * Reads multiple posts with optional pagination and tagging.

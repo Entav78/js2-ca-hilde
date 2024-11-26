@@ -17,7 +17,9 @@ describe("PostService", () => {
 
       const result = await postService.readPost(1);
 
-      expect(fetch).toHaveBeenCalledWith("/api/post/1");
+      expect(fetch).toHaveBeenCalledWith("/api/post/1", {
+        method: "GET",
+      });
       expect(result).toEqual(mockResponse);
     });
 

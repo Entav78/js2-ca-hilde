@@ -30,7 +30,7 @@ export async function onLogin(event) {
     const user = await loginInstance.login(data);
     alert("Login successful!");
     localStorage.setItem("token", user.token); 
-    window.location.href = "/profile/";
+    window.location.pathname = "/profile/";
   } catch (error) {
     alert(`Login failed: ${error.message}`);
   }

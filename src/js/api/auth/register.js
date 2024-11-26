@@ -109,7 +109,7 @@ export class Register {
     try {
       const user = await this.register(data);
       alert("Registration successful!");
-      window.location.href = "/auth/login/";
+      window.location.pathname = "/auth/login/";
     } catch (error) {
       alert(`Registration failed: ${error.message}`);
     }
