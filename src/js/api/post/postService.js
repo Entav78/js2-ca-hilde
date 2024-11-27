@@ -1,3 +1,4 @@
+/* creating a new structure for handling post-stuff
 import { API_SOCIAL_POSTS } from "../constants";
 
 export class PostService {
@@ -15,7 +16,7 @@ export class PostService {
    * @returns {Promise<Object>} The created post data from the API.
    * @throws {Error} If the API request fails.
    */
-
+/*
    async createPost(data) {
     if (!data || !data.title) throw new Error("Title is required to create a post.");
   
@@ -48,7 +49,7 @@ export class PostService {
    * @returns {Promise<object>} The response data.
    * @throws {Error} If the API request fails.
    */
-
+/*
   async readPost(id) {
     if (!id) throw new Error("Post ID is required.");
   
@@ -76,6 +77,7 @@ export class PostService {
    * @returns {Promise<Object>} An object containing posts and meta info.
    * @throws {Error} If the API request fails.
    */
+  /*
   async readPosts(limit = 12, page = 1, tag = "") {
     try {
       const params = new URLSearchParams({
@@ -91,7 +93,7 @@ export class PostService {
       throw error;
     }
   }
-
+/*
   /**
    * Reads posts by a specific user with optional pagination and tagging.
    * @param {string} username - The username of the user whose posts to read.
@@ -101,6 +103,7 @@ export class PostService {
    * @returns {Promise<Object>} An object containing posts and meta info.
    * @throws {Error} If the API request fails.
    */
+  /*
   async readPostsByUser(username, limit = 12, page = 1, tag = "") {
     if (!username) throw new Error("Username is required.");
 
@@ -119,6 +122,82 @@ export class PostService {
     }
   }
 }
+All above here was the "old" PostService*/
+
+import { API_SOCIAL_POSTS } from "../constants";
+
+export class PostService {
+  constructor(baseURL = API_SOCIAL_POSTS) {
+    this.baseURL = baseURL;
+  }
+
+  async handlePost(action, data = null, postId = null) {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("You must be logged in to manage posts.");
+
+    let url = this.baseURL;
+    let method = "POST";
+
+    if (action === "update" && postId) {
+      url += `/${postId}`;
+      method = "PUT";
+    } else if (action === "delete" && postId) {
+      url += `/${postId}`;
+      method = "DELETE";
+    } else if (action !== "create") {
+      throw new Error("Invalid action or missing postId.");
+    }
+
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: action === "delete" ? null : JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error(`Failed to ${action} post: ${response.statusText}`);
+
+      return action === "delete" ? { message: "Post deleted successfully" } : await response.json();
+    } catch (error) {
+      console.error(`Error during ${action} post:`, error);
+      throw error;
+    }
+  }
+
+  async createPost(data) {
+    if (!data?.title) throw new Error("Title is required to create a post.");
+    return this.handlePost("create", data);
+  }
+
+  async updatePost(postId, data) {
+    if (!postId) throw new Error("Post ID is required to update a post.");
+    return this.handlePost("update", data, postId);
+  }
+
+  async deletePost(postId) {
+    if (!postId) throw new Error("Post ID is required to delete a post.");
+    return this.handlePost("delete", null, postId);
+  }
+
+  async readPost(postId) {
+    if (!postId) throw new Error("Post ID is required to fetch a post.");
+    const response = await fetch(`${this.baseURL}/${postId}`);
+    if (!response.ok) throw new Error(`Failed to fetch post: ${response.statusText}`);
+    return response.json();
+  }
+  
+  async readPosts(limit = 12, page = 1) {
+    const params = new URLSearchParams({ limit, page });
+    const response = await fetch(`${this.baseURL}?${params.toString()}`);
+    if (!response.ok) throw new Error(`Failed to fetch posts: ${response.statusText}`);
+    return response.json();
+  }
+  
+}
+
 
   
 

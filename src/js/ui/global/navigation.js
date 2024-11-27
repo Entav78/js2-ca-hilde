@@ -96,7 +96,7 @@ export class Navigation {
 
     createPostButton.addEventListener("click", () => {
       console.log("Create Post button clicked!");
-      window.location.pathname = "/post/create/";
+      window.location.pathname = "/post/manage/";
     });
 
     nav.appendChild(createPostButton);
