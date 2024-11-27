@@ -15,7 +15,7 @@ export function authGuard() {
   if (!localStorage.token) {
     alert("You must be logged in to view this page");
     window.location.pathname = "/auth/login/";
-    window.location.reload();
+   // window.location.reload();
     console.log(window.location.pathname)
   }
 }

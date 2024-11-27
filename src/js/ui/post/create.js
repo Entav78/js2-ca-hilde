@@ -1,5 +1,5 @@
 /**
- * Passses data to the createPost function in api/post and handles the response
+ * Passes data to the createPost function in api/post and handles the response
  */
 
 import { PostService } from "../../api/post/postService";
@@ -20,6 +20,7 @@ export async function onCreatePost(event) {
       url: formData.get("mediaUrl"),
       alt: formData.get("mediaAlt"),
     },
+    author: userDetails ? userDetails.name : "Anonymous",
   };
 
   try {

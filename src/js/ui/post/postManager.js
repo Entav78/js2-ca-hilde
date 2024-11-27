@@ -14,39 +14,35 @@ export class PostManager {
 
   async handleFormSubmit(event) {
     event.preventDefault();
-
-    const action = this.form.dataset.action; // "create", "update"
-    const postId = this.form.dataset.postId; // Used for updates
+  
+    const action = this.form.dataset.action; // "create" or "update"
+    const postId = this.form.dataset.postId || null; // Post ID if updating
     const formData = new FormData(this.form);
-
+  
     const data = {
       title: formData.get("title"),
       body: formData.get("body"),
-      tags: formData.get("tags")?.split(",").map(tag => tag.trim()),
+      tags: formData.get("tags")?.split(",").map((tag) => tag.trim()),
       media: {
         url: formData.get("mediaUrl"),
         alt: formData.get("mediaAlt"),
       },
     };
-
+  
     try {
       if (!action) throw new Error("Action not specified in form.");
-
+  
       const result = await this.postService.handlePost(action, data, postId);
       console.log(`Post ${action}d successfully:`, result);
-
-      if (action === "delete") {
-        alert("Post deleted successfully!");
-        window.location.pathname = "/";
-      } else {
-        alert(`Post ${action}d successfully!`);
-        window.location.pathname = "/";
-      }
+  
+      alert(`Post ${action}d successfully!`);
+      window.location.pathname = "/"; // Redirect to home after action
     } catch (error) {
       console.error(`Failed to ${action} post:`, error);
       alert(`Error: ${error.message}`);
     }
   }
+  
 
   static async handleDelete(postId, postService = new PostService()) {
     try {

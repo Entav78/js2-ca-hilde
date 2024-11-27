@@ -50,6 +50,9 @@ export class Navigation {
       logoutButton.addEventListener("click", () => {
         try {
           localStorage.removeItem("token");
+          localStorage.removeItem("userDetails");
+          console.log("User logged out. Token and user details cleared from localStorage.");
+          
           window.location.reload();
         } catch (error) {
           console.error("Error during logout:", error);

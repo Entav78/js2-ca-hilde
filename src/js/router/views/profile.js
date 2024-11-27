@@ -20,8 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
 */
 
 import { Navigation } from "../../ui/global/navigation";
+import { authGuard } from "../../utilities/authGuard";
 
+console.log("Token on page load:", localStorage.getItem("token"));
 console.log("Running profile page...");
+const token = localStorage.getItem("token"); // Retrieves the saved token
+console.log("Token from localStorage:", token);
+
+// Ensure the user is logged in before accessing the Profile page
+authGuard();
 
 function initializeNavigation() {
   const navContainer = document.querySelector(".navigation-container");
@@ -31,7 +38,13 @@ function initializeNavigation() {
     const navigation = new Navigation(navContainer);
     const isLoggedIn = !!localStorage.getItem("token");
     console.log("Is user logged in:", isLoggedIn);
-    navigation.createNavbar(isLoggedIn);
+
+    // Include the "Create Post" button on the Profile page
+    navigation.createNavbar(isLoggedIn, {
+      includeHomeButton: true,
+      includeCreatePostButton: isLoggedIn, // Show "Create Post" button if logged in
+    });
+
     console.log("Navigation setup completed.");
   } else {
     console.error("Navigation container not found.");
@@ -46,6 +59,7 @@ if (document.readyState === "loading") {
   // If the DOM is already loaded, run the initialization immediately
   initializeNavigation();
 }
+
 
 
 

@@ -14,35 +14,37 @@ import { PostManager } from "../../ui/post/postManager";
 
 authGuard();
 
-const form = document.forms.managePostForm; // Update form name to match your HTML
-if (form) {
-  const postManager = new PostManager(form); // Initialize PostManager
-  
-  // Bind form submission to create/update functionality
-  form.addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent default form submission
+const form = document.forms.managePostForm;
+const saveButton = document.getElementById("saveButton");
+const deleteButton = document.getElementById("deletePostButton");
 
-    const postId = form.dataset.postId || null; // Retrieve postId if present
-    if (postId) {
-      postManager.handleUpdate(postId); // Call update if postId exists
-    } else {
-      postManager.handleCreate(); // Call create otherwise
-    }
-  });
+// Check if postId exists in form.dataset
+const postId = form.dataset.postId;
+
+// Update form and button based on action
+if (postId) {
+  form.dataset.action = "update";
+  saveButton.textContent = "Save Changes";
+  deleteButton.dataset.postId = postId; // Set the postId for deletion
+  deleteButton.style.display = "inline-block"; // Ensure delete button is visible
 } else {
-  console.error("Manage Post form not found!");
+  form.dataset.action = "create";
+  saveButton.textContent = "Create Post";
+  deleteButton.style.display = "none"; // Hide delete button for new posts
 }
 
-// Example: Bind delete button
-const deleteButton = document.getElementById("deletePostButton");
+const postManager = new PostManager(form);
+
+// Attach event listener to delete button
 if (deleteButton) {
   deleteButton.addEventListener("click", () => {
-    const postId = deleteButton.dataset.postId;
-    if (postId) {
-      PostManager.handleDelete(postId); // Static delete method call
+    const postIdToDelete = deleteButton.dataset.postId;
+    if (postIdToDelete) {
+      PostManager.handleDelete(postIdToDelete);
     } else {
-      console.error("Post ID is missing for delete action!");
+      alert("No post selected for deletion.");
     }
   });
 }
+
 
