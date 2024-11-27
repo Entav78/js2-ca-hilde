@@ -1,15 +1,15 @@
 
 import { Navigation } from "../../ui/global/navigation";
-
-console.log("Running home page...");
+import { PostService } from "../../api/post/postService";
+import { PostsRenderer} from "../../ui/post/postsRenderer"
 
 function initializeNavigation() {
-  const navigationContainer = document.querySelector(".navigation-container");
-  console.log("Navigation container found:", navigationContainer);
+  const navContainer = document.querySelector(".navigation-container");
+  console.log("Navigation container found:", navContainer);
 
-  if (navigationContainer) {
+  if (navContainer) {
     const isLoggedIn = !!localStorage.getItem("token");
-    const nav = new Navigation(navigationContainer);
+    const nav = new Navigation(navContainer);
     console.log("Is user logged in:", isLoggedIn);
     nav.createNavbar(isLoggedIn, { 
       includeHomeButton: false,
@@ -30,8 +30,12 @@ if (document.readyState === "loading") {
   initializeNavigation();
 }
 
-// Comment out PostService and PostsRenderer temporarily for debugging
-// const postService = new PostService();
-// const postsRenderer = new PostsRenderer("homeContainer"); // Assuming 'homeContainer' is a valid ID or class
-// postsRenderer.init(async () => await postService.readPosts(10, 1, "example-tag"));
+const postService = new PostService();
+const postsRenderer = new PostsRenderer("homeContainer");
+
+postsRenderer.init(async () => {
+  console.log("Fetching from PostService...");
+  return await postService.readPosts(10, 1);
+});
+
 

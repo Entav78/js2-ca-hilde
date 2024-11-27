@@ -80,12 +80,20 @@ export class PostService {
   }
   
   async readPosts(limit = 12, page = 1) {
+    const token = localStorage.getItem("token");
+    if (!token || token === "undefined") {
+      throw new Error("Invalid or missing token. Please log in again.");
+    }
+  
     const params = new URLSearchParams({ limit, page });
-    const response = await fetch(`${this.baseURL}?${params.toString()}`);
+    const response = await fetch(`${this.baseURL}?${params.toString()}`, {
+      headers: headers(token), // Use the headers function to include the token
+    });
+  
     if (!response.ok) throw new Error(`Failed to fetch posts: ${response.statusText}`);
     return response.json();
   }
-
+  
 }
 
 

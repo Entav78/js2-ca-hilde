@@ -49,3 +49,20 @@
   background-color: #007bff;
   color: white;
 }
+
+#homeContainer .post {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background: #f9f9f9;
+}
+
+#homeContainer .post h3 {
+  cursor: pointer;
+  color: #0073e6;
+}
+
+#homeContainer .post h3:hover {
+  text-decoration: underline;
+}
