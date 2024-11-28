@@ -58,11 +58,11 @@
   background: #f9f9f9;
 }
 
-#homeContainer .post h3 {
+#homeContainer .post h2 {
   cursor: pointer;
   color: #0073e6;
 }
 
-#homeContainer .post h3:hover {
+#homeContainer .post h2:hover {
   text-decoration: underline;
 }

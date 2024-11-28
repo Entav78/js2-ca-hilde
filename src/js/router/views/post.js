@@ -33,34 +33,30 @@ async function loadPost() {
 
 // Function to render post details
 function displayPost(post) {
+  const postData = post.data; // Access the data property
+  
   const postContainer = document.getElementById("postContainer");
   if (!postContainer) {
     console.error("Post container not found.");
     return;
   }
 
-  // Access post data correctly
-  const postData = post.data;
-
-  // Safely extract post properties with fallback values
-  const title = postData.title || "Untitled Post";
-  const body = postData.body || "No content available.";
-  const mediaUrl = postData.media?.url || "";
-  const mediaAlt = postData.media?.alt || "Post image";
-  const tags = postData.tags?.length ? postData.tags.join(", ") : "No tags available.";
-  const createdDate = postData.created ? new Date(postData.created).toLocaleString() : "Unknown date";
-  const author = postData.author?.name || "Unknown Author";
-
-  // Generate HTML for the post
+  console.log("Media URL:", postData.media?.url);
+  
   postContainer.innerHTML = `
-    <h1>${title}</h1>
-    <p>${body}</p>
-    ${mediaUrl ? `<img src="${mediaUrl}" alt="${mediaAlt}" />` : ""}
-    <p>Tags: ${tags}</p>
-    <p>Created: ${createdDate}</p>
-    <p>Author: ${author}</p>
+    <h1>${postData.title || "Untitled Post"}</h1>
+    <p>${postData.body || "No content available."}</p>
+    ${
+      postData.media?.url
+        ? `<img src="${postData.media.url}" alt="${postData.media.alt || "Post image"}" />`
+        : `<p>No image available.</p>`
+    }
+    <p>Tags: ${postData.tags?.join(", ") || "No tags available."}</p>
+    <p>Created: ${postData.created ? new Date(postData.created).toLocaleString() : "Unknown date"}</p>
+    <p>Updated: ${postData.updated ? new Date(postData.updated).toLocaleString() : "Unknown date"}</p>
   `;
 }
+
 
 
 // Function to display edit and delete buttons
