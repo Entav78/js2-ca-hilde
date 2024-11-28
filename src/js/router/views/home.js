@@ -1,7 +1,6 @@
-
 import { Navigation } from "../../ui/global/navigation";
 import { PostService } from "../../api/post/postService";
-import { PostsRenderer} from "../../ui/post/postsRenderer"
+import { PostsRenderer } from "../../ui/post/postsRenderer";
 
 function initializeNavigation() {
   const navContainer = document.querySelector(".navigation-container");
@@ -14,28 +13,32 @@ function initializeNavigation() {
     nav.createNavbar(isLoggedIn, { 
       includeHomeButton: false,
       includeCreatePostButton: isLoggedIn,
-     }); 
+    }); 
     console.log("Navigation setup completed.");
   } else {
     console.error("Navigation container not found.");
   }
 }
 
-// Check if the DOM is already loaded
-if (document.readyState === "loading") {
-  // If the DOM is still loading, wait for it to fully load
-  document.addEventListener("DOMContentLoaded", initializeNavigation);
-} else {
-  // If the DOM is already loaded, run the initialization immediately
-  initializeNavigation();
+function initializePostsRenderer() {
+  const postService = new PostService();
+  const postsRenderer = new PostsRenderer("homeContainer"); // Assuming 'homeContainer' is the correct ID
+
+  console.log("Fetching from PostService...");
+  postsRenderer.init(async () => await postService.readPosts(10, 1));
 }
 
-const postService = new PostService();
-const postsRenderer = new PostsRenderer("homeContainer");
+// Initialize navigation and posts renderer when the DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    initializeNavigation();
+    initializePostsRenderer();
+  });
+} else {
+  initializeNavigation();
+  initializePostsRenderer();
+}
 
-postsRenderer.init(async () => {
-  console.log("Fetching from PostService...");
-  return await postService.readPosts(10, 1);
-});
+
 
 

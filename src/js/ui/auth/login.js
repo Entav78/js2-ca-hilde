@@ -37,7 +37,7 @@ export async function onLogin(event) {
 
     // Redirect to profile
     alert("Login successful!");
-    window.location.pathname = "/profile/";
+    window.location.pathname = "/";
   } catch (error) {
     alert(`Login failed: ${error.message}`);
     console.error("Login error:", error);

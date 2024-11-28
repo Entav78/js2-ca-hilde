@@ -43,15 +43,13 @@ if (postList.length > 0) {
   }
 
   createPostElement(post) {
-    console.log("Creating element for post:", post); // Add this log
-  
     const postElement = document.createElement("div");
     postElement.className = "post";
   
     const titleElement = document.createElement("h3");
     titleElement.textContent = post.title;
     titleElement.addEventListener("click", () => {
-      window.location.pathname = `/post/?id=${post.id}`;
+      window.location.href = `/post/?id=${post.id}`;
     });
   
     postElement.appendChild(titleElement);

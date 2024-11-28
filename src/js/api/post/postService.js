@@ -1,18 +1,20 @@
-
 import { API_SOCIAL_POSTS } from "../constants";
 import { headers } from "../headers";
+
 export class PostService {
   constructor(baseURL = API_SOCIAL_POSTS) {
     this.baseURL = baseURL;
   }
 
   /**
-   * Retrieves and validates the token from localStorage.
-   * @returns {string} The valid token.
-   * @throws {Error} If the token is invalid or missing.
+   * Handles post actions (create, update, delete).
+   * @param {string} action - The action to perform ("create", "update", "delete").
+   * @param {Object} [data=null] - The post data for create/update actions.
+   * @param {string} [postId=null] - The post ID for update/delete actions.
+   * @returns {Promise<Object>} The server's response.
+   * @throws {Error} If the action fails or the token is invalid/missing.
    */
-  
-    async handlePost(action, data = null, postId = null) {
+  async handlePost(action, data = null, postId = null) {
     const token = localStorage.getItem("token");
     if (!token || token === "undefined") {
       throw new Error("Invalid or missing token. Please log in again.");
@@ -33,21 +35,22 @@ export class PostService {
 
     try {
       const requestHeaders = headers(token); // Use the headers function
-      console.log("Headers in request:", [...requestHeaders.entries()]); // Log headers to debug
+      console.log("Headers in request:", [...requestHeaders.entries()]);
 
       const response = await fetch(url, {
         method,
         headers: requestHeaders,
         body: action === "delete" ? null : JSON.stringify(data),
       });
+      
 
       if (!response.ok) {
         console.error("Error response from server:", response);
         throw new Error(`Failed to ${action} post: ${response.statusText}`);
       }
 
-      return action === "delete" 
-        ? { message: "Post deleted successfully" } 
+      return action === "delete"
+        ? { message: "Post deleted successfully" }
         : await response.json();
     } catch (error) {
       console.error(`Error during ${action} post:`, error);
@@ -55,46 +58,97 @@ export class PostService {
     }
   }
 
-
-
+  /**
+   * Creates a new post with the logged-in user's name set as the author.
+   * @param {Object} data - The post data.
+   * @returns {Promise<Object>} The created post's data.
+   * @throws {Error} If the title is missing or user details are not found.
+   */
   async createPost(data) {
-    if (!data?.title) throw new Error("Title is required to create a post.");
-    return this.handlePost("create", data);
+    // Retrieve the currently logged-in user's details
+    const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    if (!userDetails || !userDetails.name) {
+      throw new Error("User details not found. Please log in again.");
+    }
+
+    // Automatically set the author to the logged-in user's name
+    const postData = {
+      ...data,
+      author: userDetails.name,
+    };
+
+    if (!postData.title) throw new Error("Title is required to create a post.");
+    return this.handlePost("create", postData);
   }
 
+  /**
+   * Updates an existing post.
+   * @param {string} postId - The ID of the post to update.
+   * @param {Object} data - The post data to update.
+   * @returns {Promise<Object>} The updated post's data.
+   */
   async updatePost(postId, data) {
     if (!postId) throw new Error("Post ID is required to update a post.");
     return this.handlePost("update", data, postId);
   }
 
+  /**
+   * Deletes a post.
+   * @param {string} postId - The ID of the post to delete.
+   * @returns {Promise<Object>} A success message.
+   */
   async deletePost(postId) {
     if (!postId) throw new Error("Post ID is required to delete a post.");
     return this.handlePost("delete", null, postId);
   }
 
+  /**
+   * Reads a single post by ID.
+   * @param {string} postId - The ID of the post to fetch.
+   * @returns {Promise<Object>} The post's data.
+   */
   async readPost(postId) {
-    if (!postId) throw new Error("Post ID is required to fetch a post.");
-    const response = await fetch(`${this.baseURL}/${postId}`);
-    if (!response.ok) throw new Error(`Failed to fetch post: ${response.statusText}`);
-    return response.json();
-  }
-  
-  async readPosts(limit = 12, page = 1) {
     const token = localStorage.getItem("token");
+  
     if (!token || token === "undefined") {
       throw new Error("Invalid or missing token. Please log in again.");
     }
   
-    const params = new URLSearchParams({ limit, page });
-    const response = await fetch(`${this.baseURL}?${params.toString()}`, {
-      headers: headers(token), // Use the headers function to include the token
+    const response = await fetch(`${this.baseURL}/${postId}`, {
+      headers: headers(token), // Pass the token to headers
     });
   
-    if (!response.ok) throw new Error(`Failed to fetch posts: ${response.statusText}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch post: ${response.statusText}`);
+    }
+  
     return response.json();
   }
   
+
+  /**
+   * Reads multiple posts with optional pagination.
+   * @param {number} [limit=12] - The maximum number of posts to fetch.
+   * @param {number} [page=1] - The page number for pagination.
+   * @returns {Promise<Object>} The fetched posts' data.
+   */
+  async readPosts(limit = 12, page = 1) {
+    const token = localStorage.getItem("token");
+
+    if (!token || token === "undefined") {
+      throw new Error("Invalid or missing token. Please log in again.");
+    }
+
+    const params = new URLSearchParams({ limit, page });
+    const response = await fetch(`${this.baseURL}?${params.toString()}`, {
+      headers: headers(token),
+    });
+
+    if (!response.ok) throw new Error(`Failed to fetch posts: ${response.statusText}`);
+    return response.json();
+  }
 }
+
 
 
   
