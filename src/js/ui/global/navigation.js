@@ -19,8 +19,8 @@ export class Navigation {
    */
   createNavbar(isLoggedIn, options = { includeHomeButton: true, includeCreatePostButton: false }) {
     if (!this.container) {
-      console.error("Navigation container not found.");
-      return;
+        console.error("Navigation container not found.");
+        return;
     }
 
     // Clear existing navigation content
@@ -28,52 +28,68 @@ export class Navigation {
 
     const nav = document.createElement("nav");
 
-    // Optionally add the Home button
-    if (options.includeHomeButton) {
-      this.createHomeButton(nav);
+    const currentPage = window.location.pathname;
+
+    // Conditionally add the Home button (exclude if on the home page)
+    if (options.includeHomeButton && currentPage !== "/") {
+        this.createHomeButton(nav);
     }
 
     console.log("isLoggedIn:", isLoggedIn);
     console.log("includeCreatePostButton:", options.includeCreatePostButton);
 
-    // Add "Create Post" button if logged in and option is enabled
-    if (isLoggedIn && options.includeCreatePostButton) {
-      console.log("Creating Create Post button...");
-      this.createCreatePostButton(nav);
+    // Add "Create Post" button if logged in and option is enabled (exclude if on the manage post page)
+    if (isLoggedIn && options.includeCreatePostButton && currentPage !== "/post/manage/") {
+        console.log("Creating Create Post button...");
+        this.createCreatePostButton(nav);
     }
 
-    // Add Logout button if logged in
+    // Add Logout button if logged in (always included since it's not a navigation button)
     if (isLoggedIn) {
-      const logoutButton = document.createElement("button");
-      logoutButton.textContent = "Logout";
-      logoutButton.className = "logout-button";
-      logoutButton.addEventListener("click", () => {
-        try {
-          localStorage.removeItem("token");
-          localStorage.removeItem("userDetails");
-          console.log("User logged out. Token and user details cleared from localStorage.");
-          
-          window.location.reload();
-        } catch (error) {
-          console.error("Error during logout:", error);
+        const logoutButton = document.createElement("button");
+        logoutButton.textContent = "Logout";
+        logoutButton.className = "logout-button";
+        logoutButton.addEventListener("click", () => {
+            try {
+                localStorage.removeItem("token");
+                localStorage.removeItem("userDetails");
+                console.log("User logged out. Token and user details cleared from localStorage.");
+
+                window.location.reload();
+            } catch (error) {
+                console.error("Error during logout:", error);
+            }
+        });
+        nav.appendChild(logoutButton);
+    } else {
+        // Add Login button if not logged in (exclude if on the login page)
+        if (currentPage !== "/auth/login/") {
+            const loginButton = document.createElement("button");
+            loginButton.textContent = "Login";
+            loginButton.className = "login-button";
+            loginButton.addEventListener("click", () => {
+                window.location.pathname = "/auth/login/";
+            });
+            nav.appendChild(loginButton);
         }
-      });
-      nav.appendChild(logoutButton);
-    }
-    else {
-      // Add Login button if not logged in
-      const loginButton = document.createElement("button");
-      loginButton.textContent = "Login";
-      loginButton.className = "login-button";
-      loginButton.addEventListener("click", () => {
-        window.location.pathname = "/auth/login/";
-      });
-      nav.appendChild(loginButton);
+
+        // Add Register button if not logged in (exclude if on the register page)
+        if (currentPage !== "/auth/register/") {
+            const registerButton = document.createElement("button");
+            registerButton.textContent = "Register";
+            registerButton.className = "register-button";
+            registerButton.addEventListener("click", () => {
+                window.location.pathname = "/auth/register/";
+            });
+            nav.appendChild(registerButton);
+        }
     }
 
     // Append the navigation bar to the container
     this.container.appendChild(nav);
-  }
+}
+
+
 
   /**
    * Creates a Home button and appends it to the provided navigation element.

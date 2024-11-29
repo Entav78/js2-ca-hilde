@@ -12,6 +12,7 @@
   height: auto;
 }
 
+.register-button,
 .logout-button,
 .login-button,
 .home-button,
@@ -28,6 +29,7 @@
   margin: 10px;
 }
 
+.register-button:hover,
 .logout-button:hover,
 .login-button:hover,
 .home-button:hover,
@@ -36,6 +38,7 @@
   transition: background-color 0.3s ease;
 }
 
+.register-button:focus,
 .logout-button:focus,
 .login-button:focus,
 .home-button:focus,
@@ -44,6 +47,9 @@
   outline-offset: 2px;
 }
 
+.register-button.active,
+.logout-button.active,
+.login-button.active,
 .home-button.active,
 .create-post-button.active {
   background-color: #007bff;
