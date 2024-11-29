@@ -46,7 +46,7 @@ if (postList.length > 0) {
     const postElement = document.createElement("div");
     postElement.className = "post";
   
-    const titleElement = document.createElement("h3");
+    const titleElement = document.createElement("h2");
     titleElement.textContent = post.title;
     titleElement.addEventListener("click", () => {
       window.location.href = `/post/?id=${post.id}`;

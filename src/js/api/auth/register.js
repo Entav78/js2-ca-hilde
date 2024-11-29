@@ -54,66 +54,86 @@ export class Register {
    * @returns {Promise<Object>} A promise that resolves to the user's registration response.
    */
   async register(data) {
-    // Remove any empty avatar or banner objects
-    if (!data.avatar.url && !data.avatar.alt) {
-      delete data.avatar;
-    }
-    if (!data.banner.url && !data.banner.alt) {
-      delete data.banner;
-    }
-
-    // Remove null values
-    const sanitizedData = JSON.parse(JSON.stringify(data, (key, value) => 
-      value === null ? undefined : value
-    ));
-
-    console.log("Data being sent:", sanitizedData);
+    console.log("Data being sent to API:", data); // Log the request data
 
     try {
-      const response = await fetch(API_AUTH_REGISTER, { 
-        method: "POST",
-        headers: headers(),
-        body: JSON.stringify(sanitizedData),
-      });
-      console.log("Response object:", response);
-      if (!response.ok) {
-        throw new Error("Registration failed.");
-      }
-      return await response.json();
+        const response = await fetch(API_AUTH_REGISTER, {
+            method: "POST",
+            headers: headers(),
+            body: JSON.stringify(data),
+        });
+
+        console.log("Response object:", response);
+
+        // Check if the response is OK
+        if (!response.ok) {
+            const errorResponse = await response.json(); // Parse the error response
+            console.error("Error response from API:", errorResponse);
+
+            // Extract and throw a meaningful error message
+            const errorMessage =
+                errorResponse?.errors?.[0]?.message ||
+                errorResponse.message ||
+                "Registration failed.";
+            throw new Error(errorMessage);
+        }
+
+        const responseData = await response.json();
+        console.log("Successful registration response:", responseData);
+        return responseData;
     } catch (error) {
-      console.error(`Error during registration: ${error.message}`);
-      throw error;
+        console.error("Error during registration:", error.message);
+        throw error; // Re-throw the error to be handled by `handleRegister`
     }
-  }
+}
 
-  async handleRegister(event) {
-    event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const data = {
+
+
+async handleRegister(event) {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  const rawData = {
       name: formData.get("name"),
       email: formData.get("email"),
       password: formData.get("password"),
       bio: formData.get("bio") || null,
       avatar: {
-        url: formData.get("avatarUrl") || null,
-        alt: formData.get("avatarAlt") || null,
+          url: formData.get("avatarUrl") || null,
+          alt: formData.get("avatarAlt") || null,
       },
       banner: {
-        url: formData.get("bannerUrl") || null,
-        alt: formData.get("bannerAlt") || null,
+          url: formData.get("bannerUrl") || null,
+          alt: formData.get("bannerAlt") || null,
       },
       venueManager: formData.get("venueManager") === "on",
-    };
+  };
 
-    try {
-      const user = await this.register(data);
+  if (!rawData.avatar.url && !rawData.avatar.alt) delete rawData.avatar;
+  if (!rawData.banner.url && !rawData.banner.alt) delete rawData.banner;
+
+  const sanitizedData = JSON.parse(JSON.stringify(rawData, (key, value) =>
+      value === null ? undefined : value
+  ));
+
+  console.log("Sanitized data being sent:", sanitizedData);
+
+  try {
+      const user = await this.register(sanitizedData);
       alert("Registration successful!");
       window.location.pathname = "/auth/login/";
-    } catch (error) {
+  } catch (error) {
+      console.error("Error during registration:", error.message);
+
+      // Display the error message to the user
       alert(`Registration failed: ${error.message}`);
-    }
   }
 }
 
+
+
+
+
+}
 
