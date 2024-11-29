@@ -9,11 +9,16 @@ export function onLogout() {
 }
 */
 
-/* testing creating logout in Navigation
+// testing creating logout in Navigation
 export function onLogout() {
-  localStorage.removeItem("token"); 
-  alert("You have been logged out.");
-  window.location.pathname = "/auth/login/"; 
-  window.location.reload(); 
+  try {
+    console.log("Executing logout...");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userDetails");
+    
+    alert("You have been logged out.");
+    window.location.pathname = "/auth/login/";
+  } catch (error) {
+    console.error("Error during logout:", error);
+  }
 }
-*/

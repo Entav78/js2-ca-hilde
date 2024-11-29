@@ -8,17 +8,17 @@ console.log("Router imported successfully");
 function initializeNavigation() {
   const navContainer = document.querySelector(".navigation-container");
   if (navContainer) {
-    const isLoggedIn = !!localStorage.getItem("token");
-    const nav = new Navigation(navContainer);
-    nav.createNavbar(isLoggedIn, { 
-      includeHomeButton: true,
-      includeCreatePostButton: isLoggedIn,
-    });
+    const isLoggedIn = !!localStorage.getItem("token"); // Check login status
+    const navigation = new Navigation(navContainer); // Create Navigation instance
+
+    // Call createNavbar with the necessary options
+    navigation.createNavbar(isLoggedIn, { includeHomeButton: true });
     console.log("Navigation setup completed.");
   } else {
     console.error("Navigation container not found.");
   }
 }
+
 
 // Function to initialize the application
 async function initializeApp() {

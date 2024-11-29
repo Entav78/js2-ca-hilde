@@ -1,9 +1,6 @@
+import { setLogoutListener } from "../global/logout.js";
 
 export class Navigation {
-  /**
-   * Initializes the Navigation with a container element.
-   * @param {HTMLElement} containerElement - The container element where the navigation will be rendered.
-   */
   constructor(containerElement) {
     if (!(containerElement instanceof HTMLElement)) {
       throw new Error("Invalid container element provided to Navigation.");
@@ -12,15 +9,36 @@ export class Navigation {
   }
 
   /**
+   * Creates a navigation button and appends it to the provided navigation element.
+   * @param {HTMLElement} nav - The navigation element to append the button to.
+   * @param {string} text - The text to display on the button.
+   * @param {string} path - The path to navigate to when the button is clicked.
+   * @param {string} className - The CSS class to apply to the button.
+   * @returns {HTMLElement} - The created button element.
+   */
+  createButton(nav, text, path, className) {
+    const button = document.createElement("button");
+    button.textContent = text;
+    button.className = className;
+
+    button.addEventListener("click", () => {
+      window.location.pathname = path;
+    });
+
+    nav.appendChild(button);
+    return button;
+  }
+
+  /**
    * Creates the navigation bar with optional elements like Home and Login/Logout.
    * @param {boolean} isLoggedIn - Whether the user is logged in or not.
    * @param {Object} options - Additional options for the navigation.
    * @param {boolean} options.includeHomeButton - Whether to include the Home button.
    */
-  createNavbar(isLoggedIn, options = { includeHomeButton: true, includeCreatePostButton: false }) {
+  createNavbar(isLoggedIn, options = { includeHomeButton: true }) {
     if (!this.container) {
-        console.error("Navigation container not found.");
-        return;
+      console.error("Navigation container not found.");
+      return;
     }
 
     // Clear existing navigation content
@@ -28,100 +46,36 @@ export class Navigation {
 
     const nav = document.createElement("nav");
 
-    const currentPage = window.location.pathname;
-
-    // Conditionally add the Home button (exclude if on the home page)
-    if (options.includeHomeButton && currentPage !== "/") {
-        this.createHomeButton(nav);
+    // Add buttons based on login status and current page
+    if (options.includeHomeButton && window.location.pathname !== "/") {
+      this.createButton(nav, "Home", "/", "home-button");
     }
 
-    console.log("isLoggedIn:", isLoggedIn);
-    console.log("includeCreatePostButton:", options.includeCreatePostButton);
-
-    // Add "Create Post" button if logged in and option is enabled (exclude if on the manage post page)
-    if (isLoggedIn && options.includeCreatePostButton && currentPage !== "/post/manage/") {
-        console.log("Creating Create Post button...");
-        this.createCreatePostButton(nav);
+    if (isLoggedIn && window.location.pathname !== "/profile/") {
+      this.createButton(nav, "Profile", "/profile/", "profile-button");
     }
 
-    // Add Logout button if logged in (always included since it's not a navigation button)
+    if (isLoggedIn && window.location.pathname !== "/post/manage/") {
+      this.createButton(nav, "Create Post", "/post/manage/", "create-post-button");
+    }
+
     if (isLoggedIn) {
-        const logoutButton = document.createElement("button");
-        logoutButton.textContent = "Logout";
-        logoutButton.className = "logout-button";
-        logoutButton.addEventListener("click", () => {
-            try {
-                localStorage.removeItem("token");
-                localStorage.removeItem("userDetails");
-                console.log("User logged out. Token and user details cleared from localStorage.");
+      // Create the Logout button
+      const logoutButton = this.createButton(nav, "Logout", "/", "logout-button");
 
-                window.location.reload();
-            } catch (error) {
-                console.error("Error during logout:", error);
-            }
-        });
-        nav.appendChild(logoutButton);
+      // Attach the logout listener
+      setLogoutListener(logoutButton);
     } else {
-        // Add Login button if not logged in (exclude if on the login page)
-        if (currentPage !== "/auth/login/") {
-            const loginButton = document.createElement("button");
-            loginButton.textContent = "Login";
-            loginButton.className = "login-button";
-            loginButton.addEventListener("click", () => {
-                window.location.pathname = "/auth/login/";
-            });
-            nav.appendChild(loginButton);
-        }
-
-        // Add Register button if not logged in (exclude if on the register page)
-        if (currentPage !== "/auth/register/") {
-            const registerButton = document.createElement("button");
-            registerButton.textContent = "Register";
-            registerButton.className = "register-button";
-            registerButton.addEventListener("click", () => {
-                window.location.pathname = "/auth/register/";
-            });
-            nav.appendChild(registerButton);
-        }
+      this.createButton(nav, "Login", "/auth/login/", "login-button");
+      this.createButton(nav, "Register", "/auth/register/", "register-button");
     }
 
     // Append the navigation bar to the container
     this.container.appendChild(nav);
-}
-
-
-
-  /**
-   * Creates a Home button and appends it to the provided navigation element.
-   * @param {HTMLElement} nav - The navigation element to append the Home button to.
-   */
-  createHomeButton(nav) {
-    const homeButton = document.createElement("button");
-    homeButton.textContent = "Home";
-    homeButton.className = "home-button";
-    homeButton.addEventListener("click", () => {
-      window.location.pathname = "/";
-    });
-    nav.appendChild(homeButton);
-  }
-
-  createCreatePostButton(nav) {
-    console.log("Executing createCreatePostButton...");
-    const createPostButton = document.createElement("button");
-    createPostButton.textContent = "Create Post";
-    createPostButton.className = "create-post-button";
-
-    console.log("Create Post button created:", createPostButton);
-
-    createPostButton.addEventListener("click", () => {
-      console.log("Create Post button clicked!");
-      window.location.pathname = "/post/manage/";
-    });
-
-    nav.appendChild(createPostButton);
-    console.log("Create Post button appended to nav:", nav);
   }
 }
+
+
 
 
 
