@@ -1,8 +1,6 @@
 import { authGuard } from "../../utilities/authGuard";
 import { Profile } from "../../api/profile/profile.js";
 
-console.log("Token on page load:", localStorage.getItem("token"));
-console.log("Running profile page...");
 const token = localStorage.getItem("token"); // Retrieves the saved token
 console.log("Token from localStorage:", token);
 
@@ -12,21 +10,10 @@ authGuard();
 document.addEventListener("DOMContentLoaded", async () => {
   const profileApi = new Profile();
   try {
-    const userProfile = await profileApi.getProfile(null, true); // Fetch logged-in user's profile
-    console.log("User Profile:", userProfile);
-    // Render the profile on the page
+    const profiles = await profileApi.getProfiles(10, 1); // Fetch first page of profiles
+    console.log("Profiles List:", profiles);
+    // Render the profiles on the page
   } catch (error) {
-    console.error("Error fetching profile:", error.message);
+    console.error("Error fetching profiles:", error.message);
   }
 });
-
-
-
-
-
-
-
-
-
-
-

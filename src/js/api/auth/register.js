@@ -93,6 +93,9 @@ export class Register {
 async handleRegister(event) {
   event.preventDefault();
 
+  const errorDiv = document.getElementById("registration-error");
+  errorDiv.textContent = ""; // Clear previous errors
+
   const formData = new FormData(event.target);
   const rawData = {
       name: formData.get("name"),
@@ -113,9 +116,9 @@ async handleRegister(event) {
   if (!rawData.avatar.url && !rawData.avatar.alt) delete rawData.avatar;
   if (!rawData.banner.url && !rawData.banner.alt) delete rawData.banner;
 
-  const sanitizedData = JSON.parse(JSON.stringify(rawData, (key, value) =>
-      value === null ? undefined : value
-  ));
+  const sanitizedData = JSON.parse(
+      JSON.stringify(rawData, (key, value) => (value === null ? undefined : value))
+  );
 
   console.log("Sanitized data being sent:", sanitizedData);
 
@@ -123,13 +126,15 @@ async handleRegister(event) {
       const user = await this.register(sanitizedData);
       alert("Registration successful!");
       window.location.pathname = "/auth/login/";
+      
+      
   } catch (error) {
       console.error("Error during registration:", error.message);
-
-      // Display the error message to the user
-      alert(`Registration failed: ${error.message}`);
+      // Display the error message in the error div
+      errorDiv.textContent = `Registration failed: ${error.message}`;
   }
 }
+
 
 
 
