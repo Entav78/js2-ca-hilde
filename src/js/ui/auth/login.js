@@ -35,7 +35,7 @@ export async function onLogin(event) {
     localStorage.setItem("userDetails", JSON.stringify(userDetails));
     console.log("User details saved to localStorage:", userDetails);
 
-    // Redirect to profile
+    // Redirect to home
     alert("Login successful!");
     window.location.pathname = "/";
   } catch (error) {

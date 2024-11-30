@@ -1,7 +1,7 @@
 import { headers } from "../headers.js";
 
 export class Profile {
-  constructor(baseApiUrl = "https://v2.api.noroff.dev/profile") {
+  constructor(baseApiUrl = "https://v2.api.noroff.dev/social/profiles") {
     this.baseApiUrl = baseApiUrl;
   }
 
@@ -16,8 +16,8 @@ export class Profile {
     if (!token) throw new Error("User is not authenticated");
 
     const apiUrl = username
-      ? `${this.baseApiUrl}/${username}`
-      : `${this.baseApiUrl}?_posts=${includePosts}`;
+      ? `${this.baseApiUrl}/${username}?_posts=${includePosts}`
+      : `${this.baseApiUrl}/me?_posts=${includePosts}`;
 
     try {
       const response = await fetch(apiUrl, { headers: headers() });
@@ -39,7 +39,7 @@ export class Profile {
    * @returns {Promise<Object>} - The profiles data.
    */
   async getProfiles(limit = 10, page = 1) {
-    const apiUrl = `${this.baseApiUrl}s?limit=${limit}&page=${page}`;
+    const apiUrl = `${this.baseApiUrl}?limit=${limit}&page=${page}`;
 
     try {
       const response = await fetch(apiUrl, { headers: headers() });
@@ -54,5 +54,6 @@ export class Profile {
     }
   }
 }
+
 
 
