@@ -13,11 +13,15 @@ export class Profile {
    */
   async getProfile(username = null, includePosts = false) {
     const token = localStorage.getItem("token");
+    console.log("Token from localStorage:", token);
     if (!token) throw new Error("User is not authenticated");
 
     const apiUrl = username
       ? `${this.baseApiUrl}/${username}?_posts=${includePosts}`
       : `${this.baseApiUrl}/me?_posts=${includePosts}`;
+
+      console.log("Fetching from API URL in Profile class:", apiUrl);
+
 
     try {
       const response = await fetch(apiUrl, { headers: headers() });

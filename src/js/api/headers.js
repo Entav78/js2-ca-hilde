@@ -29,7 +29,7 @@ export function headers(token = null) {
 */
 import { API_KEY } from "./constants.js";
 
-export function headers(token = null) {
+export function headers(token = localStorage.getItem("token")) {
   const headers = new Headers();
 
   headers.append("Content-Type", "application/json");
