@@ -9,8 +9,8 @@ const form = document.forms.createPost;
 form.addEventListener("submit", onCreatePost);
 */
 
-import { authGuard } from "../../utilities/authGuard";
-import { PostManager } from "../../ui/post/postManager";
+import { authGuard } from "../../utilities/authGuard.js";
+import { PostManager } from "../../ui/post/postManager.js";
 
 authGuard();
 
