@@ -1,5 +1,6 @@
 import { onLogin } from "../../ui/auth/login.js";
 
+console.log("login is running before eventlistener");
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Login.js is running");
 console.log("Constants path:", "../../api/constants.js");

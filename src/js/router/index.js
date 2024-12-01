@@ -62,21 +62,25 @@ export default async function router(pathname = window.location.pathname) {
         await import("./views/auth.js");
         break;
       case "/auth/login/":
+        console.log("Loading login");
         await import("./views/login.js");
         break;
       case "/auth/register/":
         await import("./views/register.js");
         break;
       case "/post/":
+        console.log("Loading post page");
         await import("./views/post.js");
         break;
       case "/post/edit/":
         await import("./views/postEdit.js");
         break;
       case "/post/manage/":
+        console.log("Loading Manage post page");
         await import("./views/postManage.js");
         break;
       case "/profile/":
+        console.log("Loading profile page");
         await import("./views/profile.js");
         break;
       default:
