@@ -14,7 +14,7 @@ export function setLogoutListener(buttonId) {
 }
 */
 
-import { onLogout } from "../auth/logout";
+import { onLogout } from "../auth/logout.js";
 
 export function setLogoutListener(button) {
   if (button) {
