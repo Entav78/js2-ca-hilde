@@ -6,6 +6,8 @@ function getPostIdFromUrl() {
 
 // Import required services
 import { PostService } from "../../api/post/postService";
+import { basePath } from "../../api/constants.js";
+
 
 // Initialize PostService instance
 const postService = new PostService();
@@ -74,7 +76,7 @@ function displayEditDeleteButtons(post) {
     const editButton = document.createElement("button");
     editButton.textContent = "Edit Post";
     editButton.addEventListener("click", () => {
-      window.location.pathname = `/post/manage/?id=${post.id}`;
+      window.location.pathname = `${basePath}/post/manage/?id=${post.id}`;
     });
     buttonsContainer.appendChild(editButton);
 
@@ -87,7 +89,7 @@ function displayEditDeleteButtons(post) {
         try {
           await postService.deletePost(post.id);
           alert("Post deleted successfully.");
-          window.location.pathname = "${basePath}/";
+          window.location.pathname = `${basePath}/`;
         } catch (error) {
           alert(`Error deleting post: ${error.message}`);
         }

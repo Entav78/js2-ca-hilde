@@ -1,5 +1,5 @@
 import { PostService } from "../../api/post/postService.js";
-import { basePath } from "../api/constants.js";
+import { basePath } from "../../api/constants.js";
 
 export class PostManager {
   constructor(formElement, postService = new PostService()) {

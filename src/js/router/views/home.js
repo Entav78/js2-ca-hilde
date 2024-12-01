@@ -1,6 +1,7 @@
 import { PostService } from "../../api/post/postService.js";
 import { PostsRenderer } from "../../ui/post/postsRenderer.js";
 
+
 function initializePostsRenderer() {
   const postService = new PostService();
   const postsRenderer = new PostsRenderer("homeContainer"); // Assuming 'homeContainer' is the correct ID

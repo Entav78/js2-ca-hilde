@@ -3,7 +3,7 @@
  */
 
 import { PostService } from "../../api/post/postService";
-import { basePath } from "../api/constants.js";
+import { basePath } from "../../api/constants.js";
 
 const postService = new PostService();
 
