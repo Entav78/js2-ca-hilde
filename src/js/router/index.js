@@ -48,6 +48,7 @@ import { basePath } from "../api/constants.js";
 export default async function router(pathname = window.location.pathname) {
   console.log("Router running");
 
+  // Clean the pathname for routing
   const cleanPathname = pathname.replace(basePath, "") || "/";
   console.log("Clean Pathname:", cleanPathname);
 
@@ -55,33 +56,34 @@ export default async function router(pathname = window.location.pathname) {
     switch (cleanPathname) {
       case "/":
         console.log("Loading home view");
-        await import(`${basePath}/src/js/router/views/home.js`);
+        await import("./views/home.js");
         break;
       case "/auth/":
-        await import(`${basePath}/src/js/router/views/auth.js`);
+        await import("./views/auth.js");
         break;
       case "/auth/login/":
-        await import(`${basePath}/src/js/router/views/login.js`);
+        await import("./views/login.js");
         break;
       case "/auth/register/":
-        await import(`${basePath}/src/js/router/views/register.js`);
+        await import("./views/register.js");
         break;
       case "/post/":
-        await import(`${basePath}/src/js/router/views/post.js`);
-        break;    
+        await import("./views/post.js");
+        break;
       case "/post/edit/":
-        await import(`${basePath}/src/js/router/views/postEdit.js`);
+        await import("./views/postEdit.js");
         break;
       case "/post/manage/":
-        await import(`${basePath}/src/js/router/views/postManage.js`);
-        break;  
+        await import("./views/postManage.js");
+        break;
       case "/profile/":
-        await import(`${basePath}/src/js/router/views/profile.js`);
+        await import("./views/profile.js");
         break;
       default:
-        await import(`${basePath}/src/js/router/views/notFound.js`);
+        await import("./views/notFound.js");
     }
   } catch (error) {
     console.error("Router Error:", error.message);
   }
 }
+
