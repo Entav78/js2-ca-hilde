@@ -125,7 +125,8 @@ async handleRegister(event) {
   try {
       const user = await this.register(sanitizedData);
       alert("Registration successful!");
-    window.location.pathname = `${basePath}/auth/login/`;
+      //testing without being redirected
+   // window.location.pathname = `${basePath}/auth/login/`;
       //window.location.pathname = "/auth/login/";
       
       
