@@ -1,3 +1,5 @@
+import { basePath } from "../../api/constants.js"; // Adjust the path as necessary
+
 export class PostsRenderer {
   constructor(containerId) {
     this.containerId = containerId;
@@ -49,7 +51,7 @@ if (postList.length > 0) {
     const titleElement = document.createElement("h2");
     titleElement.textContent = post.title;
     titleElement.addEventListener("click", () => {
-      window.location.href = `/post/?id=${post.id}`;
+      window.location.href = `${basePath}/post/?id=${post.id}`;
     });
   
     postElement.appendChild(titleElement);
