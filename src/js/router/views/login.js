@@ -1,8 +1,9 @@
-/*import { onLogin } from "../../ui/auth/login.js";
+import { onLogin } from "../../ui/auth/login.js";
 
 // Ensure the DOM is fully loaded before attaching the event listener
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
+    console.log("Login form submitted");
     const form = document.forms.login;
 
     if (form) {
@@ -26,8 +27,8 @@ if (document.readyState === "loading") {
     console.error("Login form not found.");
   }
 }
-*/
 
+/*
 import { onLogin } from "../../ui/auth/login.js";
 
 // Ensure DOM readiness
@@ -49,3 +50,4 @@ function attachLoginListener() {
     console.error("Login form not found.");
   }
 }
+*/
