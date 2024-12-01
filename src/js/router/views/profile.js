@@ -1,6 +1,6 @@
 import { authGuard } from "../../utilities/authGuard.js";
 import { Profile } from "../../api/profile/profile.js";
-import { basePath } from "../../../constants.js";
+import { basePath } from "../../constants.js";
 authGuard();
 
 console.log("Profile page script is running");
