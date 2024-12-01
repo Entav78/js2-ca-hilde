@@ -20,6 +20,8 @@ export const API_SOCIAL_POSTS = `${API_SOCIAL}/posts`;
 
 export const API_SOCIAL_PROFILES = `${API_SOCIAL}/profiles`;
 
+export const basePath = window.location.hostname === "localhost" ? "" : "/js2-ca-hilde";
+
 /*Social endpoints:
 social-posts (social posts related endpoints)
 GET/social/posts

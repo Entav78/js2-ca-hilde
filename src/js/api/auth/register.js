@@ -32,7 +32,7 @@ export async function register({
 }) {}
 */
 
-import { API_AUTH_REGISTER } from "../constants.js";
+import { API_AUTH_REGISTER, basePath } from "../constants.js";
 import { headers } from "../headers.js";
 
 export class Register {
@@ -125,7 +125,8 @@ async handleRegister(event) {
   try {
       const user = await this.register(sanitizedData);
       alert("Registration successful!");
-      window.location.pathname = "/auth/login/";
+    window.location.pathname = `${basePath}/auth/login/`;
+      //window.location.pathname = "/auth/login/";
       
       
   } catch (error) {

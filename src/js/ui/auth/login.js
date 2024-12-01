@@ -1,4 +1,5 @@
 import { Login } from "../../api/auth/login.js";
+import { basePath } from "../api/constants.js";
 
 /**
  * Handles form submission for user login.
@@ -37,7 +38,6 @@ export async function onLogin(event) {
 
     // Redirect to home
     alert("Login successful!");
-    const basePath = "/js2-ca-hilde";
     window.location.pathname = `${basePath}/`;
     //window.location.pathname = "/";
   } catch (error) {

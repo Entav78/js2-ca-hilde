@@ -1,4 +1,5 @@
 import { PostService } from "../../api/post/postService.js";
+import { basePath } from "../api/constants.js";
 
 export class PostManager {
   constructor(formElement, postService = new PostService()) {
@@ -36,7 +37,7 @@ export class PostManager {
       console.log(`Post ${action}d successfully:`, result);
   
       alert(`Post ${action}d successfully!`);
-      window.location.pathname = "/"; // Redirect to home after action
+      window.location.pathname = `${basePath}/`;// Redirect to home after action
     } catch (error) {
       console.error(`Failed to ${action} post:`, error);
       alert(`Error: ${error.message}`);

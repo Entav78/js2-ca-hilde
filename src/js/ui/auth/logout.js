@@ -8,7 +8,7 @@ export function onLogout() {
   router("/");
 }
 */
-
+import { basePath } from "../api/constants.js";
 // testing creating logout in Navigation
 export function onLogout() {
   try {
@@ -17,7 +17,7 @@ export function onLogout() {
     localStorage.removeItem("userDetails");
     
     alert("You have been logged out.");
-    window.location.pathname = "/auth/login/";
+    window.location.pathname = `${basePath}/auth/login/`;
   } catch (error) {
     console.error("Error during logout:", error);
   }

@@ -87,7 +87,7 @@ function displayEditDeleteButtons(post) {
         try {
           await postService.deletePost(post.id);
           alert("Post deleted successfully.");
-          window.location.pathname = "/";
+          window.location.pathname = "${basePath}/";
         } catch (error) {
           alert(`Error deleting post: ${error.message}`);
         }

@@ -3,6 +3,7 @@
  */
 
 import { PostService } from "../../api/post/postService";
+import { basePath } from "../api/constants.js";
 
 const postService = new PostService();
 
@@ -26,7 +27,7 @@ export async function onCreatePost(event) {
   try {
     const createdPost = await postService.createPost(data);
     console.log("Post created successfully:", createdPost);
-    window.location.pathname = "/";
+    window.location.pathname = `${basePath}/`;
   } catch (error) {
     console.error("Failed to create post:", error);
   }

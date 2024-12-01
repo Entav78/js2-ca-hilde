@@ -1,9 +1,5 @@
-//import { setLogoutListener } from "../global/logout.js";
-
 import { setLogoutListener } from "../global/logout.js";
-
-// Define the base path for GitHub Pages
-const basePath = "/js2-ca-hilde";
+import { basePath } from "../api/constants.js";
 
 export class Navigation {
   constructor(containerElement) {

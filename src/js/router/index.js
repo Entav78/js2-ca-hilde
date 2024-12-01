@@ -56,12 +56,13 @@ export default async function router(pathname = window.location.pathname) {
   }
 }
 */
+import { basePath } from "../api/constants.js";
 
 export default async function router(pathname = window.location.pathname) {
   console.log("Router running");
 
-  const basePath = "/js2-ca-hilde"; // GitHub Pages base path
   const cleanPathname = pathname.replace(basePath, "") || "/";
+  console.log("Clean Pathname:", cleanPathname);
 
   try {
     switch (cleanPathname) {

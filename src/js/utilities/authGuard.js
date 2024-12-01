@@ -5,6 +5,7 @@
   }
 }
 */
+import { basePath } from "../api/constants.js";
 export function authGuard() {
   const publicPaths = ["/", "/auth/login/", "/auth/register/"];
   
@@ -14,7 +15,7 @@ export function authGuard() {
   // Redirect if not logged in
   if (!localStorage.token) {
     alert("You must be logged in to view this page");
-    window.location.pathname = "/auth/login/";
+    window.location.pathname = `${basePath}/`;
    // window.location.reload();
     console.log(window.location.pathname)
   }
