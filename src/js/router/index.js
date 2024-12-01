@@ -1,8 +1,13 @@
 // This function controls which JavaScript file is loaded on which page
 // In order to add additional pages, you will need to implement them below
 // You may change the behaviour or approach of this file if you choose
+const basePath = "/js2-ca-hilde"; // GitHub Pages base path
+
 export default async function router(pathname = window.location.pathname) {
-  switch (pathname) {
+  // Remove basePath from pathname for internal routing
+  const cleanPathname = pathname.replace(basePath, "") || "/";
+
+  switch (cleanPathname) {
     case "/":
       console.log("Loading home view");
       await import("../views/home.js");
@@ -32,3 +37,4 @@ export default async function router(pathname = window.location.pathname) {
       await import("../views/notFound.js");
   }
 }
+
