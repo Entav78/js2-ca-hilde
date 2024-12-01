@@ -1,4 +1,4 @@
-/* comment out for testing
+
 import { basePath } from "../api/constants.js";
 
 export default async function router(pathname = window.location.pathname) {
@@ -41,8 +41,8 @@ export default async function router(pathname = window.location.pathname) {
     console.error("Router Error:", error.message);
   }
 }
-*/
 
+/*
 import { basePath } from "../api/constants.js";
 
 export default async function router(pathname = window.location.pathname) {
@@ -90,4 +90,4 @@ export default async function router(pathname = window.location.pathname) {
     console.error("Router Error:", error.message);
   }
 }
-
+/*
