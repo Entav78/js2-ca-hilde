@@ -1,5 +1,5 @@
-import { setLogoutListener } from "../global/logout.js";
-import { basePath } from "../api/constants.js";
+//import { setLogoutListener } from "../global/logout.js";
+import { basePath } from "../../api/constants.js";
 
 export class Navigation {
   constructor(containerElement) {
