@@ -1,5 +1,5 @@
-import { API_SOCIAL_POSTS } from "../constants";
-import { headers } from "../headers";
+import { API_SOCIAL_POSTS } from "../constants.js";
+import { headers } from "../headers.js";
 
 export class PostService {
   constructor(baseURL = API_SOCIAL_POSTS) {
