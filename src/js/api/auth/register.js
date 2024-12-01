@@ -125,7 +125,8 @@ async handleRegister(event) {
   try {
       const user = await this.register(sanitizedData);
       alert("Registration successful!");
-      window.location.pathname = "/auth/login/";
+      //temprary comment for testing
+  //    window.location.pathname = "/auth/login/";
       
       
   } catch (error) {
