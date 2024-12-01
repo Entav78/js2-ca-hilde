@@ -1,6 +1,10 @@
 import { onLogin } from "../../ui/auth/login.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("Login.js is running");
+console.log("Constants path:", "../../api/constants.js");
+console.log("Headers path:", "../../api/headers.js");
+
   const form = document.forms.login;
   if (form) {
     form.removeEventListener("submit", onLogin); // Prevent duplicate listeners
