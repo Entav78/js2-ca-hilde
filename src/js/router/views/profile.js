@@ -1,6 +1,6 @@
-import { authGuard } from "../../utilities/authGuard.js";
+/*import { authGuard } from "../../utilities/authGuard.js";
 import { Profile } from "../../api/profile/profile.js";
-//import { basePath } from "../../constants.js";
+
 authGuard();
 
 console.log("Profile page script is running");
@@ -102,6 +102,55 @@ function renderUserPosts(posts, username) {
 
   postsSection.innerHTML = `<h2>${username}'s Posts</h2>`;
   postsSection.appendChild(postsList);
+}
+*/
+
+import { PostService } from "../../api/post/postService.js";
+import { PostsRenderer } from "../../ui/post/postsRenderer.js";
+
+// Function to fetch and display user profile details
+async function loadProfileDetails() {
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+  if (!userDetails) {
+    console.error("User details not found in localStorage.");
+    return;
+  }
+
+  console.log("User details:", userDetails);
+
+  // Display basic profile details
+  const profileContainer = document.getElementById("profile-details");
+  if (profileContainer) {
+    profileContainer.innerHTML = `
+      <h1>${userDetails.name}</h1>
+      <p>Email: ${userDetails.email}</p>
+      ${userDetails.avatar ? `<img src="${userDetails.avatar}" alt="Avatar">` : ""}
+      ${userDetails.bio ? `<p>Bio: ${userDetails.bio}</p>` : ""}
+    `;
+  } else {
+    console.error("Profile container not found.");
+  }
+}
+
+// Function to initialize PostsRenderer for user posts
+function initializeUserPostsRenderer() {
+  const postService = new PostService();
+  const postsRenderer = new PostsRenderer("user-posts");
+
+  console.log("Fetching user's posts...");
+  postsRenderer.init(async () => await postService.readUserPosts(10, 1)); // Adjust API call as necessary
+}
+
+// Ensure DOM is fully loaded before initialization
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    loadProfileDetails();
+    initializeUserPostsRenderer();
+  });
+} else {
+  loadProfileDetails();
+  initializeUserPostsRenderer();
 }
 
 
