@@ -1,5 +1,5 @@
 import { Login } from "../../api/auth/login.js";
-import { basePath } from "../api/constants.js";
+import { basePath } from "/src/js/api/constants.js";
 
 /**
  * Handles form submission for user login.
