@@ -88,7 +88,7 @@ function renderUserPosts(posts, username) {
     const postItem = document.createElement("li");
     postItem.innerHTML = `
       <h3>
-        <a href="/post/?id=${post.id}" class="post-link">${post.title}</a>
+        <a href="${basePath}/post/?id=${post.id}" class="post-link">${post.title}</a>
       </h3>
       <p>${post.body}</p>
       ${
