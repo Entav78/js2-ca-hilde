@@ -37,7 +37,9 @@ export async function onLogin(event) {
 
     // Redirect to home
     alert("Login successful!");
-    window.location.pathname = "/";
+    const basePath = "/js2-ca-hilde";
+    window.location.pathname = `${basePath}/`;
+    //window.location.pathname = "/";
   } catch (error) {
     alert(`Login failed: ${error.message}`);
     console.error("Login error:", error);
