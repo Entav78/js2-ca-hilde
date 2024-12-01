@@ -8,6 +8,7 @@ import { basePath } from "../api/constants.js";
  * @param {Event} event - The form submission event.
  */
 export async function onLogin(event) {
+  console.log("Login button clicked");
   event.preventDefault();
 
   const formData = new FormData(event.target);
