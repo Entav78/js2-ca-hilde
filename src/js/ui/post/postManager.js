@@ -1,4 +1,4 @@
-import { PostService } from "../../api/post/postService";
+import { PostService } from "../../api/post/postService.js";
 
 export class PostManager {
   constructor(formElement, postService = new PostService()) {
