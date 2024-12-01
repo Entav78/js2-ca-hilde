@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   appType: "mpa",
-  base: "",
+  base: "/js2-ca-hilde/", // Set the base path for GitHub Pages
   build: {
     target: "esnext",
     rollupOptions: {
