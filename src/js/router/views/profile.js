@@ -1,4 +1,4 @@
-import { authGuard } from "../../utilities/authGuard";
+import { authGuard } from "../../utilities/authGuard"; //a comment so I can push and view
 import { Profile } from "../../api/profile/profile.js";
 
 authGuard();
@@ -8,7 +8,7 @@ console.log("Profile page script is running");
 (async function initializeProfilePage() {
   if (document.readyState === "loading") {
     console.log("DOM is still loading, setting event listener");
-    document.addEventListener("DOMContentLoaded", setupProfilePage);
+    document.addEventListener("DOMContentLoaded", setupProfilePage); 
   } else {
     console.log("DOM already loaded, running setup directly");
     setupProfilePage();
