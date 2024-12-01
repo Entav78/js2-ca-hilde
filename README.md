@@ -1,12 +1,12 @@
 # JS2-CA Project: Social Media Application
 
-This project is a social media application created as part of the JavaScript 2 course assignment at Noroff. The app allows users to register, log in, create posts, and interact with a profile page.
+This project is a social media application created as part of the JavaScript 2 course assignment at Noroff. The app allows users to register, log in, create posts, and interact with a profile page. I thought I was on the right track, but this last day everything fell apart, and I wasn't able to fix the issues (that just became duplicatet for each bug I wanted to fix) I tried branching twice today to find back to where I was before everyting went to pieces, but while the clock was ticking I became more stressed and exhausted,
 
 ## **Core Features**
 - User registration Works
 - User login Worked perfectly utntil I started messing around with profile page. 
-- Profile management
-- Post creation and interaction
+- Profile page worked for a while, but I haven't been able to recreate this.
+- Post creation works, but when I can't log in with any of my created accounts, I can't access the posts displayed in home page or the user's created posts in profile page.
 
 ## **Known Issues**
 - **Login Issue:** Users may encounter issues logging in due to lack of time and seriously lack of sleep.
@@ -15,9 +15,9 @@ This project is a social media application created as part of the JavaScript 2 c
 - **Navigation Bugs: Due to not being able to fix the login issue under stress, it is easy to navigate. The navigation depends on being logged in....
 
 ## **What Works**
-- The registration functionality is fully operational.
-- Basic navigation between key pages is implemented.
-- Posts are partially displayed on the home and profile pages.
+- The registration functionality is operational.
+- Basic navigation between key pages is implemented (hiding the button for the current page -no point in relocating to the same page you already are located).
+- Posts are displayed on the home page when logged in. Posts on the Profile page was up an running, but got lost  .
 
 ## **Future Improvements**
 In the future I will "npm run build" straight away...
