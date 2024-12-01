@@ -5,7 +5,7 @@ function getPostIdFromUrl() {
 }
 
 // Import required services
-import { PostService } from "../../api/post/postService";
+import { PostService } from "../../api/post/postService.js";
 import { basePath } from "../../api/constants.js";
 
 
