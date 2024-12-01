@@ -6,6 +6,7 @@
 }
 */
 import { basePath } from "../api/constants.js";
+
 export function authGuard() {
   const publicPaths = ["/", "/auth/login/", "/auth/register/"];
   

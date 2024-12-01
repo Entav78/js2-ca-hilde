@@ -1,4 +1,4 @@
-import { authGuard } from "../../utilities/authGuard";
+import { authGuard } from "../../utilities/authGuard.js";
 import { Profile } from "../../api/profile/profile.js";
 
 authGuard();
