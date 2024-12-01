@@ -17,6 +17,11 @@ export default defineConfig({
         editPost: resolve(__dirname, "./post/edit/index.html"),
         createPost: resolve(__dirname, "./post/create/index.html"),
       },
+      output: {
+        entryFileNames: "js/[name].js", // JavaScript files go into the js/ folder
+        chunkFileNames: "js/[name].js", // Dynamic imports also go into js/
+        assetFileNames: "assets/[ext]/[name].[ext]", // CSS, images, etc., go into assets/
+      },
     },
   },
   test: {
