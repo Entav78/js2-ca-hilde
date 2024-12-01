@@ -95,9 +95,7 @@ export class Navigation {
 
   // Append the navigation bar to the container
   this.container.appendChild(nav);
-}
-
-  
+} 
 }
 
 
