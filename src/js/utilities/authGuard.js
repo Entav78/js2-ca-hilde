@@ -23,6 +23,7 @@ export function authGuard() {
     alert("You must be logged in to view this page");
     console.warn("AuthGuard: No valid token found, redirecting to home.");
     window.location.pathname = `${basePath}/`;
+    console.log("Current Path:", window.location.pathname);
     return;
   }
 
