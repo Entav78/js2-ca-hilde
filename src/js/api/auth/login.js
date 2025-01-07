@@ -1,5 +1,5 @@
-import { API_AUTH_LOGIN } from "../constants.js";
-import { headers } from "../headers.js";
+import { API_AUTH_LOGIN } from '../constants.js';
+import { headers } from '../headers.js';
 
 export class Login {
   /**
@@ -14,27 +14,24 @@ export class Login {
   async login(data) {
     try {
       const response = await fetch(API_AUTH_LOGIN, {
-        method: "POST",
+        method: 'POST',
         headers: headers(),
         body: JSON.stringify(data),
       });
       if (!response.ok) {
-        throw new Error("Login failed.");
+        throw new Error('Login failed.');
       }
 
       const responseData = await response.json();
-      console.log("Login Response Data:", responseData); // Log response for debugging
+      console.log('Login Response Data:', responseData); // Log response for debugging
 
-      
-      // Validate and return response data
       if (responseData.data?.accessToken) {
-        return responseData.data; // Return the relevant part of the response
+        return responseData; // Return the relevant part of the response //return responseData.data;
       } else {
-        throw new Error("No accessToken received in response.");
+        throw new Error('No accessToken received in response.');
       }
     } catch (error) {
       throw new Error(`Error during login: ${error.message}`);
     }
   }
 }
-
