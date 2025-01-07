@@ -1,7 +1,8 @@
-import { headers } from "../headers.js";
+import { headers } from '../headers.js';
 
+console.log('Headers for API call:', headers());
 export class Profile {
-  constructor(baseApiUrl = "https://v2.api.noroff.dev/social/profiles") {
+  constructor(baseApiUrl = 'https://v2.api.noroff.dev/social/profiles') {
     this.baseApiUrl = baseApiUrl;
   }
 
@@ -12,26 +13,27 @@ export class Profile {
    * @returns {Promise<Object>} - The profile data.
    */
   async getProfile(username = null, includePosts = false) {
-    const token = localStorage.getItem("token");
-    console.log("Token from localStorage:", token);
-    if (!token) throw new Error("User is not authenticated");
+    const token = localStorage.getItem('token');
+    console.log('Token from localStorage:', token);
+    if (!token) throw new Error('User is not authenticated');
 
     const apiUrl = username
       ? `${this.baseApiUrl}/${username}?_posts=${includePosts}`
       : `${this.baseApiUrl}/me?_posts=${includePosts}`;
 
-      console.log("Fetching from API URL in Profile class:", apiUrl);
-
+    console.log('Fetching from API URL in Profile class:', apiUrl);
 
     try {
+      console.log('Headers being sent:', headers());
+
       const response = await fetch(apiUrl, { headers: headers() });
-      if (!response.ok) throw new Error("Failed to fetch profile data");
+      if (!response.ok) throw new Error('Failed to fetch profile data');
 
       const data = await response.json();
-      console.log("Profile data:", data);
+      console.log('Profile data:', data);
       return data;
     } catch (error) {
-      console.error("Error fetching profile data:", error.message);
+      console.error('Error fetching profile data:', error.message);
       throw error;
     }
   }
@@ -47,17 +49,14 @@ export class Profile {
 
     try {
       const response = await fetch(apiUrl, { headers: headers() });
-      if (!response.ok) throw new Error("Failed to fetch profiles");
+      if (!response.ok) throw new Error('Failed to fetch profiles');
 
       const data = await response.json();
-      console.log("Profiles data:", data);
+      console.log('Profiles data:', data);
       return data;
     } catch (error) {
-      console.error("Error fetching profiles:", error.message);
+      console.error('Error fetching profiles:', error.message);
       throw error;
     }
   }
 }
-
-
-
