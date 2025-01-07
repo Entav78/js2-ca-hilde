@@ -27,16 +27,9 @@ export function headers(token = null) {
   return headers;
 }
 */
-import { API_KEY } from './constants.js';
-
-export function headers(token = null) {
+export function headers(token = localStorage.getItem('token')) {
   const headers = new Headers();
-
   headers.append('Content-Type', 'application/json');
-
-  if (API_KEY) {
-    headers.append('X-Noroff-API-Key', API_KEY);
-  }
 
   if (token) {
     headers.append('Authorization', `Bearer ${token}`);
