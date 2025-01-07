@@ -1,6 +1,8 @@
 import { Login } from '../../api/auth/login.js';
 import { basePath } from '../../api/constants.js';
 
+console.log('Base Path in login.js:', basePath);
+
 console.log('login.js imported');
 
 export function initializeLoginPage() {
@@ -28,6 +30,7 @@ export function initializeLoginPage() {
         console.log('Login successful:', userData);
 
         localStorage.setItem('token', userData.accessToken);
+        console.log('Redirecting to:', `${basePath}/profile/`);
         window.location.pathname = `${basePath}/profile/`;
       } catch (error) {
         console.error('Login failed:', error.message);
