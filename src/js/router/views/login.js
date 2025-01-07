@@ -1,18 +1,51 @@
-import { onLogin } from "../../ui/auth/login.js";
+import { Login } from '../../api/auth/login.js';
 
-console.log("login is running before eventlistener");
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Login.js is running");
-console.log("Constants path:", "../../api/constants.js");
-console.log("Headers path:", "../../api/headers.js");
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Login.js is running');
 
-  const form = document.forms.login;
+  const form = document.forms.login; // Ensure the form's `name` is 'login'
   if (form) {
-    form.removeEventListener("submit", onLogin); // Prevent duplicate listeners
-    form.addEventListener("submit", onLogin);
-    console.log("Login form event listener attached.");
+    console.log('Login form found:', form);
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+      const data = {
+        email: formData.get('email'),
+        password: formData.get('password'),
+      };
+
+      const loginInstance = new Login();
+
+      try {
+        console.log('Submitting login request...');
+        const userData = await loginInstance.login(data);
+
+        // Save token and user details
+        localStorage.setItem('token', userData.accessToken);
+        console.log('Token saved to localStorage:', userData.accessToken);
+
+        const userDetails = {
+          name: userData.name,
+          email: userData.email,
+          avatar: userData.avatar,
+          banner: userData.banner,
+          bio: userData.bio,
+        };
+        localStorage.setItem('userDetails', JSON.stringify(userDetails));
+        console.log('User details saved to localStorage:', userDetails);
+
+        // Redirect to profile
+        alert('Login successful!');
+        window.location.pathname = '/profile/'; // Adjust based on routing
+      } catch (error) {
+        alert(`Login failed: ${error.message}`);
+        console.error('Login error:', error);
+      }
+    });
+    console.log('Login form event listener attached.');
   } else {
-    console.error("Login form not found.");
+    console.error('Login form not found.');
   }
 });
-
