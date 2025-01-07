@@ -3,48 +3,36 @@ import { Login } from '../../api/auth/login.js';
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Login.js is running');
 
-  const form = document.forms.login; // Ensure the form's `name` is 'login'
+  const form = document.forms.login;
   if (form) {
     console.log('Login form found:', form);
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      console.log('Login form submitted');
 
+      // Capture form data
       const formData = new FormData(event.target);
       const data = {
         email: formData.get('email'),
         password: formData.get('password'),
       };
 
-      const loginInstance = new Login();
+      console.log('Form data:', data);
 
+      // Perform login (replace with your Login class logic)
       try {
-        console.log('Submitting login request...');
+        const loginInstance = new Login();
         const userData = await loginInstance.login(data);
+        console.log('Login successful:', userData);
 
-        // Save token and user details
+        // Save token and redirect
         localStorage.setItem('token', userData.accessToken);
-        console.log('Token saved to localStorage:', userData.accessToken);
-
-        const userDetails = {
-          name: userData.name,
-          email: userData.email,
-          avatar: userData.avatar,
-          banner: userData.banner,
-          bio: userData.bio,
-        };
-        localStorage.setItem('userDetails', JSON.stringify(userDetails));
-        console.log('User details saved to localStorage:', userDetails);
-
-        // Redirect to profile
-        alert('Login successful!');
-        window.location.pathname = '/profile/'; // Adjust based on routing
+        window.location.href = '/profile/';
       } catch (error) {
-        alert(`Login failed: ${error.message}`);
-        console.error('Login error:', error);
+        console.error('Login failed:', error.message);
       }
     });
-    console.log('Login form event listener attached.');
   } else {
     console.error('Login form not found.');
   }
