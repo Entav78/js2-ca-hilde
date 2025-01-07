@@ -32,7 +32,7 @@ export function headers(token = localStorage.getItem('token')) {
   headers.append('Content-Type', 'application/json');
 
   if (token) {
-    headers.append('Authorization', `Bearer ${token}`);
+    headers.append('Authorization', token);
   }
 
   return headers;
