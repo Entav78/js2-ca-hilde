@@ -1,5 +1,7 @@
 import { Login } from '../../api/auth/login.js';
 
+console.log('login.js imported');
+
 export function initializeLoginPage() {
   console.log('Initializing Login Page...');
 
