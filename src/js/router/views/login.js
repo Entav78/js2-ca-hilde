@@ -27,7 +27,7 @@ export function initializeLoginPage() {
         console.log('Login successful:', userData);
 
         localStorage.setItem('token', userData.accessToken);
-        window.location.href = `${basePath}/profile/`;
+        window.location.pathname = `${basePath}/profile/`;
       } catch (error) {
         console.error('Login failed:', error.message);
       }
