@@ -25,10 +25,15 @@ export function initializeLoginPage() {
 
       try {
         const loginInstance = new Login();
-        const userData = await loginInstance.login(data);
+        const responseData = await loginInstance.login(data);
+        const userData = responseData.data;
+
         console.log('Login successful:', userData);
 
-        // Redirect after successful login
+        localStorage.setItem('token', userData.accessToken);
+        localStorage.setItem('userDetails', JSON.stringify(userData));
+
+        console.log('Redirecting to:', `${basePath}/profile/`);
         window.location.pathname = `${basePath}/profile/`;
       } catch (error) {
         console.error('Login failed:', error.message);
