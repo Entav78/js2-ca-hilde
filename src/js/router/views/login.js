@@ -25,35 +25,16 @@ export function initializeLoginPage() {
 
       try {
         const loginInstance = new Login();
-        const responseData = await loginInstance.login(data); // Get the full response
-        const userData = responseData.data; // Extract the `data` part containing user details
-
+        const userData = await loginInstance.login(data);
         console.log('Login successful:', userData);
 
-        localStorage.setItem('token', userData.accessToken);
-        console.log('Access token saved:', userData.accessToken);
-
-        localStorage.setItem(
-          'userDetails',
-          JSON.stringify({
-            name: userData.name,
-            email: userData.email,
-            bio: userData.bio,
-            avatar: userData.avatar,
-            banner: userData.banner,
-          })
-        );
-        console.log('User details saved in localStorage:', userData);
-
-        console.log('Redirecting to:', `${basePath}/profile/`);
+        // Redirect after successful login
         window.location.pathname = `${basePath}/profile/`;
       } catch (error) {
         console.error('Login failed:', error.message);
         alert(`Login failed: ${error.message}`);
       }
     });
-
-    console.log('Event listener attached to login form.');
   } else {
     console.error('Login form not found.');
   }
