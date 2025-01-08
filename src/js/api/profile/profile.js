@@ -24,10 +24,18 @@ export class Profile {
     console.log('Fetching from API URL in Profile class:', apiUrl);
 
     try {
-      console.log('Headers being sent:', headers());
+      // Build headers and log details for debugging
+      const requestHeaders = headers();
+      console.log('Headers being sent:', {
+        'Content-Type': requestHeaders.get('Content-Type'),
+        Authorization: requestHeaders.get('Authorization'),
+      });
 
-      const response = await fetch(apiUrl, { headers: headers() });
-      if (!response.ok) throw new Error('Failed to fetch profile data');
+      const response = await fetch(apiUrl, { headers: requestHeaders });
+      if (!response.ok) {
+        console.error('API response status:', response.status);
+        throw new Error('Failed to fetch profile data');
+      }
 
       const data = await response.json();
       console.log('Profile data:', data);
