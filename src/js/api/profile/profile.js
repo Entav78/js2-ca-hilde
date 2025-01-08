@@ -22,6 +22,7 @@ export class Profile {
       : `${this.baseApiUrl}/me?_posts=${includePosts}`;
 
     console.log('Fetching from API URL in Profile class:', apiUrl);
+    console.log('Authorization header:', headers().get('Authorization'));
 
     try {
       // Build headers and log details for debugging
