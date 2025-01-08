@@ -25,8 +25,7 @@ export function initializeLoginPage() {
 
       try {
         const loginInstance = new Login();
-        const responseData = await loginInstance.login(data);
-        const userData = responseData.data;
+        const userData = await loginInstance.login(data);
 
         console.log('Login successful:', userData);
 
