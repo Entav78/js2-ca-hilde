@@ -27,12 +27,12 @@ export function headers(token = null) {
   return headers;
 }
 */
-export function headers(token = localStorage.getItem('token')) {
+export function headers(accessToken = localStorage.getItem('accessToken')) {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
-  if (token) {
-    headers.append('Authorization', `Bearer ${token}`);
+  if (accessToken) {
+    headers.append('Authorization', `Bearer ${accessToken}`);
   }
 
   return headers;

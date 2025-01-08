@@ -13,7 +13,7 @@ export class Profile {
    * @returns {Promise<Object>} - The profile data.
    */
   async getProfile(includePosts = false) {
-    const token = localStorage.getItem('token'); // Get the token from localStorage
+    const accessToken = localStorage.getItem('accessToken');
     const userDetails = JSON.parse(localStorage.getItem('userDetails')); // Retrieve userDetails from localStorage
 
     console.log('Token from localStorage:', token);

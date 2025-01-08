@@ -29,7 +29,7 @@ export function initializeLoginPage() {
 
         console.log('Login successful:', userData);
 
-        localStorage.setItem('token', userData.accessToken);
+        localStorage.setItem('accessToken', userData.accessToken);
         localStorage.setItem('userDetails', JSON.stringify(userData));
 
         console.log('Redirecting to:', `${basePath}/profile/`);

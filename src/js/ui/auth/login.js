@@ -49,8 +49,7 @@ export async function onLogin(event) {
 }
 */
 
-
-import { Login } from "../../api/auth/login.js";
+import { Login } from '../../api/auth/login.js';
 
 /**
  * Handles form submission for user login.
@@ -63,8 +62,8 @@ export async function onLogin(event) {
 
   const formData = new FormData(event.target);
   const data = {
-    email: formData.get("email"),
-    password: formData.get("password"),
+    email: formData.get('email'),
+    password: formData.get('password'),
   };
 
   const loginInstance = new Login();
@@ -73,8 +72,9 @@ export async function onLogin(event) {
     const userData = await loginInstance.login(data);
 
     // Save token to localStorage
-    localStorage.setItem("token", userData.accessToken);
-    console.log("Token saved to localStorage:", userData.accessToken);
+    localStorage.setItem('accessToken', userData.accessToken);
+
+    console.log('accessToken saved to localStorage:', userData.accessToken);
 
     // Save user details to localStorage
     const userDetails = {
@@ -84,16 +84,14 @@ export async function onLogin(event) {
       banner: userData.banner,
       bio: userData.bio,
     };
-    localStorage.setItem("userDetails", JSON.stringify(userDetails));
-    console.log("User details saved to localStorage:", userDetails);
+    localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    console.log('User details saved to localStorage:', userDetails);
 
     // Redirect to profile
-    alert("Login successful!");
-    window.location.pathname = "/profile/";
+    alert('Login successful!');
+    window.location.pathname = '/profile/';
   } catch (error) {
     alert(`Login failed: ${error.message}`);
-    console.error("Login error:", error);
+    console.error('Login error:', error);
   }
 }
-
-
