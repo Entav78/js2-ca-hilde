@@ -19,7 +19,7 @@ export class Profile {
     console.log('Token from localStorage:', token);
     console.log('User details from localStorage:', userDetails);
 
-    if (!token) throw new Error('User is not authenticated');
+    if (!accessToken) throw new Error('User is not authenticated');
     if (!userDetails?.name) throw new Error('Logged-in username not found');
 
     const username = userDetails.name; // Get the logged-in username
@@ -28,7 +28,7 @@ export class Profile {
     console.log('Fetching from API URL in Profile class:', apiUrl);
 
     try {
-      const requestHeaders = headers(token);
+      const requestHeaders = headers(accessToken);
       console.log('Headers being sent:', {
         'Content-Type': requestHeaders.get('Content-Type'),
         Authorization: requestHeaders.get('Authorization'),
