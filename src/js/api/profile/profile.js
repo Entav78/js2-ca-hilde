@@ -8,24 +8,31 @@ export class Profile {
 
   /**
    * Fetches a specific profile or the logged-in user's profile.
-   * @param {string} [username] - The username of the profile to fetch (optional).
-   * @param {boolean} [includePosts] - Whether to include posts in the response (optional, default: false).
+   * @param {boolean} [includePosts] - Whether to include posts in the response (default: false).
    * @returns {Promise<Object>} - The profile data.
    */
   async getProfile(includePosts = false) {
     const accessToken = localStorage.getItem('accessToken');
-    const userDetails = JSON.parse(localStorage.getItem('userDetails')); // Retrieve userDetails from localStorage
+    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
 
-    console.log('Token from localStorage:', token);
-    console.log('User details from localStorage:', userDetails);
+    console.log('Access token:', accessToken);
+    console.log('User details:', userDetails);
 
-    if (!accessToken) throw new Error('User is not authenticated');
-    if (!userDetails?.name) throw new Error('Logged-in username not found');
+    if (!accessToken) {
+      throw new Error(
+        'Authentication error: Access token is missing. Please log in again.'
+      );
+    }
 
-    const username = userDetails.name; // Get the logged-in username
-    const apiUrl = `${this.baseApiUrl}/${username}?_posts=${includePosts}`; // Use username in the API URL
+    const username = userDetails?.name;
+    if (!username) {
+      throw new Error(
+        'User details are missing or incomplete. Please log in again.'
+      );
+    }
 
-    console.log('Fetching from API URL in Profile class:', apiUrl);
+    const apiUrl = `${this.baseApiUrl}/${username}?_posts=${includePosts}`;
+    console.log('Fetching from API URL:', apiUrl);
 
     try {
       const requestHeaders = headers(accessToken);
@@ -62,7 +69,9 @@ export class Profile {
 
     try {
       const response = await fetch(apiUrl, { headers: headers() });
-      if (!response.ok) throw new Error('Failed to fetch profiles');
+      if (!response.ok) {
+        throw new Error('Failed to fetch profiles');
+      }
 
       const data = await response.json();
       console.log('Profiles data:', data);
