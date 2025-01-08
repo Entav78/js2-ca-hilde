@@ -16,12 +16,12 @@ export function authGuard() {
     return;
   }
 
-  // Check if token exists and is valid
-  const token = localStorage.getItem("token");
+  // Check if accessToken exists and is valid
+  const accessToken = localStorage.getItem("accessToken");
 
-  if (!token || token === "undefined") {
+  if (!accessToken || accessToken === "undefined") {
     alert("You must be logged in to view this page");
-    console.warn("AuthGuard: No valid token found, redirecting to home.");
+    console.warn("AuthGuard: No valid accessToken found, redirecting to home.");
     window.location.pathname = `${basePath}/`;
     console.log("Current Path:", window.location.pathname);
     return;
@@ -29,4 +29,5 @@ export function authGuard() {
 
   console.log("AuthGuard: User is authenticated, proceeding.");
 }
+
 
