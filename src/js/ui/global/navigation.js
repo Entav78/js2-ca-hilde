@@ -1,10 +1,10 @@
 //import { setLogoutListener } from "../global/logout.js";
-import { basePath } from "../../api/constants.js";
+import { basePath } from '../../api/constants.js';
 
 export class Navigation {
   constructor(containerElement) {
     if (!(containerElement instanceof HTMLElement)) {
-      throw new Error("Invalid container element provided to Navigation.");
+      throw new Error('Invalid container element provided to Navigation.');
     }
     this.container = containerElement;
   }
@@ -18,7 +18,7 @@ export class Navigation {
    * @returns {HTMLElement} - The created button element.
    */
   createButton(nav, text, path, className) {
-    const button = document.createElement("button");
+    const button = document.createElement('button');
     button.textContent = text;
     button.className = className;
 
@@ -27,10 +27,10 @@ export class Navigation {
 
     // Check if the button corresponds to the current page
     if (window.location.pathname === fullPath) {
-      button.classList.add("active"); // Add the 'active' class for styling
+      button.classList.add('active'); // Add the 'active' class for styling
     }
 
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       window.location.pathname = fullPath;
     });
 
@@ -44,68 +44,63 @@ export class Navigation {
    * @param {Object} options - Additional options for the navigation.
    * @param {boolean} options.includeHomeButton - Whether to include the Home button.
    */
-  createNavbar(isLoggedIn, options = { includeHomeButton: true }) {
+  createNavbar(options = { includeHomeButton: true }) {
     if (!this.container) {
-      console.error("Navigation container not found.");
+      console.error('Navigation container not found.');
       return;
     }
 
     // Clear existing navigation content
-    this.container.innerHTML = "";
+    this.container.innerHTML = '';
 
-    const nav = document.createElement("nav");
+    const nav = document.createElement('nav');
     const currentPage = window.location.pathname; // Get the current page
+    const accessToken = localStorage.getItem('accessToken'); // Check for access token
 
     // Add Home button
     if (options.includeHomeButton && currentPage !== `${basePath}/`) {
-      this.createButton(nav, "Home", "/", "home-button");
+      this.createButton(nav, 'Home', '/', 'home-button');
     }
 
-    // Add Profile and Create Post buttons for logged-in users
-    if (isLoggedIn) {
+    // Add navigation for logged-in users
+    if (accessToken) {
+      // Add "My Profile" button
       if (currentPage !== `${basePath}/profile/`) {
-        this.createButton(nav, "Profile", "/profile/", "profile-button");
+        this.createButton(nav, 'My Profile', '/profile/', 'profile-button');
       }
-      if (currentPage !== `${basePath}/post/manage/`) {
-        this.createButton(nav, "Create Post", "/post/manage/", "create-post-button");
-      }
-    }
 
-    // Add Login/Logout buttons based on login status
-    if (isLoggedIn) {
-      const logoutButton = document.createElement("button");
-      logoutButton.textContent = "Logout";
-      logoutButton.className = "logout-button";
-      logoutButton.addEventListener("click", () => {
+      // Add "Logout" button
+      const logoutButton = document.createElement('button');
+      logoutButton.textContent = 'Logout';
+      logoutButton.className = 'logout-button';
+      logoutButton.addEventListener('click', () => {
         try {
-          localStorage.removeItem("token");
-          localStorage.removeItem("userDetails");
-          console.log("User logged out. Token and user details cleared from localStorage.");
-          window.location.reload();
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('userDetails');
+          console.log(
+            'User logged out. Access token and user details cleared from localStorage.'
+          );
+          window.location.reload(); // Reload the page after logout
         } catch (error) {
-          console.error("Error during logout:", error);
+          console.error('Error during logout:', error);
         }
       });
       nav.appendChild(logoutButton);
     } else {
+      // Add "Login" and "Register" buttons for guests
       if (currentPage !== `${basePath}/auth/login/`) {
-        this.createButton(nav, "Login", "/auth/login/", "login-button");
+        this.createButton(nav, 'Login', '/auth/login/', 'login-button');
       }
       if (currentPage !== `${basePath}/auth/register/`) {
-        this.createButton(nav, "Register", "/auth/register/", "register-button");
+        this.createButton(
+          nav,
+          'Register',
+          '/auth/register/',
+          'register-button'
+        );
       }
     }
 
     this.container.appendChild(nav);
   }
 }
-
-
-
-
-
-
-
-
-
-
