@@ -12,21 +12,23 @@ export class Profile {
    * @param {boolean} [includePosts] - Whether to include posts in the response (optional, default: false).
    * @returns {Promise<Object>} - The profile data.
    */
-  async getProfile(username = null, includePosts = false) {
-    const token = localStorage.getItem('token');
-    console.log('Token from localStorage:', token);
-    if (!token) throw new Error('User is not authenticated');
+  async getProfile(includePosts = false) {
+    const token = localStorage.getItem('token'); // Get the token from localStorage
+    const userDetails = JSON.parse(localStorage.getItem('userDetails')); // Retrieve userDetails from localStorage
 
-    const apiUrl = username
-      ? `${this.baseApiUrl}/${username}?_posts=${includePosts}`
-      : `${this.baseApiUrl}/me?_posts=${includePosts}`;
+    console.log('Token from localStorage:', token);
+    console.log('User details from localStorage:', userDetails);
+
+    if (!token) throw new Error('User is not authenticated');
+    if (!userDetails?.name) throw new Error('Logged-in username not found');
+
+    const username = userDetails.name; // Get the logged-in username
+    const apiUrl = `${this.baseApiUrl}/${username}?_posts=${includePosts}`; // Use username in the API URL
 
     console.log('Fetching from API URL in Profile class:', apiUrl);
-    console.log('Authorization header:', headers().get('Authorization'));
 
     try {
-      // Build headers and log details for debugging
-      const requestHeaders = headers();
+      const requestHeaders = headers(token);
       console.log('Headers being sent:', {
         'Content-Type': requestHeaders.get('Content-Type'),
         Authorization: requestHeaders.get('Authorization'),
@@ -35,7 +37,9 @@ export class Profile {
       const response = await fetch(apiUrl, { headers: requestHeaders });
       if (!response.ok) {
         console.error('API response status:', response.status);
-        throw new Error('Failed to fetch profile data');
+        const errorText = await response.text();
+        console.error('API error details:', errorText);
+        throw new Error(`Failed to fetch profile data: ${response.status}`);
       }
 
       const data = await response.json();
