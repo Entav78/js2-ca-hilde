@@ -26,27 +26,23 @@ export class Login {
       const responseData = await response.json();
       console.log('Login Response Data:', responseData); // Log response for debugging
 
-      // Validate and store token and user details
-      const userData = responseData.data;
+      const userData = responseData.data; // Extract the `data` object
       if (userData?.accessToken) {
-        // Save token
-        localStorage.setItem('token', userData.accessToken);
-        console.log('Access token saved:', userData.accessToken);
+        // Save token and user details to localStorage
+        const userDetails = {
+          accessToken: userData.accessToken,
+          name: userData.name,
+          email: userData.email,
+          bio: userData.bio,
+          avatar: userData.avatar,
+          banner: userData.banner,
+        };
 
-        // Save user details
-        localStorage.setItem(
-          'userDetails',
-          JSON.stringify({
-            name: userData.name,
-            email: userData.email,
-            bio: userData.bio,
-            avatar: userData.avatar,
-            banner: userData.banner,
-          })
-        );
-        console.log('User details saved:', userData);
+        // Store everything in localStorage
+        localStorage.setItem('userDetails', JSON.stringify(userDetails));
+        console.log('User details saved:', userDetails);
 
-        return userData; // Return user details for further processing if needed
+        return userDetails; // Return the full user details for further processing
       } else {
         throw new Error('No accessToken received in response.');
       }
