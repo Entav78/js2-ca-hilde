@@ -143,15 +143,14 @@ export class PostService {
    * @returns {Promise<Object>} The fetched posts' data.
    */
   async readPosts({ limit = 12, page = 1, includePrivate = false } = {}) {
-    // Use the correct headers based on whether private posts are included
+    // Use public or private headers based on `includePrivate`
     const headersObject = includePrivate
-      ? headers() // Use full authentication headers
+      ? headers() // Full headers with Authorization and API_KEY
       : new Headers({
           'Content-Type': 'application/json',
-          'X-Noroff-API-Key': API_KEY, // Publicly accessible headers
+          'X-Noroff-API-Key': API_KEY, // Only API_KEY for public posts
         });
 
-    // Add pagination parameters to the URL
     const params = new URLSearchParams({ limit, page });
     const url = `${
       this.baseURL
@@ -161,9 +160,7 @@ export class PostService {
       console.log('Fetching posts from URL:', url);
       console.log('Using headers:', [...headersObject.entries()]);
 
-      const response = await fetch(url, {
-        headers: headersObject,
-      });
+      const response = await fetch(url, { headers: headersObject });
 
       if (!response.ok) {
         console.error('Failed to fetch posts:', response);

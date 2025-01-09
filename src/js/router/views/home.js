@@ -4,17 +4,24 @@ import { PostsRenderer } from '../../ui/post/postsRenderer.js';
 const postService = new PostService();
 
 export async function initializeHomePage() {
-  console.log('Initializing Home page with public posts...');
+  const isLoggedIn = !!localStorage.getItem('accessToken'); // Check login status
+  console.log('Initializing Home page...');
+  console.log('User logged in:', isLoggedIn);
 
   const postsRenderer = new PostsRenderer('homeContainer');
 
   try {
+    // Fetch posts based on login status
     await postsRenderer.init(() =>
-      postService.readPosts({ limit: 10, page: 1, includePrivate: false })
+      postService.readPosts({
+        limit: 10,
+        page: 1,
+        includePrivate: isLoggedIn, // Include private posts if logged in
+      })
     );
     console.log('Home page initialized successfully.');
   } catch (error) {
-    console.error('Error initializing home page:', error);
+    console.error('Error initializing Home page:', error.message);
   }
 }
 

@@ -5,29 +5,29 @@
   }
 }
 */
-import { basePath } from "../api/constants.js";
+import { basePath } from '../api/constants.js';
 
 export function authGuard() {
-  const publicPaths = ["/", "/auth/login/", "/auth/register/"];
+  const publicPaths = ['/', '/auth/login/', '/auth/register/']; // Define public paths
+  const currentPath = window.location.pathname;
 
-  // Skip guard for public paths
-  if (publicPaths.includes(window.location.pathname)) {
-    console.log("Public path, auth guard skipped:", window.location.pathname);
+  // Allow access to public paths
+  if (publicPaths.includes(currentPath)) {
+    console.log('Public path, auth guard skipped:', currentPath);
     return;
   }
 
-  // Check if accessToken exists and is valid
-  const accessToken = localStorage.getItem("accessToken");
+  // Check for accessToken in localStorage
+  const accessToken = localStorage.getItem('accessToken');
 
-  if (!accessToken || accessToken === "undefined") {
-    alert("You must be logged in to view this page");
-    console.warn("AuthGuard: No valid accessToken found, redirecting to home.");
+  if (!accessToken || accessToken === 'undefined') {
+    // Redirect if accessToken is missing or invalid
+    alert('You must be logged in to view this page');
+    console.warn('AuthGuard: No valid accessToken found, redirecting to home.');
     window.location.pathname = `${basePath}/`;
-    console.log("Current Path:", window.location.pathname);
     return;
   }
 
-  console.log("AuthGuard: User is authenticated, proceeding.");
+  // If accessToken exists, log its presence
+  console.log('AuthGuard: User is authenticated, proceeding.');
 }
-
-
