@@ -131,47 +131,33 @@ export class PostService {
   }
 
   /**
+   * Fetches all posts (publicly accessible or requiring authentication).
+   * @param {boolean} includePrivate - Whether to include private posts (requires authentication).
+   * @returns {Promise<Array>} - A promise resolving to the list of posts.
+   */
+  /**
    * Reads multiple posts with optional pagination.
    * @param {number} [limit=12] - The maximum number of posts to fetch.
    * @param {number} [page=1] - The page number for pagination.
    * @returns {Promise<Object>} The fetched posts' data.
    */
-  async readPosts(limit = 12, page = 1) {
-    const accessToken = localStorage.getItem('accessToken');
-
-    if (!accessToken || accessToken === 'undefined') {
-      throw new Error('Invalid or missing accessToken. Please log in again.');
-    }
+  async readPosts({ limit = 12, page = 1, includePrivate = false } = {}) {
+    const headersObject = includePrivate
+      ? headers() // Include authentication headers
+      : new Headers({ 'Content-Type': 'application/json' }); // Publicly accessible headers
 
     const params = new URLSearchParams({ limit, page });
-    const response = await fetch(`${this.baseURL}?${params.toString()}`, {
-      headers: headers(accessToken),
-    });
-
-    if (!response.ok)
-      throw new Error(`Failed to fetch posts: ${response.statusText}`);
-    return response.json();
-  }
-
-  /**
-   * Fetches all posts (publicly accessible or requiring authentication).
-   * @param {boolean} includePrivate - Whether to include private posts (requires authentication).
-   * @returns {Promise<Array>} - A promise resolving to the list of posts.
-   */
-  async readPosts(includePrivate = false) {
-    const headersObject = includePrivate
-      ? headers()
-      : new Headers({ 'Content-Type': 'application/json' });
+    const url = `${
+      this.baseURL
+    }?${params.toString()}&_author=true&_comments=true&_reactions=true`;
 
     try {
-      const response = await fetch(
-        `${this.apiUrl}?_author=true&_comments=true&_reactions=true`,
-        {
-          headers: headersObject,
-        }
-      );
+      const response = await fetch(url, {
+        headers: headersObject,
+      });
 
       if (!response.ok) {
+        console.error('Failed to fetch posts:', response);
         throw new Error(`Failed to fetch posts: ${response.status}`);
       }
 
