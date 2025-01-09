@@ -1,4 +1,5 @@
-import { API_SOCIAL_POSTS } from '../constants.js';
+import { API_SOCIAL_POSTS, API_KEY } from '../constants.js';
+
 import { headers } from '../headers.js';
 
 export class PostService {
