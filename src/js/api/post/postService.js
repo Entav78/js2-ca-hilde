@@ -14,6 +14,12 @@ export class PostService {
    * @returns {Promise<Object>} The server's response.
    * @throws {Error} If the action fails or the token is invalid/missing.
    */
+  /**
+   * Reads multiple posts with optional pagination.
+   * @param {number} [limit=12] - The maximum number of posts to fetch.
+   * @param {number} [page=1] - The page number for pagination.
+   * @returns {Promise<Object>} The fetched posts' data.
+   */
   async handlePost(action, data = null, postId = null) {
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken || accessToken === 'undefined') {
@@ -145,5 +151,36 @@ export class PostService {
     if (!response.ok)
       throw new Error(`Failed to fetch posts: ${response.statusText}`);
     return response.json();
+  }
+
+  /**
+   * Fetches all posts (publicly accessible or requiring authentication).
+   * @param {boolean} includePrivate - Whether to include private posts (requires authentication).
+   * @returns {Promise<Array>} - A promise resolving to the list of posts.
+   */
+  async readPosts(includePrivate = false) {
+    const headersObject = includePrivate
+      ? headers()
+      : new Headers({ 'Content-Type': 'application/json' });
+
+    try {
+      const response = await fetch(
+        `${this.apiUrl}?_author=true&_comments=true&_reactions=true`,
+        {
+          headers: headersObject,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch posts: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Posts fetched:', data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching posts:', error.message);
+      throw error;
+    }
   }
 }
