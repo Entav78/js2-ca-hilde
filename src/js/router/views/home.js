@@ -1,5 +1,5 @@
-import { PostService } from '../../api/postService.js';
-import { PostsRenderer } from '../../ui/postsRenderer.js';
+import { PostService } from '../../api/post/postService.js';
+import { PostsRenderer } from '../../ui/post/postsRenderer.js';
 
 const postService = new PostService();
 
