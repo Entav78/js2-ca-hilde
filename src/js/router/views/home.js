@@ -4,19 +4,20 @@ import { PostsRenderer } from '../../ui/postsRenderer.js';
 const postService = new PostService();
 
 export async function initializeHomePage() {
-  console.log('Fetching posts for the Home page...');
+  console.log('Initializing Home page with public posts...');
 
   const postsRenderer = new PostsRenderer('homeContainer');
 
-  // Fetch public posts only
-  await postsRenderer.init(() =>
-    postService.readPosts({ includePrivate: false })
-  );
-
-  console.log('Home page initialized.');
+  try {
+    await postsRenderer.init(() =>
+      postService.readPosts({ limit: 10, page: 1, includePrivate: false })
+    );
+    console.log('Home page initialized successfully.');
+  } catch (error) {
+    console.error('Error initializing home page:', error);
+  }
 }
 
-// Initialize the home page when the DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initializeHomePage();
