@@ -61,6 +61,7 @@ export class Navigation {
       // Add Home button regardless of the current page
       if (currentPage !== `${basePath}/`) {
         this.createButton(nav, 'Home', '/', 'home-button');
+        console.log('Creating Home button');
       }
     }
 
@@ -69,10 +70,12 @@ export class Navigation {
       // Add "My Profile" button unless you're already on the profile page
       if (currentPage !== `${basePath}/profile/`) {
         this.createButton(nav, 'My Profile', '/profile/', 'profile-button');
+        console.log('Creating My Profile button');
       }
 
       // Add Logout button
       const logoutButton = document.createElement('button');
+      console.log('Creating Logout button');
       logoutButton.textContent = 'Logout';
       logoutButton.className = 'logout-button';
       logoutButton.addEventListener('click', () => {
