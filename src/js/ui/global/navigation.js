@@ -44,7 +44,7 @@ export class Navigation {
    * @param {Object} options - Additional options for the navigation.
    * @param {boolean} options.includeHomeButton - Whether to include the Home button.
    */
-  createNavbar(options = { includeHomeButton: true }) {
+  createNavbar(isLoggedIn, options = { includeHomeButton: true }) {
     if (!this.container) {
       console.error('Navigation container not found.');
       return;
@@ -55,21 +55,23 @@ export class Navigation {
 
     const nav = document.createElement('nav');
     const currentPage = window.location.pathname; // Get the current page
-    const accessToken = localStorage.getItem('accessToken'); // Check for access token
 
-    // Add Home button
-    if (options.includeHomeButton && currentPage !== `${basePath}/`) {
-      this.createButton(nav, 'Home', '/', 'home-button');
+    // Add Home button if includeHomeButton is true
+    if (options.includeHomeButton) {
+      // Add Home button regardless of the current page
+      if (currentPage !== `${basePath}/`) {
+        this.createButton(nav, 'Home', '/', 'home-button');
+      }
     }
 
-    // Add navigation for logged-in users
-    if (accessToken) {
-      // Add "My Profile" button
+    // Add navigation buttons for logged-in users
+    if (isLoggedIn) {
+      // Add "My Profile" button unless you're already on the profile page
       if (currentPage !== `${basePath}/profile/`) {
         this.createButton(nav, 'My Profile', '/profile/', 'profile-button');
       }
 
-      // Add "Logout" button
+      // Add Logout button
       const logoutButton = document.createElement('button');
       logoutButton.textContent = 'Logout';
       logoutButton.className = 'logout-button';
@@ -78,16 +80,16 @@ export class Navigation {
           localStorage.removeItem('accessToken');
           localStorage.removeItem('userDetails');
           console.log(
-            'User logged out. Access token and user details cleared from localStorage.'
+            'User logged out. Token and user details cleared from localStorage.'
           );
-          window.location.reload(); // Reload the page after logout
+          window.location.reload();
         } catch (error) {
           console.error('Error during logout:', error);
         }
       });
       nav.appendChild(logoutButton);
     } else {
-      // Add "Login" and "Register" buttons for guests
+      // Add Login and Register buttons for logged-out users
       if (currentPage !== `${basePath}/auth/login/`) {
         this.createButton(nav, 'Login', '/auth/login/', 'login-button');
       }
