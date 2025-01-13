@@ -29,18 +29,24 @@ async function setupProfilePage() {
     }
 
     const username = userDetails.name;
-    console.log('Full userProfile object:', userProfile);
+
     // Fetch the user's profile with posts
-    const posts = userProfile.data.posts || [];
+    const userProfile = await profileApi.getProfile(username, true);
+    console.log('Full userProfile object:', userProfile);
+
+    // Extract posts and validate
+    const posts = userProfile.data?.posts || [];
     if (!Array.isArray(posts)) {
       console.error('Invalid posts structure:', posts);
       return;
     }
 
+    console.log('Posts array:', posts);
+
     // Render profile details
     renderProfileDetails(userProfile.data);
 
-    // Render user posts with username
+    // Render user posts
     renderUserPosts(posts, userProfile.data.name);
   } catch (error) {
     console.error('Error fetching user profile or posts:', error.message);
