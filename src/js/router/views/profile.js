@@ -33,7 +33,7 @@ async function setupProfilePage() {
 
     // Fetch the user's profile with posts
     const userProfile = await profileApi.getProfile(username, true);
-    console.log('Full userProfile object:', userProfile);
+    console.log('Full API response for userProfile:', userProfile);
 
     if (!userProfile || !userProfile.data) {
       console.error('Failed to fetch user profile data:', userProfile);
