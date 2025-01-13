@@ -29,7 +29,7 @@ async function setupProfilePage() {
     }
 
     const username = userDetails.name;
-
+    console.log('Full userProfile object:', userProfile);
     // Fetch the user's profile with posts
     const userProfile = await profileApi.getProfile(username, true);
     console.log('User Profile with Posts:', userProfile);
@@ -51,7 +51,6 @@ async function setupProfilePage() {
 function renderProfileDetails(userProfile) {
   const profileSection = document.getElementById('profile-details');
   console.log('This is the username:', userProfile.name);
-  console.log('Full userProfile object:', userProfile);
 
   if (!profileSection) {
     console.error('Profile details section not found.');
