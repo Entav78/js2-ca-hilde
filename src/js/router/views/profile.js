@@ -51,6 +51,7 @@ async function setupProfilePage() {
 function renderProfileDetails(userProfile) {
   const profileSection = document.getElementById('profile-details');
   console.log('This is the username:', userProfile.name);
+  console.log('Full userProfile object:', userProfile);
 
   if (!profileSection) {
     console.error('Profile details section not found.');
