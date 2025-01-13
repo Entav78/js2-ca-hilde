@@ -1,30 +1,30 @@
-import { authGuard } from "../../utilities/authGuard.js";
-import { Profile } from "../../api/profile/profile.js";
-import { basePath } from "../../api/constants.js";
+import { authGuard } from '../../utilities/authGuard.js';
+import { Profile } from '../../api/profile/profile.js';
+import { basePath } from '../../api/constants.js';
 authGuard();
 
-console.log("Profile page script is running");
+console.log('Profile page script is running');
 
 (async function initializeProfilePage() {
-  if (document.readyState === "loading") {
-    console.log("DOM is still loading, setting event listener");
-    document.addEventListener("DOMContentLoaded", setupProfilePage);
+  if (document.readyState === 'loading') {
+    console.log('DOM is still loading, setting event listener');
+    document.addEventListener('DOMContentLoaded', setupProfilePage);
   } else {
-    console.log("DOM already loaded, running setup directly");
+    console.log('DOM already loaded, running setup directly');
     setupProfilePage();
   }
 })();
 
 async function setupProfilePage() {
-  console.log("Setting up profile page");
+  console.log('Setting up profile page');
 
   try {
     const profileApi = new Profile();
-    const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-    console.log("User details from localStorage:", userDetails);
+    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+    console.log('User details from localStorage:', userDetails);
 
     if (!userDetails || !userDetails.name) {
-      console.error("User details are missing or invalid.");
+      console.error('User details are missing or invalid.');
       return;
     }
 
@@ -32,49 +32,58 @@ async function setupProfilePage() {
 
     // Fetch the user's profile with posts
     const userProfile = await profileApi.getProfile(username, true);
-    console.log("User Profile with Posts:", userProfile);
+    console.log('User Profile with Posts:', userProfile);
 
     // Render profile details
     renderProfileDetails(userProfile.data);
 
     // Render user posts with username
     renderUserPosts(userProfile.data.posts || [], userProfile.data.name);
+    if (!Array.isArray(posts)) {
+      console.error('Invalid posts structure:', posts);
+      posts = [];
+    }
   } catch (error) {
-    console.error("Error fetching user profile or posts:", error.message);
+    console.error('Error fetching user profile or posts:', error.message);
   }
 }
 
 function renderProfileDetails(userProfile) {
-  const profileSection = document.getElementById("profile-details");
-  console.log("This is the username:", userProfile.name);
+  const profileSection = document.getElementById('profile-details');
+  console.log('This is the username:', userProfile.name);
 
   if (!profileSection) {
-    console.error("Profile details section not found.");
+    console.error('Profile details section not found.');
     return;
   }
 
   profileSection.innerHTML = `
     <h2>${userProfile.name}</h2>
     <p>Email: ${userProfile.email}</p>
-    ${userProfile.bio ? `<p>Bio: ${userProfile.bio}</p>` : ""}
+    ${userProfile.bio ? `<p>Bio: ${userProfile.bio}</p>` : ''}
     ${
       userProfile.avatar?.url
-        ? `<img src="${userProfile.avatar.url}" alt="${userProfile.avatar.alt || "Avatar"}" />`
-        : ""
+        ? `<img src="${userProfile.avatar.url}" alt="${
+            userProfile.avatar.alt || 'Avatar'
+          }" />`
+        : ''
     }
     ${
       userProfile.banner?.url
-        ? `<img src="${userProfile.banner.url}" alt="${userProfile.banner.alt || "Banner"}" />`
-        : ""
+        ? `<img src="${userProfile.banner.url}" alt="${
+            userProfile.banner.alt || 'Banner'
+          }" />`
+        : ''
     }
   `;
 }
 
 function renderUserPosts(posts, username) {
-  const postsSection = document.getElementById("user-posts");
+  const postsSection = document.getElementById('user-posts');
+  console.log('Posts array:', posts);
 
   if (!postsSection) {
-    console.error("User posts section not found.");
+    console.error('User posts section not found.');
     return;
   }
 
@@ -83,19 +92,17 @@ function renderUserPosts(posts, username) {
     return;
   }
 
-  const postsList = document.createElement("ul");
+  const postsList = document.createElement('ul');
   posts.forEach((post) => {
-    const postItem = document.createElement("li");
+    const postItem = document.createElement('li');
     postItem.innerHTML = `
       <h3>
-        <a href="${basePath}/post/?id=${post.id}" class="post-link">${post.title}</a>
+        <a href="${basePath}/post/?id=${post.id}" class="post-link">${
+      post.title
+    }</a>
       </h3>
       <p>${post.body}</p>
-      ${
-        post.image
-          ? `<img src="${post.image}" alt="Post image" />`
-          : ""
-      }
+      ${post.image ? `<img src="${post.image}" alt="Post image" />` : ''}
     `;
     postsList.appendChild(postItem);
   });
@@ -103,6 +110,3 @@ function renderUserPosts(posts, username) {
   postsSection.innerHTML = `<h2>${username}'s Posts</h2>`;
   postsSection.appendChild(postsList);
 }
-
-
-
