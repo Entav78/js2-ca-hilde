@@ -34,6 +34,8 @@ export class Profile {
 
       const data = await response.json();
       console.log('Profile data:', data);
+
+      console.log('Full API response for profile:', data);
       return data;
     } catch (error) {
       console.error('Error fetching profile data:', error.message);
