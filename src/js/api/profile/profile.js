@@ -1,41 +1,26 @@
 import { headers } from '../headers.js';
 
-console.log('Headers for API call:', headers());
 export class Profile {
   constructor(baseApiUrl = 'https://v2.api.noroff.dev/social/profiles') {
     this.baseApiUrl = baseApiUrl;
   }
 
   /**
-   * Fetches a specific profile or the logged-in user's profile.
-   * @param {boolean} [includePosts] - Whether to include posts in the response (default: false).
+   * Fetches a specific profile with optional posts.
+   * @param {string} username - The username to fetch the profile for.
+   * @param {boolean} includePosts - Whether to include posts in the response.
    * @returns {Promise<Object>} - The profile data.
    */
-  async getProfile(includePosts = false) {
-    const accessToken = localStorage.getItem('accessToken');
-    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
-
-    console.log('Access token:', accessToken);
-    console.log('User details:', userDetails);
-
-    if (!accessToken) {
-      throw new Error(
-        'Authentication error: Access token is missing. Please log in again.'
-      );
-    }
-
-    const username = userDetails?.name;
+  async getProfile(username, includePosts = false) {
     if (!username) {
-      throw new Error(
-        'User details are missing or incomplete. Please log in again.'
-      );
+      throw new Error('Username is required to fetch a profile.');
     }
 
     const apiUrl = `${this.baseApiUrl}/${username}?_posts=${includePosts}`;
     console.log('Fetching from API URL:', apiUrl);
 
     try {
-      const requestHeaders = headers(accessToken);
+      const requestHeaders = headers();
       console.log('Headers being sent:', {
         'Content-Type': requestHeaders.get('Content-Type'),
         Authorization: requestHeaders.get('Authorization'),
@@ -44,8 +29,6 @@ export class Profile {
       const response = await fetch(apiUrl, { headers: requestHeaders });
       if (!response.ok) {
         console.error('API response status:', response.status);
-        const errorText = await response.text();
-        console.error('API error details:', errorText);
         throw new Error(`Failed to fetch profile data: ${response.status}`);
       }
 
