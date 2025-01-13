@@ -22,6 +22,7 @@ export class PostService {
 
     let url = this.baseURL;
     let method = 'POST';
+    console.log('Data sent to API:', data);
 
     if (action === 'update' && postId) {
       url += `/${postId}`;
