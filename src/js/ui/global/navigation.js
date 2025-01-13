@@ -65,6 +65,16 @@ export class Navigation {
       }
     }
 
+    if (isLoggedIn && currentPage !== `${basePath}/post/manage/`) {
+      this.createButton(
+        nav,
+        'Manage Post',
+        '/post/manage/',
+        'manage-post-button'
+      );
+      console.log('Creating Manage Post button');
+    }
+
     // Add navigation buttons for logged-in users
     if (isLoggedIn) {
       // Add "My Profile" button unless you're already on the profile page
