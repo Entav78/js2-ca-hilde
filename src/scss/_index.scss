@@ -1,0 +1,13 @@
+@use '_variables';
+@use 'mixins';
+@use 'utilities';
+@use '../../node_modules/bootstrap/scss/bootstrap' as *;
+
+@use 'components/header';
+@use 'components/footer';
+
+@use 'layouts/homepage';
+
+body {
+  background-color: $primary; 
+}
