@@ -11848,12 +11848,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.page-home header {
-  background-color: red;
-}
-
-.page-home header {
-  background-color: red;
+header {
+  background-color: #0f5800;
 }
 
 body {
