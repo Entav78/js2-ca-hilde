@@ -8,8 +8,12 @@
     <script type="module" src="../../src/app.js"></script>
   </head>
   <body>
-    <div class="navigation-container"></div>
-    <h1>Manage Post</h1>
+    <header>
+      <div class="header-container">
+        <h1 class="fs-3">Manage Post</h1>
+        <div class="navigation-container"></div>
+      </div>
+    </header>
 
     <form name="managePostForm" data-action="create">
       <label for="title">Title:</label>
@@ -31,5 +35,8 @@
     </form>
 
     <button id="deletePostButton" data-post-id="">Delete Post</button>
+    <footer>
+      <p>&copy; 2025 H Vatne. All rights reserved.</p>
+    </footer>
   </body>
 </html>

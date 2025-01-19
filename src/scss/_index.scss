@@ -1,6 +1,6 @@
-@use '_variables';
-@use 'mixins';
-@use 'utilities';
+@use 'utilities/variables';
+@use 'utilities/mixins';
+@use 'utilities/utilities';
 @use '../../node_modules/bootstrap/scss/bootstrap' as *;
 
 @use 'components/header';

@@ -11849,7 +11849,46 @@ textarea.form-control-lg {
   }
 }
 header {
-  background-color: #0f5800;
+  background-color: #333;
+  color: #ffffff;
+}
+header .btn.btn-outline-light {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+header .btn.btn-outline-light:hover {
+  background-color: #ffffff;
+  color: #333;
+}
+header .btn.active {
+  background-color: #ffffff;
+  color: #333;
+}
+header .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically center content */
+  padding: 1rem 2rem;
+  max-width: 1200px; /* Optional: mimic Bootstrap's `container` */
+  margin: 0 auto; /* Center the container */
+}
+header .navigation-container .btn {
+  margin: 0.5rem;
+}
+header .navigation-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  max-width: 100%;
+}
+
+footer {
+  background-color: #333;
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
 }
 
 body {

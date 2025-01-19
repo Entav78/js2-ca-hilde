@@ -17,22 +17,27 @@ export class Navigation {
    * @param {string} className - The CSS class to apply to the button.
    * @returns {HTMLElement} - The created button element.
    */
-  createButton(nav, text, path, className) {
+  createButton(nav, text, path, className, onClick = null) {
     const button = document.createElement('button');
     button.textContent = text;
-    button.className = className;
+    button.className = `btn btn-outline-light ${className}`;
 
-    // Add the basePath to the path
-    const fullPath = `${basePath}${path}`;
+    const fullPath = path ? `${basePath}${path}` : null;
 
-    // Check if the button corresponds to the current page
-    if (window.location.pathname === fullPath) {
-      button.classList.add('active'); // Add the 'active' class for styling
+    // Highlight the active page
+    if (fullPath && window.location.pathname === fullPath) {
+      button.classList.add('active', 'btn-light');
+      button.classList.remove('btn-outline-light');
     }
 
-    button.addEventListener('click', () => {
-      window.location.pathname = fullPath;
-    });
+    // Add click behavior
+    if (onClick) {
+      button.addEventListener('click', onClick);
+    } else if (fullPath) {
+      button.addEventListener('click', () => {
+        window.location.pathname = fullPath;
+      });
+    }
 
     nav.appendChild(button);
     return button;
@@ -75,37 +80,38 @@ export class Navigation {
       console.log('Creating Manage Post button');
     }
 
-    // Add navigation buttons for logged-in users
     if (isLoggedIn) {
-      // Add "My Profile" button unless you're already on the profile page
+      // "My Profile" button
       if (currentPage !== `${basePath}/profile/`) {
         this.createButton(nav, 'My Profile', '/profile/', 'profile-button');
-        console.log('Creating My Profile button');
       }
 
-      // Add Logout button
-      const logoutButton = document.createElement('button');
-      console.log('Creating Logout button');
-      logoutButton.textContent = 'Logout';
-      logoutButton.className = 'logout-button';
-      logoutButton.addEventListener('click', () => {
-        try {
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('userDetails');
-          console.log(
-            'User logged out. Token and user details cleared from localStorage.'
-          );
-          window.location.reload();
-        } catch (error) {
-          console.error('Error during logout:', error);
+      // Logout button
+      this.createButton(
+        nav,
+        'Logout',
+        null, // No path for logout
+        'logout-button',
+        () => {
+          try {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('userDetails');
+            console.log(
+              'User logged out. Token and user details cleared from localStorage.'
+            );
+            window.location.reload();
+          } catch (error) {
+            console.error('Error during logout:', error);
+          }
         }
-      });
-      nav.appendChild(logoutButton);
+      );
     } else {
-      // Add Login and Register buttons for logged-out users
+      // Login button
       if (currentPage !== `${basePath}/auth/login/`) {
         this.createButton(nav, 'Login', '/auth/login/', 'login-button');
       }
+
+      // Register button
       if (currentPage !== `${basePath}/auth/register/`) {
         this.createButton(
           nav,
