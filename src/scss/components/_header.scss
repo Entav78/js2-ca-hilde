@@ -1,44 +1,52 @@
-@use '../_variables' as *;
+@use '../utilities/_variables' as *;
 
 header {
   background-color: $header-bg;
   color: $header-text;
 
-  .btn {
-    &.btn-outline-light {
-      border-color: $header-text;
+  .navbar {
+    padding: 1rem 2rem;
+
+    .navbar-brand {
+      font-size: 1.5rem;
       color: $header-text;
 
       &:hover {
-        background-color: $header-text;
-        color: $header-bg;
+        color: lighten($header-text, 10%);
       }
     }
 
-    &.active {
-      background-color: $header-text;
-      color: $header-bg;
+    .navbar-toggler {
+      border-color: $header-text;
+
+      .navbar-toggler-icon {
+        filter: invert(1); // Make the toggler icon white
+      }
     }
   }
 
-  .header-container {
+  .navbar-nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center; /* Vertically center content */
-    padding: 1rem 2rem;
-    max-width: 1200px; /* Optional: mimic Bootstrap's `container` */
-    margin: 0 auto; /* Center the container */
-  }
-
-  .navigation-container .btn {
-    margin: 0.5rem;
-  }
-
-  .navigation-container {
-    display: flex;
-    flex-direction: row;
     gap: 1rem;
-    align-items: center;
-    max-width: 100%;
+
+    .nav-item {
+      .nav-link {
+        padding: 0.5rem 1rem;
+        color: $header-text;
+        text-decoration: none;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s, color 0.3s;
+
+        &:hover {
+          background-color: $header-text;
+          color: $header-bg;
+        }
+
+        &.active {
+          background-color: $header-text;
+          color: $header-bg;
+        }
+      }
+    }
   }
 }

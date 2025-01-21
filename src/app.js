@@ -5,35 +5,41 @@ console.log('Router imported successfully');
 
 // Function to initialize navigation
 function initializeNavigation() {
-  const navContainer = document.querySelector('.navigation-container');
-  if (navContainer) {
-    const navigation = new Navigation(navContainer); // Create Navigation instance
+  const wideScreenNav = document.querySelector('.navbar-nav.ms-auto');
+  const sidebarNav = document.querySelector('.offcanvas-body .navbar-nav');
 
-    // Function to dynamically update the navigation bar
-    function updateNavbar() {
-      const accessToken = localStorage.getItem('accessToken');
-      const isLoggedIn = !!accessToken;
-      console.log('Access token:', accessToken);
-      console.log('Navigation updated. Is Logged In:', isLoggedIn);
-      navigation.createNavbar(isLoggedIn, { includeHomeButton: true });
-    }
+  const containers = [];
+  if (wideScreenNav) containers.push(wideScreenNav);
+  if (sidebarNav) containers.push(sidebarNav);
 
-    // Call initially to set up the navbar
-    updateNavbar();
-
-    // Set up a listener to detect login/logout changes
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'accessToken') {
-        // Match the correct key
-        console.log('Token storage change detected, updating navigation...');
-        updateNavbar(); // Re-render the navigation bar
-      }
-    });
-
-    console.log('Navigation setup completed.');
-  } else {
-    console.error('Navigation container not found.');
+  if (containers.length === 0) {
+    console.error('No navigation containers found.');
+    return;
   }
+
+  console.log('Wide Screen Nav:', wideScreenNav);
+  console.log('Sidebar Nav:', sidebarNav);
+
+  const navigation = new Navigation(containers);
+
+  function updateNavbar() {
+    const accessToken = localStorage.getItem('accessToken');
+    const isLoggedIn = !!accessToken;
+    console.log('Access token:', accessToken);
+    console.log('Navigation updated. Is Logged In:', isLoggedIn);
+
+    navigation.createNavbar(isLoggedIn, { includeHomeButton: true });
+  }
+
+  updateNavbar();
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'accessToken') {
+      updateNavbar();
+    }
+  });
+
+  console.log('Navigation setup completed.');
 }
 
 // Function to initialize the application

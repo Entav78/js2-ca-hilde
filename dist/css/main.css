@@ -11852,35 +11852,40 @@ header {
   background-color: #333;
   color: #ffffff;
 }
-header .btn.btn-outline-light {
-  border-color: #ffffff;
+header .navbar {
+  padding: 1rem 2rem;
+}
+header .navbar .navbar-brand {
+  font-size: 1.5rem;
   color: #ffffff;
 }
-header .btn.btn-outline-light:hover {
-  background-color: #ffffff;
-  color: #333;
+header .navbar .navbar-brand:hover {
+  color: white;
 }
-header .btn.active {
-  background-color: #ffffff;
-  color: #333;
+header .navbar .navbar-toggler {
+  border-color: #ffffff;
 }
-header .header-container {
+header .navbar .navbar-toggler .navbar-toggler-icon {
+  filter: invert(1);
+}
+header .navbar-nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center; /* Vertically center content */
-  padding: 1rem 2rem;
-  max-width: 1200px; /* Optional: mimic Bootstrap's `container` */
-  margin: 0 auto; /* Center the container */
-}
-header .navigation-container .btn {
-  margin: 0.5rem;
-}
-header .navigation-container {
-  display: flex;
-  flex-direction: row;
   gap: 1rem;
-  align-items: center;
-  max-width: 100%;
+}
+header .navbar-nav .nav-item .nav-link {
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+header .navbar-nav .nav-item .nav-link:hover {
+  background-color: #ffffff;
+  color: #333;
+}
+header .navbar-nav .nav-item .nav-link.active {
+  background-color: #ffffff;
+  color: #333;
 }
 
 footer {
@@ -11893,6 +11898,17 @@ footer {
 
 body {
   background-color: #0d6efd;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+main {
+  padding: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */
