@@ -5,7 +5,7 @@ console.log('Router imported successfully');
 
 // Function to initialize navigation
 function initializeNavigation() {
-  const wideScreenNav = document.querySelector('.navbar-nav.ms-auto');
+  const wideScreenNav = document.querySelector('.navbar-nav');
   const sidebarNav = document.querySelector('.offcanvas-body .navbar-nav');
 
   const containers = [];

@@ -1,3 +1,4 @@
+// _header.scss
 @use '../utilities/_variables' as *;
 
 header {
@@ -22,12 +23,32 @@ header {
       .navbar-toggler-icon {
         filter: invert(1); // Make the toggler icon white
       }
+
+      &:focus,
+      &:hover {
+        background-color: $header-text;
+        color: $header-bg;
+      }
+    }
+
+    .navbar-collapse {
+      @media (min-width: 992px) {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: flex-end; // Align buttons to the right
+      }
     }
   }
 
   .navbar-nav {
     display: flex;
     gap: 1rem;
+    align-items: center; // Vertically centers items
+
+    @media (min-width: 992px) {
+      flex-direction: row;
+      justify-content: flex-end; // Align buttons horizontally and to the right
+    }
 
     .nav-item {
       .nav-link {
@@ -38,14 +59,30 @@ header {
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {
-          background-color: $header-text;
-          color: $header-bg;
+          background-color: lighten($header-bg, 10%);
+          color: darken($header-text, 10%);
         }
 
         &.active {
           background-color: $header-text;
           color: $header-bg;
         }
+      }
+    }
+  }
+
+  .offcanvas {
+    background-color: $header-bg;
+    color: $header-text;
+
+    .offcanvas-header {
+      border-bottom: 1px solid lighten($header-bg, 20%);
+    }
+
+    .offcanvas-body {
+      .navbar-nav {
+        flex-direction: column; // Stacks items vertically
+        gap: 1rem; // Space between items
       }
     }
   }

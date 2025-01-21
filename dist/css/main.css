@@ -11868,9 +11868,27 @@ header .navbar .navbar-toggler {
 header .navbar .navbar-toggler .navbar-toggler-icon {
   filter: invert(1);
 }
+header .navbar .navbar-toggler:focus, header .navbar .navbar-toggler:hover {
+  background-color: #ffffff;
+  color: #333;
+}
+@media (min-width: 992px) {
+  header .navbar .navbar-collapse {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
 header .navbar-nav {
   display: flex;
   gap: 1rem;
+  align-items: center;
+}
+@media (min-width: 992px) {
+  header .navbar-nav {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 }
 header .navbar-nav .nav-item .nav-link {
   padding: 0.5rem 1rem;
@@ -11880,12 +11898,23 @@ header .navbar-nav .nav-item .nav-link {
   transition: background-color 0.3s, color 0.3s;
 }
 header .navbar-nav .nav-item .nav-link:hover {
-  background-color: #ffffff;
-  color: #333;
+  background-color: rgb(76.5, 76.5, 76.5);
+  color: rgb(229.5, 229.5, 229.5);
 }
 header .navbar-nav .nav-item .nav-link.active {
   background-color: #ffffff;
   color: #333;
+}
+header .offcanvas {
+  background-color: #333;
+  color: #ffffff;
+}
+header .offcanvas .offcanvas-header {
+  border-bottom: 1px solid #666666;
+}
+header .offcanvas .offcanvas-body .navbar-nav {
+  flex-direction: column;
+  gap: 1rem;
 }
 
 footer {
