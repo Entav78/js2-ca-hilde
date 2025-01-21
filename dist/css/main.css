@@ -3,6 +3,13 @@
   display: none !important;
 }
 
+.post-card {
+  background-color: #333;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
  * Copyright 2011-2024 The Bootstrap Authors
@@ -11855,6 +11862,9 @@ header {
 header .navbar {
   padding: 1rem 2rem;
 }
+header .navbar .container-fluid {
+  padding: 0;
+}
 header .navbar .navbar-brand {
   font-size: 1.5rem;
   color: #ffffff;
@@ -11876,24 +11886,31 @@ header .navbar .navbar-toggler:focus, header .navbar .navbar-toggler:hover {
   header .navbar .navbar-collapse {
     display: flex !important;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
+    align-items: center;
+    flex-grow: 0;
+    flex-basis: auto;
   }
 }
 header .navbar-nav {
-  display: flex;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
   gap: 1rem;
   align-items: center;
+  justify-content: flex-end;
 }
-@media (min-width: 992px) {
-  header .navbar-nav {
-    flex-direction: row;
-    justify-content: flex-end;
-  }
+header .navbar-nav .nav-item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 header .navbar-nav .nav-item .nav-link {
+  display: inline-block;
   padding: 0.5rem 1rem;
-  color: #ffffff;
   text-decoration: none;
+  color: #ffffff;
+  background-color: transparent;
   border-radius: 0.25rem;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -11927,6 +11944,49 @@ footer {
 
 body {
   background-color: #0d6efd;
+}
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.post-list .post-card {
+  background-color: rgb(63.5819672131, 140.3073770492, 253.4180327869);
+  border: 1px solid rgb(114.1639344262, 170.6147540984, 253.8360655738);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+.post-list .post-card:hover {
+  transform: translateY(-5px);
+}
+.post-list .post-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.post-list .post-card .post-content {
+  padding: 1rem;
+}
+.post-list .post-card .post-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #6c757d;
+  cursor: pointer;
+}
+.post-list .post-card .post-content h3:hover {
+  color: rgb(84.3605150215, 91.3905579399, 97.6394849785);
+}
+.post-list .post-card .post-content p {
+  font-size: 0.9rem;
+  color: rgb(60.7210300429, 65.7811158798, 70.2789699571);
+}
+.post-list .post-card .post-content .tags {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: rgb(161.1158798283, 167.8755364807, 173.8841201717);
 }
 
 body {
