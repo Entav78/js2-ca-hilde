@@ -1,17 +1,1 @@
-//@use 'utilities/variables' as *;
-/*@use '../../node_modules/bootstrap/scss/bootstrap' with (
-  $primary: $primary,
-  $secondary: $secondary
-);
-
-@use 'utilities/mixins';
-@use 'utilities/utilities';
-*/
 @use 'components/posts' as *;
-//@use 'components/header' as *;
-//@use 'components/footer' as *;
-/*
-body {
-  background-color: $secondary;
-}
-*/

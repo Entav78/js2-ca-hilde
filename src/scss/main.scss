@@ -1,12 +1,24 @@
-@use '../../node_modules/bootstrap/scss/functions'; // Required functions
-@use 'utilities/variables'; // Your customized variables file
-@use '../../node_modules/bootstrap/scss/bootstrap'; // Import Bootstrap
-@use 'utilities/mixins';
+// Import required functions from Bootstrap
+@use '../../node_modules/bootstrap/scss/functions' as *;
+
+// Import your customized variables
+@use 'utilities/variables';
+
+@use '../../node_modules/bootstrap/scss/bootstrap';
+
+// Import your own utility mixins
+@use 'utilities/mixins' as *;
+@use 'utilities/myvariables' as *;
+
+// Import your components
 @use 'components/posts';
 @use 'components/header';
 @use 'components/footer';
+
+// Import index styles (if applicable)
 @use '_index';
 
+// Global styles
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
