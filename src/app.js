@@ -1,5 +1,5 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import './src/scss/main.scss';
+import './scss/main.scss';
 
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';

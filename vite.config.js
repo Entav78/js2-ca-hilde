@@ -19,6 +19,13 @@ export default defineConfig({
       },
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use 'utilities/variables' as *;`, // Ensures variables.scss is available globally
+      },
+    },
+  },
   test: {
     environment: 'jsdom', // Use jsdom for DOM testing
   },

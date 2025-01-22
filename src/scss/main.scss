@@ -7,7 +7,7 @@
 @use 'components/posts';
 @use 'components/header';
 @use 'components/footer';
-@use '_index'; // Home page-specific styles
+@use '_index';
 
 body {
   font-family: 'Arial', sans-serif;

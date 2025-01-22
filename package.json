@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "watch": "sass --load-path=node_modules --quiet-deps --watch src/scss:dist/css",
-    "build": "sass src/scss:dist/css && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest"
   },
