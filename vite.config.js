@@ -6,7 +6,7 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/', // Dynamically set the base path
   resolve: {
     alias: {
-      bootstrap: resolve(__dirname, 'node_modules/bootstrap'),
+      '~bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
     },
   },
   build: {
@@ -22,12 +22,11 @@ export default defineConfig({
         editPost: resolve(__dirname, './post/edit/index.html'),
         createPost: resolve(__dirname, './post/manage/index.html'),
       },
-      external: ['bootstrap'],
     },
   },
-  /*optimizeDeps: {
+  optimizeDeps: {
     include: ['bootstrap/dist/js/bootstrap.bundle.min.js'],
-  },*/
+  },
   test: {
     environment: 'jsdom', // Use jsdom for DOM testing
   },
