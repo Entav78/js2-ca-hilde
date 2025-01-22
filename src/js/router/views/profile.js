@@ -101,19 +101,28 @@ function renderUserPosts(posts, username) {
     return;
   }
 
-  const postsList = document.createElement('ul');
+  const postsList = document.createElement('div');
+  postsList.className = 'post-list';
+
   posts.forEach((post) => {
-    const postItem = document.createElement('li');
-    postItem.innerHTML = `
-      <h3>
-        <a href="${basePath}/post/?id=${post.id}" class="post-link">${
+    const postCard = document.createElement('div');
+    postCard.className = 'post-card';
+    postCard.innerHTML = `
+      <div class="post-content">
+        <h3>
+          <a href="${basePath}/post/?id=${post.id}" class="post-link">${
       post.title
     }</a>
-      </h3>
-      <p>${post.body}</p>
-      ${post.image ? `<img src="${post.image}" alt="Post image" />` : ''}
+        </h3>
+        <p>${post.body}</p>
+        ${
+          post.image
+            ? `<img src="${post.image}" alt="Post image" />`
+            : '<p>No image available</p>'
+        }
+      </div>
     `;
-    postsList.appendChild(postItem);
+    postsList.appendChild(postCard);
   });
 
   postsSection.innerHTML = `<h2>${username}'s Posts</h2>`;
