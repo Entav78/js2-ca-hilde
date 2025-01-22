@@ -1,5 +1,8 @@
 @use '../../node_modules/bootstrap/scss/functions'; // Required functions
+@use 'sass:color';
 
 $primary: purple; // Custom primary color
 $secondary: #6c757d; // Custom secondary color
 $font-size-base: 16px; // Example customization
+
+$light-bg-subtle: color.mix($gray-100, $white) !default;
