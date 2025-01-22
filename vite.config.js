@@ -4,6 +4,13 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   appType: 'mpa',
   base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/', // Dynamically set the base path
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use 'utilities/variables' as *;`,
+      },
+    },
+  },
   build: {
     target: 'esnext',
     rollupOptions: {
@@ -19,13 +26,7 @@ export default defineConfig({
       },
     },
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use 'utilities/variables' as *;`, // Ensures variables.scss is available globally
-      },
-    },
-  },
+
   test: {
     environment: 'jsdom', // Use jsdom for DOM testing
   },

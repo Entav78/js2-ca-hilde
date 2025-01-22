@@ -5,10 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "watch": "sass --load-path=node_modules --quiet-deps --watch src/scss:dist/css",
     "build": "vite build",
-    "preview": "vite preview",
-    "test": "vitest"
+    "preview": "vite preview"
   },
   "devDependencies": {
     "jsdom": "^25.0.1",
