@@ -1,10 +1,10 @@
-import * as bootstrap from 'bootstrap';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
 
 console.log('Router imported successfully');
-console.log('Bootstrap in production:', bootstrap);
+//console.log('Bootstrap in production:', bootstrap);
 
 // Function to initialize navigation
 function initializeNavigation() {

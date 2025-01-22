@@ -24,6 +24,9 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    include: ['bootstrap'], // Add bootstrap to optimize dependencies
+  },
   test: {
     environment: 'jsdom', // Use jsdom for DOM testing
   },
