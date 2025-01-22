@@ -4,11 +4,6 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   appType: 'mpa',
   base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/', // Dynamically set the base path
-  resolve: {
-    alias: {
-      '~bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
-    },
-  },
   build: {
     target: 'esnext',
     rollupOptions: {
