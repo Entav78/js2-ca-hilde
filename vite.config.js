@@ -25,9 +25,9 @@ export default defineConfig({
       external: ['bootstrap'],
     },
   },
-  optimizeDeps: {
+  /*optimizeDeps: {
     include: ['bootstrap/dist/js/bootstrap.bundle.min.js'],
-  },
+  },*/
   test: {
     environment: 'jsdom', // Use jsdom for DOM testing
   },
