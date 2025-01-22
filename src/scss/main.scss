@@ -1,8 +1,6 @@
-@use 'utilities/variables' as *;
-@use '../../node_modules/bootstrap/scss/bootstrap' with (
-  $primary: $primary,
-  $secondary: $secondary
-);
+@use '../../node_modules/bootstrap/scss/functions'; // Required functions
+@use 'utilities/variables'; // Your customized variables file
+@use '../../node_modules/bootstrap/scss/bootstrap'; // Import Bootstrap
 @use 'utilities/mixins';
 @use 'components/posts';
 @use 'components/header';
