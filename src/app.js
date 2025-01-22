@@ -1,8 +1,10 @@
+import * as bootstrap from 'bootstrap';
+
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
 
 console.log('Router imported successfully');
-
+console.log(bootstrap);
 // Function to initialize navigation
 function initializeNavigation() {
   const wideScreenNav = document.querySelector('.navbar-nav');
