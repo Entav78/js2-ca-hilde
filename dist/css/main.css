@@ -1,10 +1,10 @@
-/* Error: $color1: color-contrast(#d63384) is not a color.
- *     ,
- * 856 |   mix(color-contrast($link-color), $link-color, 15%)
- *     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *     '
- *   src\scss\utilities\_variables.scss 856:3  @use
- *   src\scss\main.scss 5:1                    root stylesheet */
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 1 | @use '../../node_modules/bootstrap/scss/functions'; // Required functions
+ *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   src\scss\utilities\_myvariables.scss 1:1  @use
+ *   src\scss\main.scss 8:1                    root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +14,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: $color1: color-contrast(#d63384) is not a color.\a     \2577 \a 856 \2502    mix(color-contrast($link-color), $link-color, 15%)\d\a     \2502    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   src\\scss\\utilities\\_variables.scss 856:3  @use\a   src\\scss\\main.scss 5:1                    root stylesheet";
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @use '../../node_modules/bootstrap/scss/functions'; // Required functions\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   src\\scss\\utilities\\_myvariables.scss 1:1  @use\a   src\\scss\\main.scss 8:1                    root stylesheet";
 }
