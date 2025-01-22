@@ -1,14 +1,17 @@
 // Import required functions from Bootstrap
 @use '../../node_modules/bootstrap/scss/functions' as *;
 
-// Import your customized variables
+// Import the default variables first
 @use 'utilities/variables';
 
+// Import your custom variables (to override default variables)
+@use 'utilities/myvariables' as *;
+
+// Import Bootstrap (so it uses your overridden variables)
 @use '../../node_modules/bootstrap/scss/bootstrap';
 
 // Import your own utility mixins
 @use 'utilities/mixins' as *;
-@use 'utilities/myvariables' as *;
 
 // Import your components
 @use 'components/posts';

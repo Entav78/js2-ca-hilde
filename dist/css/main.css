@@ -1,10 +1,10 @@
-/* Error: @use rules must be written before any other rules.
- *      ,
- * 1810 | @use 'variables-dark'; // TODO: can be removed safely in v6, only here to avoid breaking changes in v5.3
- *      | ^^^^^^^^^^^^^^^^^^^^^
- *      '
- *   src\scss\utilities\_variables.scss 1810:1  @use
- *   src\scss\main.scss 5:1                     root stylesheet */
+/* Error: Undefined mixin.
+ *     ,
+ * 514 | @include _assert-ascending($container-max-widths, '$container-max-widths');
+ *     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *     '
+ *   src\scss\utilities\_variables.scss 514:1  @use
+ *   src\scss\main.scss 5:1                    root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +14,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: @use rules must be written before any other rules.\a      \2577 \a 1810 \2502  @use 'variables-dark'; // TODO: can be removed safely in v6, only here to avoid breaking changes in v5.3\d\a      \2502  ^^^^^^^^^^^^^^^^^^^^^\a      \2575 \a   src\\scss\\utilities\\_variables.scss 1810:1  @use\a   src\\scss\\main.scss 5:1                     root stylesheet";
+  content: "Error: Undefined mixin.\a     \2577 \a 514 \2502  @include _assert-ascending($container-max-widths, '$container-max-widths');\d\a     \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   src\\scss\\utilities\\_variables.scss 514:1  @use\a   src\\scss\\main.scss 5:1                    root stylesheet";
 }
