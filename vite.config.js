@@ -22,6 +22,7 @@ export default defineConfig({
         editPost: resolve(__dirname, './post/edit/index.html'),
         createPost: resolve(__dirname, './post/manage/index.html'),
       },
+      external: ['bootstrap'],
     },
   },
   optimizeDeps: {
