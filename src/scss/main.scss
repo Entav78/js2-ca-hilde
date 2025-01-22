@@ -1,6 +1,13 @@
-@use '_index' as *;
 @use 'utilities/variables' as *;
+@use '../../node_modules/bootstrap/scss/bootstrap' with (
+  $primary: $primary,
+  $secondary: $secondary
+);
 @use 'utilities/mixins';
+@use 'components/posts';
+@use 'components/header';
+@use 'components/footer';
+@use '_index'; // Home page-specific styles
 
 body {
   font-family: 'Arial', sans-serif;

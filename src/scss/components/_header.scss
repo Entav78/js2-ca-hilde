@@ -71,6 +71,7 @@ header {
         &:hover {
           background-color: lighten($header-bg, 10%);
           color: darken($header-text, 10%);
+          cursor: pointer;
         }
 
         &.active {
