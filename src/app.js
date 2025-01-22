@@ -1,4 +1,4 @@
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import './dist/js/bootstrap.bundle.min.js';
 
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
