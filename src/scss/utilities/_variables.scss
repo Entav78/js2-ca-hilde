@@ -1807,4 +1807,4 @@ $nested-kbd-font-weight: null !default; // Deprecated in v5.2.0, removing in v6
 
 $pre-color: null !default;
 
-@use 'variables-dark'; // TODO: can be removed safely in v6, only here to avoid breaking changes in v5.3
+//@use 'variables-dark'; // TODO: can be removed safely in v6, only here to avoid breaking changes in v5.3
