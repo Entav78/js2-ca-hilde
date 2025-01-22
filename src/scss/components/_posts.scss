@@ -19,8 +19,7 @@
 
     .post-image {
       width: 100%;
-      max-height: 200px;
-      height: auto;
+      height: 200px;
       object-fit: cover;
       border-bottom: 1px solid lighten($primary, 20%);
     }

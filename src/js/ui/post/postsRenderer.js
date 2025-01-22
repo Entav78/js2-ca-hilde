@@ -65,10 +65,13 @@ export class PostsRenderer {
     const postElement = document.createElement('div');
     postElement.className = 'post-card';
 
-    const thumbnail = document.createElement('img');
-    thumbnail.src = post.media?.url || 'https://via.placeholder.com/300x150';
-    thumbnail.alt = post.media?.alt || 'Post Thumbnail';
-    postElement.appendChild(thumbnail);
+    if (post.media?.url) {
+      const thumbnail = document.createElement('img');
+      thumbnail.src = post.media.url;
+      thumbnail.alt = post.media.alt || 'Post Image';
+      thumbnail.className = 'post-image'; 
+      postElement.appendChild(thumbnail);
+    }
 
     const content = document.createElement('div');
     content.className = 'post-content';
