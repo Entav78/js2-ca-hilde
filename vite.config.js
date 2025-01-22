@@ -6,7 +6,7 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/', // Dynamically set the base path
   resolve: {
     alias: {
-      '~bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
+      bootstrap: resolve(__dirname, 'node_modules/bootstrap'),
     },
   },
   build: {
