@@ -1,5 +1,47 @@
+/*@use 'sass:color';
+
+$primary: #3498db;
+$lighten-primary: color.scale($primary, $lightness: 20%);
+
 body {
-  background-color: rgb(92.6, 172.6, 226.2);
+  background-color: $lighten-primary;
 }
+*/
+/* THIS IS MY MAIN.SCSS. I placed it here for testing...
+
+// Import utilities and libraries (must come first)
+@use 'sass:color'; // Required for color manipulation
+@use 'sass:string'; // Required for string manipulation
+
+// Import Bootstrap functions and variables
+@use '../../node_modules/bootstrap/scss/functions' as *;
+@use '../../node_modules/bootstrap/scss/variables' as *;
+@use '../../node_modules/bootstrap/scss/mixins'; // Include mixins for assertions
+@use '../../node_modules/bootstrap/scss/utilities'; // Ensure utility mixins are loaded
+
+// Import custom utilities
+@use 'utilities/myvariables' as *;
+@use 'utilities/mixins' as *;
+
+// Import components directly
+@use 'components/posts';
+@use 'components/header';
+@use 'components/footer';
+
+// Bootstrap styles
+@use '../../node_modules/bootstrap/scss/bootstrap'; // Replaces @import
+
+// Global styles (after all `@use`)
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $light-bg-subtle;
+}
+
+main {
+  padding: 1rem;
+}
+  */
 
 /*# sourceMappingURL=test.css.map */

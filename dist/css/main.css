@@ -1,9 +1,10 @@
-/* Error: @use rules must be written before any other rules.
- *    ,
- * 15 | @use 'components/posts';
- *    | ^^^^^^^^^^^^^^^^^^^^^^^
- *    '
- *   src\scss\main.scss 15:1  root stylesheet */
+/* Error: Undefined mixin.
+ *     ,
+ * 512 | @include _assert-ascending($container-max-widths, "$container-max-widths");
+ *     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *     '
+ *   node_modules\bootstrap\scss\_variables.scss 512:1  @use
+ *   src\scss\main.scss 2:1                             root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -13,5 +14,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: @use rules must be written before any other rules.\a    \2577 \a 15 \2502  @use 'components/posts';\d\a    \2502  ^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   src\\scss\\main.scss 15:1  root stylesheet";
+  content: 'Error: Undefined mixin.\a     \2577 \a 512 \2502  @include _assert-ascending($container-max-widths, "$container-max-widths");\a     \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   node_modules\\bootstrap\\scss\\_variables.scss 512:1  @use\a   src\\scss\\main.scss 2:1                             root stylesheet';
 }
