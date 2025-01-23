@@ -1,10 +1,9 @@
-/* Error: There is no module with the namespace "color".
- *     ,
- * 342 | $light-bg-subtle:         color.mix($gray-100, $white) !default;
- *     |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *     '
- *   node_modules\bootstrap\scss\_variables.scss 342:27  @use
- *   src\scss\main.scss 6:1                              root stylesheet */
+/* Error: @use rules must be written before any other rules.
+ *    ,
+ * 14 | @use 'utilities/mixins' as *;
+ *    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    '
+ *   src\scss\main.scss 14:1  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: There is no module with the namespace "color".\a     \2577 \a 342 \2502  $light-bg-subtle:         color.mix($gray-100, $white) !default;\a     \2502                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   node_modules\\bootstrap\\scss\\_variables.scss 342:27  @use\a   src\\scss\\main.scss 6:1                              root stylesheet';
+  content: "Error: @use rules must be written before any other rules.\a    \2577 \a 14 \2502  @use 'utilities/mixins' as *;\d\a    \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   src\\scss\\main.scss 14:1  root stylesheet";
 }

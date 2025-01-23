@@ -1,3 +1,4 @@
+@use 'utilities/mixins' as *;
 @use 'sass:color'; // Required for color manipulation
 @use 'sass:string'; // Required for string manipulation
 
@@ -5,13 +6,12 @@
 @use '../../node_modules/bootstrap/scss/functions' as *;
 // Override variables in your custom file
 @use 'utilities/myvariables' as *; // Custom variable overrides
-@use '../../node_modules/bootstrap/scss/variables'; // Bootstrap's default variables
+//@use '../../node_modules/bootstrap/scss/variables'; // Bootstrap's default variables
 
 // Load Bootstrap styles (uses the overridden variables)
-@use '../../node_modules/bootstrap/scss/bootstrap';
+//@use '../../node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
-// Import custom utility mixins and components
-@use 'utilities/mixins' as *;
 @use 'components/posts';
 @use 'components/header';
 @use 'components/footer';

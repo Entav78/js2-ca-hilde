@@ -1,11 +1,16 @@
-@use '../../../node_modules/bootstrap/scss/functions'; // Required functions
-@use 'sass:color'; // Required for color manipulation
+// Required for color manipulation
+@use 'sass:color';
+// Required functions from Bootstrap
+@use '../../../node_modules/bootstrap/scss/functions';
+// Import Bootstrap variables
 @use '../../../node_modules/bootstrap/scss/_variables.scss' as *;
 
+// Custom variables
 $light-bg-subtle: color.mix($gray-100, $white) !default;
 $neutral-light: #f8f9fa;
 $primary: purple; // Custom primary color
 $secondary: black; // Custom secondary color
 $font-size-base: 16px; // Example customization
 
-$body-bg: red !default; // Change body background to red for testing
+// Custom overrides
+$body-bg: red !default;
