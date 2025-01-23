@@ -1,14 +1,4 @@
-/*@use '../utilities/_variables' as *;
-
-.post-card {
-  background-color: $secondary; // Or any other variable from _variables.scss
-  color: $header-text; // Adjust text color for readability
-  border-radius: 0.5rem; // Optional: smooth edges
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Optional: subtle shadow
-}
-*/
-//My future posts.scss:
-@use '../utilities/_myvariables' as *;
+@use '../utilities/_variables' as *;
 
 #post-container {
   display: flex;

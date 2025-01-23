@@ -51,43 +51,38 @@ async function setupProfilePage() {
 }
 
 function renderProfileDetails({ name, email, bio, avatar, banner }) {
-  // Get the personal avatar element
-  const personalAvatar = document.querySelector('.personal-avatar');
-
-  // Hide personal avatar if a dynamic avatar exists
-  if (avatar?.url && personalAvatar) {
-    personalAvatar.style.display = 'none';
-  }
-
-  // Get the dynamic profile details section
   const profileSection = document.getElementById('dynamic-profile-details');
 
+  // Ensure the dynamic profile details section exists
   if (!profileSection) {
     console.error('Dynamic profile details section not found.');
     return;
   }
 
-  // Render dynamic profile details
+  // Hide the personal avatar if a dynamic avatar exists
+  if (avatar?.url) {
+    const personalAvatar = document.querySelector('.personal-avatar');
+    if (personalAvatar) personalAvatar.style.display = 'none';
+  }
+
+  // Inject dynamic content into #dynamic-profile-details
   profileSection.innerHTML = `
     <h2>${name}</h2>
     <p>Email: ${email}</p>
     ${bio ? `<p>Bio: ${bio}</p>` : ''}
     ${
       avatar?.url
-        ? `<img src="${avatar.url}" alt="${
-            avatar.alt || 'Avatar'
-          }" class="profile-avatar" />`
+        ? `<img src="${avatar.url}" alt="${avatar.alt || 'Avatar'}" class="profile-avatar" />`
         : '<p>No avatar available</p>'
     }
     ${
       banner?.url
-        ? `<img src="${banner.url}" alt="${
-            banner.alt || 'Banner'
-          }" class="profile-banner" />`
+        ? `<img src="${banner.url}" alt="${banner.alt || 'Banner'}" class="profile-banner" />`
         : '<p>No banner available</p>'
     }
   `;
 }
+
 
 function renderUserPosts(posts, username) {
   const postsSection = document.getElementById('user-posts');
