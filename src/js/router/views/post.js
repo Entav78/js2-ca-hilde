@@ -32,17 +32,14 @@ async function loadPost() {
   }
 }
 
-// Function to render post details
 function displayPost(post) {
   const postData = post.data; // Access the data property
 
-  const postContainer = document.getElementById('postContainer');
+  const postContainer = document.querySelector('.post-container');
   if (!postContainer) {
     console.error('Post container not found.');
     return;
   }
-
-  console.log('Media URL:', postData.media?.url);
 
   postContainer.innerHTML = `
     <h1>${postData.title || 'Untitled Post'}</h1>
@@ -79,6 +76,8 @@ function displayEditDeleteButtons(post) {
       return;
     }
 
+    buttonsContainer.innerHTML = '';
+
     // Edit button
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit Post';
@@ -91,7 +90,7 @@ function displayEditDeleteButtons(post) {
     // Delete button
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete Post';
-    editButton.className = 'btn btn-primary';
+    deleteButton.className = 'btn btn-danger';
     deleteButton.addEventListener('click', async () => {
       const confirmation = confirm(
         'Are you sure you want to delete this post?'
@@ -112,7 +111,7 @@ function displayEditDeleteButtons(post) {
 
 // Function to display messages
 function displayMessage(message) {
-  const postContainer = document.getElementById('postContainer');
+  const postContainer = document.querySelector('.post-container');
   if (postContainer) {
     postContainer.innerHTML = `<p>${message}</p>`;
   }
