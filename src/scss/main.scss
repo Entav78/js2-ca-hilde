@@ -1,24 +1,23 @@
-@use 'utilities/mixins' as *;
+// Import utilities and libraries (must come first)
 @use 'sass:color'; // Required for color manipulation
 @use 'sass:string'; // Required for string manipulation
+@use 'utilities/mixins' as *;
 
-// Import Bootstrap's functions and variables first
+// Import Bootstrap functions and variables
 @use '../../node_modules/bootstrap/scss/functions' as *;
-// Override variables in your custom file
 @use 'utilities/myvariables' as *; // Custom variable overrides
-//@use '../../node_modules/bootstrap/scss/variables'; // Bootstrap's default variables
-
-// Load Bootstrap styles (uses the overridden variables)
-//@use '../../node_modules/bootstrap/scss/bootstrap';
+// Bootstrap styles
 @import 'bootstrap/scss/bootstrap';
 
+// Import components
 @use 'components/posts';
 @use 'components/header';
 @use 'components/footer';
 
-@use '_index'; // Index styles
+// Import index styles
+@use '_index';
 
-// Global styles
+// Global styles (after imports)
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
