@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "sass --watch src/scss:dist/css",
+    "dev": "vite",
+    "sass-watch": "sass --watch src/scss:dist/css",
     "build": "sass src/scss:dist/css",
     "start": "vite"
   },

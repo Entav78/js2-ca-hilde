@@ -5,6 +5,9 @@
 
 // Color system
 
+//@use 'variables-dark' as *;
+// TODO: can be removed safely in v6, only here to avoid breaking changes in v5.3
+
 // scss-docs-start gray-color-variables
 $white: #fff !default;
 $gray-100: #f8f9fa !default;
@@ -339,7 +342,7 @@ $success-bg-subtle: tint-color($success, 80%) !default;
 $info-bg-subtle: tint-color($info, 80%) !default;
 $warning-bg-subtle: tint-color($warning, 80%) !default;
 $danger-bg-subtle: tint-color($danger, 80%) !default;
-//$light-bg-subtle: mix($gray-100, $white) !default;
+$light-bg-subtle: mix($gray-100, $white) !default;
 $dark-bg-subtle: $gray-400 !default;
 // scss-docs-end theme-bg-subtle-variables
 
@@ -454,10 +457,10 @@ $body-emphasis-color: $black !default;
 //
 // Style anchor elements.
 
-//$link-color: $primary !default;
+$link-color: $primary !default;
 $link-decoration: underline !default;
 $link-shade-percentage: 20% !default;
-//$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
 $link-hover-decoration: null !default;
 
 $stretched-link-pseudo-element: after !default;
@@ -494,8 +497,8 @@ $grid-breakpoints: (
 ) !default;
 // scss-docs-end grid-breakpoints
 
-//@include _assert-ascending($grid-breakpoints, '$grid-breakpoints');
-//@include _assert-starts-at-zero($grid-breakpoints, '$grid-breakpoints');
+@include _assert-ascending($grid-breakpoints, '$grid-breakpoints');
+@include _assert-starts-at-zero($grid-breakpoints, '$grid-breakpoints');
 
 // Grid containers
 //
@@ -511,7 +514,7 @@ $container-max-widths: (
 ) !default;
 // scss-docs-end container-max-widths
 
-//@include _assert-ascending($container-max-widths, '$container-max-widths');
+@include _assert-ascending($container-max-widths, '$container-max-widths');
 
 // Grid columns
 //
@@ -852,9 +855,9 @@ $btn-active-box-shadow: inset 0 3px 5px rgba($black, 0.125) !default;
 $btn-link-color: var(--#{$prefix}link-color) !default;
 $btn-link-hover-color: var(--#{$prefix}link-hover-color) !default;
 $btn-link-disabled-color: $gray-600 !default;
-/*$btn-link-focus-shadow-rgb: to-rgb(
+$btn-link-focus-shadow-rgb: to-rgb(
   mix(color-contrast($link-color), $link-color, 15%)
-) !default;*/
+) !default;
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius: var(--#{$prefix}border-radius) !default;
@@ -1701,7 +1704,7 @@ $breadcrumb-margin-bottom: 1rem !default;
 $breadcrumb-bg: null !default;
 $breadcrumb-divider-color: var(--#{$prefix}secondary-color) !default;
 $breadcrumb-active-color: var(--#{$prefix}secondary-color) !default;
-$breadcrumb-divider: string.quote('/') !default;
+$breadcrumb-divider: quote('/') !default;
 $breadcrumb-divider-flipped: $breadcrumb-divider !default;
 $breadcrumb-border-radius: null !default;
 // scss-docs-end breadcrumb-variables
@@ -1806,5 +1809,3 @@ $kbd-bg: var(--#{$prefix}body-color) !default;
 $nested-kbd-font-weight: null !default; // Deprecated in v5.2.0, removing in v6
 
 $pre-color: null !default;
-
-//@use 'variables-dark'; // TODO: can be removed safely in v6, only here to avoid breaking changes in v5.3

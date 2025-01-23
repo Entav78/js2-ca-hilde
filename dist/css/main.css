@@ -1,10 +1,11 @@
-/* Error: There is no module with the namespace "string".
- *      ,
- * 1704 | $breadcrumb-divider: string.quote('/') !default;
- *      |                      ^^^^^^^^^^^^^^^^^
- *      '
- *   src\scss\utilities\_variables.scss 1704:22  @use
- *   src\scss\main.scss 5:1                      root stylesheet */
+/* Error: Undefined mixin.
+ *     ,
+ * 494 | @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+ *     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *     '
+ *   node_modules\bootstrap\scss\_variables.scss 494:1  @use
+ *   src\scss\utilities\_myvariables.scss 4:1           @use
+ *   src\scss\main.scss 11:1                            root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +15,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: There is no module with the namespace \"string\".\a      \2577 \a 1704 \2502  $breadcrumb-divider: string.quote('/') !default;\d\a      \2502                       ^^^^^^^^^^^^^^^^^\a      \2575 \a   src\\scss\\utilities\\_variables.scss 1704:22  @use\a   src\\scss\\main.scss 5:1                      root stylesheet";
+  content: 'Error: Undefined mixin.\a     \2577 \a 494 \2502  @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");\a     \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   node_modules\\bootstrap\\scss\\_variables.scss 494:1  @use\a   src\\scss\\utilities\\_myvariables.scss 4:1           @use\a   src\\scss\\main.scss 11:1                            root stylesheet';
 }

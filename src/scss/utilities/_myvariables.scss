@@ -4,7 +4,7 @@
 @use '../../../node_modules/bootstrap/scss/_variables.scss' as *;
 
 $light-bg-subtle: color.mix($gray-100, $white) !default;
-
+$neutral-light: #f8f9fa;
 $primary: purple; // Custom primary color
 $secondary: black; // Custom secondary color
 $font-size-base: 16px; // Example customization
