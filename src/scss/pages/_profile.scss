@@ -1,0 +1,16 @@
+.personal-avatar {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .personal-image {
+    max-width: 200px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+}

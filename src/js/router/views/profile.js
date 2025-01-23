@@ -51,13 +51,23 @@ async function setupProfilePage() {
 }
 
 function renderProfileDetails({ name, email, bio, avatar, banner }) {
-  const profileSection = document.getElementById('profile-details');
+  // Get the personal avatar element
+  const personalAvatar = document.querySelector('.personal-avatar');
+
+  // Hide personal avatar if a dynamic avatar exists
+  if (avatar?.url && personalAvatar) {
+    personalAvatar.style.display = 'none';
+  }
+
+  // Get the dynamic profile details section
+  const profileSection = document.getElementById('dynamic-profile-details');
 
   if (!profileSection) {
-    console.error('Profile details section not found.');
+    console.error('Dynamic profile details section not found.');
     return;
   }
 
+  // Render dynamic profile details
   profileSection.innerHTML = `
     <h2>${name}</h2>
     <p>Email: ${email}</p>
