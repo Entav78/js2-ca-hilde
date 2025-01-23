@@ -2,6 +2,7 @@
 @use 'utilities/variables' as *;
 @use 'utilities/mixins';
 @use 'pages/profile' as *;
+@use 'pages/singlePost' as *;
 
 body {
   font-family: 'Arial', sans-serif;
