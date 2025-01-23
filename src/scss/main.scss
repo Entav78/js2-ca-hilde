@@ -1,15 +1,18 @@
 @use 'sass:color'; // Required for color manipulation
 @use 'sass:string'; // Required for string manipulation
 
-@use '../../node_modules/bootstrap/scss/functions' as *; // Required Bootstrap functions
+// Import Bootstrap's functions and variables first
+@use '../../node_modules/bootstrap/scss/functions' as *;
 @use '../../node_modules/bootstrap/scss/variables'; // Bootstrap's default variables
+
+// Override variables in your custom file
 @use 'utilities/myvariables' as *; // Custom variable overrides
 
-@use '../../node_modules/bootstrap/scss/bootstrap'; // Load Bootstrap styles
+// Load Bootstrap styles (uses the overridden variables)
+@use '../../node_modules/bootstrap/scss/bootstrap';
 
-@use 'utilities/mixins' as *; // Custom utility mixins
-
-// Import your components
+// Import custom utility mixins and components
+@use 'utilities/mixins' as *;
 @use 'components/posts';
 @use 'components/header';
 @use 'components/footer';
@@ -21,7 +24,7 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: $neutral-light;
+  background-color: $light-bg-subtle;
 }
 
 main {
