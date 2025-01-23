@@ -1,5 +1,6 @@
 @use '../../../node_modules/bootstrap/scss/functions'; // Required functions
 @use 'sass:color';
+@use 'bootstrap/scss/variables' as *;
 
 $light-bg-subtle: color.mix($gray-100, $white) !default;
 

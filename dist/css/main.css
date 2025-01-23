@@ -1,10 +1,10 @@
-/* Error: Can't find stylesheet to import.
+/* Error: Undefined variable.
  *   ,
- * 1 | @use '../../node_modules/bootstrap/scss/functions'; // Required functions
- *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * 4 | $light-bg-subtle: color.mix($gray-100, $white) !default;
+ *   |                             ^^^^^^^^^
  *   '
- *   src\scss\utilities\_myvariables.scss 1:1  @use
- *   src\scss\main.scss 8:1                    root stylesheet */
+ *   src\scss\utilities\_myvariables.scss 4:29  @use
+ *   src\scss\main.scss 8:1                     root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +14,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @use '../../node_modules/bootstrap/scss/functions'; // Required functions\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   src\\scss\\utilities\\_myvariables.scss 1:1  @use\a   src\\scss\\main.scss 8:1                    root stylesheet";
+  content: "Error: Undefined variable.\a   \2577 \a 4 \2502  $light-bg-subtle: color.mix($gray-100, $white) !default;\d\a   \2502                              ^^^^^^^^^\a   \2575 \a   src\\scss\\utilities\\_myvariables.scss 4:29  @use\a   src\\scss\\main.scss 8:1                     root stylesheet";
 }
