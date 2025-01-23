@@ -1,5 +1,6 @@
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
+import 'bootstrap';
 
 console.log('Router imported successfully');
 
