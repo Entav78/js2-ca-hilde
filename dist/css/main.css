@@ -1,10 +1,10 @@
-/* Error: Undefined mixin.
+/* Error: There is no module with the namespace "color".
  *     ,
- * 494 | @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
- *     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * 342 | $light-bg-subtle:         color.mix($gray-100, $white) !default;
+ *     |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *     '
- *   node_modules\bootstrap\scss\_variables.scss 494:1  @use
- *   src\scss\main.scss 5:1                             root stylesheet */
+ *   node_modules\bootstrap\scss\_variables.scss 342:27  @use
+ *   src\scss\main.scss 6:1                              root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +14,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: Undefined mixin.\a     \2577 \a 494 \2502  @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");\a     \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   node_modules\\bootstrap\\scss\\_variables.scss 494:1  @use\a   src\\scss\\main.scss 5:1                             root stylesheet';
+  content: 'Error: There is no module with the namespace "color".\a     \2577 \a 342 \2502  $light-bg-subtle:         color.mix($gray-100, $white) !default;\a     \2502                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   node_modules\\bootstrap\\scss\\_variables.scss 342:27  @use\a   src\\scss\\main.scss 6:1                              root stylesheet';
 }
