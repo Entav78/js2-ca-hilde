@@ -1,8 +1,11 @@
+@use 'sass:color';
+@use 'sass:string';
+
 // Import required functions from Bootstrap
 @use '../../node_modules/bootstrap/scss/functions' as *;
 
 // Import the default variables first
-@use 'utilities/variables';
+//@use 'utilities/variables';
 
 // Import your custom variables (to override default variables)
 @use 'utilities/myvariables' as *;

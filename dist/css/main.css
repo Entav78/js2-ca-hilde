@@ -1,10 +1,10 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 3 | @use 'bootstrap/scss/variables' as *;
- *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   src\scss\utilities\_myvariables.scss 3:1  @use
- *   src\scss\main.scss 8:1                    root stylesheet */
+/* Error: There is no module with the namespace "string".
+ *      ,
+ * 1704 | $breadcrumb-divider: string.quote('/') !default;
+ *      |                      ^^^^^^^^^^^^^^^^^
+ *      '
+ *   src\scss\utilities\_variables.scss 1704:22  @use
+ *   src\scss\main.scss 5:1                      root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +14,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 3 \2502  @use 'bootstrap/scss/variables' as *;\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   src\\scss\\utilities\\_myvariables.scss 3:1  @use\a   src\\scss\\main.scss 8:1                    root stylesheet";
+  content: "Error: There is no module with the namespace \"string\".\a      \2577 \a 1704 \2502  $breadcrumb-divider: string.quote('/') !default;\d\a      \2502                       ^^^^^^^^^^^^^^^^^\a      \2575 \a   src\\scss\\utilities\\_variables.scss 1704:22  @use\a   src\\scss\\main.scss 5:1                      root stylesheet";
 }

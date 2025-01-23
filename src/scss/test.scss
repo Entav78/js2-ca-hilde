@@ -1,0 +1,8 @@
+@use 'sass:color';
+
+$primary: #3498db;
+$lighten-primary: color.scale($primary, $lightness: 20%);
+
+body {
+  background-color: $lighten-primary;
+}
