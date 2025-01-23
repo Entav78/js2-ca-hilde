@@ -134,6 +134,7 @@ export class PostsRenderer {
     const postElement = document.createElement('div');
     postElement.className = 'post-card';
 
+    // Add post image if available
     if (post.media?.url) {
       const thumbnail = document.createElement('img');
       thumbnail.src = post.media.url;
@@ -142,29 +143,37 @@ export class PostsRenderer {
       postElement.appendChild(thumbnail);
     }
 
+    // Create the content wrapper
     const content = document.createElement('div');
     content.className = 'post-content';
 
+    // Add post title
     const title = document.createElement('h3');
+    title.className = 'post-title';
     title.textContent = post.title || 'Untitled Post';
     title.addEventListener('click', () => {
       window.location.href = `${basePath}/post/?id=${post.id}`;
     });
 
+    // Add post body
     const body = document.createElement('p');
+    body.className = 'post-body';
     body.textContent =
       post.body && post.body.length > 100
         ? `${post.body.substring(0, 100)}...`
         : post.body || 'No content available.';
 
+    // Add tags
     const tags = document.createElement('div');
-    tags.className = 'tags';
+    tags.className = 'post-tags';
     tags.textContent = `Tags: ${post.tags?.join(', ') || 'No tags'}`;
 
+    // Append elements to content container
     content.appendChild(title);
     content.appendChild(body);
     content.appendChild(tags);
 
+    // Append content to post card
     postElement.appendChild(content);
     return postElement;
   }
