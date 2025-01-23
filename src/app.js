@@ -1,6 +1,7 @@
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
-import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (includes Popper.js)
 
 console.log('Router imported successfully');
 
