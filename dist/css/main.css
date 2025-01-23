@@ -1,10 +1,11 @@
-/* Error: Undefined mixin.
- *     ,
- * 512 | @include _assert-ascending($container-max-widths, "$container-max-widths");
- *     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *     '
- *   node_modules\bootstrap\scss\_variables.scss 512:1  @use
- *   src\scss\main.scss 2:1                             root stylesheet */
+/* Error: Undefined operation "false > xs".
+ *    ,
+ * 15 |     @if $previous-key != null and type-of($key) == type-of($previous-key) and not $key > $previous-key {
+ *    |                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^
+ *    '
+ *   node_modules\bootstrap\scss\_variables.scss 15:79  -assert-ascending()
+ *   node_modules\bootstrap\scss\_variables.scss 457:1  @use
+ *   src\scss\main.scss 4:1                             root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +15,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: Undefined mixin.\a     \2577 \a 512 \2502  @include _assert-ascending($container-max-widths, "$container-max-widths");\a     \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   node_modules\\bootstrap\\scss\\_variables.scss 512:1  @use\a   src\\scss\\main.scss 2:1                             root stylesheet';
+  content: 'Error: Undefined operation "false > xs".\a    \2577 \a 15 \2502      @if $previous-key != null and type-of($key) == type-of($previous-key) and not $key > $previous-key {\a    \2502                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   node_modules\\bootstrap\\scss\\_variables.scss 15:79  -assert-ascending()\a   node_modules\\bootstrap\\scss\\_variables.scss 457:1  @use\a   src\\scss\\main.scss 4:1                             root stylesheet';
 }
