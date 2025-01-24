@@ -72,37 +72,40 @@ function renderProfileDetails({ name, email, bio, avatar, banner }) {
     ${bio ? `<p>Bio: ${bio}</p>` : ''}
     ${
       avatar?.url
-        ? `<img src="${avatar.url}" alt="${avatar.alt || 'Avatar'}" class="profile-avatar" />`
+        ? `<img src="${avatar.url}" alt="${
+            avatar.alt || 'Avatar'
+          }" class="profile-avatar" />`
         : '<p>No avatar available</p>'
     }
     ${
       banner?.url
-        ? `<img src="${banner.url}" alt="${banner.alt || 'Banner'}" class="profile-banner" />`
+        ? `<img src="${banner.url}" alt="${
+            banner.alt || 'Banner'
+          }" class="profile-banner" />`
         : '<p>No banner available</p>'
     }
   `;
 }
 
-
 function renderUserPosts(posts, username) {
-  const postsSection = document.getElementById('user-posts');
+  const postsContainer = document.querySelector('.post-container'); // Use the correct class selector
 
-  if (!postsSection) {
-    console.error('User posts section not found.');
+  if (!postsContainer) {
+    console.error('Post container not found.');
     return;
   }
 
   if (posts.length === 0) {
-    postsSection.innerHTML = `<h2>${username}'s Posts</h2><p>No posts found.</p>`;
+    postsContainer.innerHTML = `<h2>${username}'s Posts</h2><p>No posts found.</p>`;
     return;
   }
 
   const postsList = document.createElement('div');
-  postsList.className = 'post-list';
+  postsList.className = 'post-list'; // Matches your CSS class for styling
 
   posts.forEach((post) => {
     const postCard = document.createElement('div');
-    postCard.className = 'post-card';
+    postCard.className = 'post-card'; // Matches your CSS class for styling
     postCard.innerHTML = `
       <div class="post-content">
         <h3>
@@ -121,6 +124,6 @@ function renderUserPosts(posts, username) {
     postsList.appendChild(postCard);
   });
 
-  postsSection.innerHTML = `<h2>${username}'s Posts</h2>`;
-  postsSection.appendChild(postsList);
+  postsContainer.innerHTML = `<h2>${username}'s Posts</h2>`; // Set the header
+  postsContainer.appendChild(postsList); // Append the posts list
 }

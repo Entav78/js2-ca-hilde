@@ -22,10 +22,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use 'src/scss/utilities/variables' as *; @use 'src/scss/utilities/mixins' as *;`,
+        additionalData: `@use 'src/scss/utilities/variables' as *;`, // Adjust path based on your setup
       },
     },
   },
+
   test: {
     environment: 'jsdom', // Use jsdom for DOM testing
   },

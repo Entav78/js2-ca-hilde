@@ -1,16 +1,13 @@
-@use '_index' as *;
-@use 'utilities/variables' as *;
-@use 'utilities/mixins';
+@use 'components/header' as *;
+@use 'components/footer' as *;
+@use 'components/posts' as *;
+
 @use 'pages/profile' as *;
 @use 'pages/singlePost' as *;
 
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: $neutral-light;
-}
+@use 'utilities/variables' as *;
+@use 'utilities/mixins' as *;
 
-main {
-  padding: 1rem;
+body {
+  background-color: #f4f4f4;
 }
