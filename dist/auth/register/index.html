@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="/assets/app-D8EkhysQ.css" />
+    
+    <script type="module" crossorigin src="/js2-ca-hilde/assets/app-aTn1yUF9.js"></script>
+    <link rel="stylesheet" crossorigin href="/js2-ca-hilde/assets/app-DiAHRIfZ.css">
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <h1>Welcome</h1>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNav"
+            aria-controls="offcanvasNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        class="offcanvas offcanvas-start bg-dark text-white"
+        tabindex="-1"
+        id="offcanvasNav"
+        aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+          </ul>
+        </div>
+      </div>
+
+      </div>
+    </header>
+
+    <form name="register">
+      <div>
+        <label for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          required
+          maxlength="20"
+          pattern="^[\w]+$"
+          title="Please enter a username using only letters and numbers"
+        />
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+          title="Please enter a valid noroff.no or stud.noroff.no address"
+        />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          minlength="8"
+        />
+      </div>
+      <button>Register</button>
+    </form>
+    <div id="registration-error" class="error-message"></div>
+
+    <footer>
+      <p>&copy; 2025 H Vatne. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

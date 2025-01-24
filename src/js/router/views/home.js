@@ -3,8 +3,9 @@ import { PostsRenderer } from '../../ui/post/postsRenderer.js';
 
 function initializePostsRenderer() {
   const postService = new PostService();
-  const postsRenderer = new PostsRenderer('post-container'); // Assuming 'homeContainer' is the correct ID
+  const postsRenderer = new PostsRenderer('post-container');
 
+  console.log('Renderer container:', postsRenderer.container);
   console.log('Fetching from PostService...');
   postsRenderer.init(async () => await postService.readPosts(10, 1));
 }

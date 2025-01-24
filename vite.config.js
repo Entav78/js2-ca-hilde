@@ -19,6 +19,13 @@ export default defineConfig({
       },
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use 'src/scss/utilities/variables' as *; @use 'src/scss/utilities/mixins' as *;`,
+      },
+    },
+  },
   test: {
     environment: 'jsdom', // Use jsdom for DOM testing
   },
