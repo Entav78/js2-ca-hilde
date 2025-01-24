@@ -1,11 +1,12 @@
+@use 'sass:color';
 @use '../utilities/_variables' as *;
 
 .post-container {
   max-width: 800px;
   margin: 2rem auto;
   padding: 1rem;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background-color: $neutral-light;
+  border: 1px solid color.scale($neutral-light, $lightness: -10%);
   border-radius: 0.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
@@ -18,7 +19,7 @@
   p {
     font-size: 1rem;
     margin-bottom: 1rem;
-    color: #6c757d;
+    color: $secondary;
   }
 
   img {
@@ -31,34 +32,7 @@
 
   .post-tags {
     font-size: 0.875rem;
-    color: $secondary;
+    color: $secondary-dark;
     margin-top: 1rem;
-  }
-}
-
-.buttons-container {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-
-  .btn {
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-
-    &.btn-primary {
-      background-color: $primary;
-      color: #fff;
-      &:hover {
-        background-color: darken($primary, 10%);
-      }
-    }
-
-    &.btn-danger {
-      background-color: #dc3545;
-      color: #fff;
-      &:hover {
-        background-color: darken(#dc3545, 10%);
-      }
-    }
   }
 }

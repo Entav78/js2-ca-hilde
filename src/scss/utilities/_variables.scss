@@ -1,16 +1,10 @@
-@use 'sass:color';
-//@use 'bootstrap' as *;
+@use 'sass:color'; // Import only what is required here
 
-//
 $primary: #ade2fa;
 $secondary: #333;
 
-//header
 $header-bg: #000000;
 $header-text: #ffffff;
-
 $neutral-light: #f5f5f5;
-
-// Reusable color utilities
-$primary-light: color.scale($primary, $lightness: 20%);
-$secondary-dark: color.scale($secondary, $lightness: -15%);
+$primary-light: color.scale(#ade2fa, $lightness: 20%);
+$secondary-dark: color.scale(#333, $lightness: -15%);

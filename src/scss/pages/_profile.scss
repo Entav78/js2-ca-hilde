@@ -1,3 +1,6 @@
+@use 'sass:color';
+@use '../utilities/_variables' as *;
+
 #profile-details {
   .personal-avatar {
     text-align: center;

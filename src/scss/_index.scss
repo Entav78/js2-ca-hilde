@@ -1,14 +1,11 @@
 @use 'sass:color';
-//@use 'bootstrap' as *;
+@use './utilities/_variables' as vars;
+@use 'bootstrap/scss/variables' with (
+  $primary: vars.$primary,
+  $secondary: vars.$secondary
+);
 
-@use 'utilities/variables';
-@use 'utilities/mixins';
-@use 'utilities/utilities';
-
-@use 'components/posts';
-@use 'components/header';
-@use 'components/footer';
-
-body {
-  background-color: $secondary;
-}
+@use 'bootstrap/scss/maps';
+@use 'bootstrap/scss/mixins';
+@use 'bootstrap/scss/reboot';
+@use 'bootstrap/scss/type';

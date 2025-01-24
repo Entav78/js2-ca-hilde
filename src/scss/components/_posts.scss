@@ -1,4 +1,4 @@
-@use 'sass:color';
+@use 'sass:color'; // Required for color functions, but is globally available from vite.config.js
 @use '../utilities/_variables' as *;
 
 .post-container {
