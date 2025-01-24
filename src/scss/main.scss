@@ -1,5 +1,6 @@
 @use '_index' as *;
-@use '../../node_modules/bootstrap/scss/bootstrap' as *;
+@use 'bootstrap' as *;
+
 @use 'components/header' as *;
 @use 'components/footer' as *;
 @use 'components/posts' as *;
