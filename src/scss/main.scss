@@ -1,6 +1,10 @@
+@use '_index' as *;
+
 @use 'components/header' as *;
 @use 'components/footer' as *;
 @use 'components/posts' as *;
+
+@use '../../node_modules/bootstrap/scss/bootstrap';
 
 @use 'pages/profile' as *;
 @use 'pages/singlePost' as *;

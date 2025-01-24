@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../utilities/_variables' as *;
 
 .post-container {
@@ -7,8 +8,8 @@
   justify-content: center;
 
   .post-card {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
+    background-color: color.scale($primary, $lightness: 10%);
+    border: 1px solid color.scale($primary, $lightness: 20%);
     border-radius: 0.5rem;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -30,7 +31,7 @@
       .post-title {
         font-size: 1.25rem;
         margin-bottom: 0.5rem;
-        color: #007bff;
+        color: $secondary;
         cursor: pointer;
 
         &:hover {
@@ -40,13 +41,28 @@
 
       .post-body {
         margin: 0.5rem 0;
-        color: #6c757d;
+        color: darken($secondary, 10%);
       }
 
       .post-tags {
+        margin-top: 1rem;
         font-size: 0.875rem;
-        color: #adb5bd;
+        color: color.scale($secondary, $lightness: 20%);
       }
     }
+  }
+}
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 }

@@ -22,7 +22,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use 'src/scss/utilities/variables' as *;`, // Adjust path based on your setup
+        additionalData: `
+          @use 'sass:color';
+          @use 'src/scss/utilities/variables' as *;
+          @use 'src/scss/utilities/mixins' as *;
+        `,
       },
     },
   },

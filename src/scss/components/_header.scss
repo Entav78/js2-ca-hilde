@@ -1,8 +1,12 @@
+@use 'sass:color';
+
 @use '../utilities/_variables' as *;
 
 header {
-  background-color: $header-bg;
+  background-color: color.scale($header-bg, $lightness: 10%);
   color: $header-text;
+
+  border-bottom: 1px solid color.scale($header-bg, $lightness: 20%);
 
   .navbar {
     padding: 1rem 2rem;
@@ -16,7 +20,7 @@ header {
       color: $header-text;
 
       &:hover {
-        color: lighten($header-text, 10%);
+        color: color.scale($header-text, $lightness: 10%);
       }
     }
 
@@ -69,8 +73,8 @@ header {
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {
-          background-color: lighten($header-bg, 10%);
-          color: darken($header-text, 10%);
+          background-color: color.scale($header-bg, $lightness: 10%);
+          color: color.scale($header-text, $lightness: -10%);
         }
 
         &.active {
@@ -86,13 +90,13 @@ header {
     color: $header-text;
 
     .offcanvas-header {
-      border-bottom: 1px solid lighten($header-bg, 20%);
+      border-bottom: 1px solid color.scale($header-bg, $lightness: 20%);
     }
 
     .offcanvas-body {
       .navbar-nav {
-        flex-direction: column; 
-        gap: 1rem; 
+        flex-direction: column;
+        gap: 1rem;
       }
     }
   }
