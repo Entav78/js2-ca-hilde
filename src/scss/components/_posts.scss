@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use '../utilities/variables' as *;
+@use '../../../node_modules/bootstrap/scss/mixins';
 
 .post-container {
   display: flex;
