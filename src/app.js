@@ -2,7 +2,7 @@ import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
 import 'bootstrap-css'; // Load Bootstrap CSS
 import 'bootstrap-js'; // Load Bootstrap JS
-import './scss/main.scss'; // Your custom SCSS
+//import './scss/main.scss'; // Your custom SCSS
 
 console.log('Router imported successfully');
 

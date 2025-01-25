@@ -72,6 +72,8 @@ export class PostsRenderer {
       thumbnail.alt = post.media.alt || 'Post Image';
       thumbnail.className = 'post-image';
       postElement.appendChild(thumbnail);
+    } else {
+      console.warn(`No image for post ${post.id}`);
     }
 
     // Create the content wrapper

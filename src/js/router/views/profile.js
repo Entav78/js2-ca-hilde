@@ -88,12 +88,17 @@ function renderProfileDetails({ name, email, bio, avatar, banner }) {
 }
 
 function renderUserPosts(posts, username) {
-  const postsContainer = document.querySelector('.post-container'); // Use the correct class selector
+  const postsContainer = document.querySelector('.post-container');
 
   if (!postsContainer) {
     console.error('Post container not found.');
     return;
   }
+
+  postsContainer.innerHTML = '';
+  const header = document.createElement('h2');
+  header.textContent = `${username}'s Posts`;
+  postsContainer.appendChild(header);
 
   if (posts.length === 0) {
     postsContainer.innerHTML = `<h2>${username}'s Posts</h2><p>No posts found.</p>`;
@@ -115,8 +120,10 @@ function renderUserPosts(posts, username) {
         </h3>
         <p>${post.body || 'No content available.'}</p>
         ${
-          post.image
-            ? `<img src="${post.image}" alt="Post image" class="post-image" />`
+          post.media?.url
+            ? `<img src="${post.media.url}" alt="${
+                post.media.alt || 'Post image'
+              }" class="post-image" />`
             : '<p>No image available</p>'
         }
       </div>
