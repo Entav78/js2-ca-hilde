@@ -2,22 +2,14 @@ import path, { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  /*  resolve: {
+  resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      'bootstrap-css': path.resolve(
-        __dirname,
-        '/node_modules/bootstrap/dist/css/bootstrap.min.css'
-      ),
-      'bootstrap-js': path.resolve(
-        __dirname,
-        '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
-      ),
+      'bootstrap-css': 'node_modules/bootstrap/dist/css/bootstrap.min.css',
+      'bootstrap-js': 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
     },
-  },*/
+  },
   appType: 'mpa',
   base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/',
-
   build: {
     target: 'esnext',
     rollupOptions: {
@@ -33,7 +25,6 @@ export default defineConfig({
       },
     },
   },
-
   css: {
     preprocessorOptions: {
       scss: {
