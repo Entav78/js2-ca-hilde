@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "sass-watch": "sass --watch src/scss:dist/css",
-    "build:scss": "sass src/scss/main.scss dist/css/main.css --no-source-map",
     "build": "vite build && npm run build:scss",
+    "sass-watch": "sass --watch src/scss:dist/css",
+    "build:scss": "sass src/scss/main.scss dist/css/main.css",
     "start": "vite"
   },
   "devDependencies": {
