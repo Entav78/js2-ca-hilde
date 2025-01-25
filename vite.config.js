@@ -7,11 +7,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       'bootstrap-css': path.resolve(
         __dirname,
-        'node_modules/bootstrap/dist/css/bootstrap.min.css'
+        'node_modules/bootstrap/css/bootstrap.min.css'
       ),
       'bootstrap-js': path.resolve(
         __dirname,
-        'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
+        'node_modules/bootstrap/js/bootstrap.bundle.min.js'
       ),
     },
   },
