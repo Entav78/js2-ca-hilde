@@ -1,7 +1,7 @@
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap-css';
+import 'bootstrap-js';
 
 //import './scss/main.scss';
 

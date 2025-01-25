@@ -1,14 +1,5 @@
 @use 'sass:color';
-@use './utilities/_variables' as *;
 @use './_index';
-
-@use './components/header';
-@use './components/footer';
-@use './components/posts';
-
-@use './pages/profile';
-@use './pages/singlePost';
-
 //@use 'bootstrap/scss/bootstrap';
 
 body {

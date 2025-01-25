@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "sass-watch": "sass --watch src/scss:dist/css",
-    "build": "vite build",
+    "build:scss": "sass src/scss/main.scss dist/css/main.css --no-source-map",
+    "build": "vite build && npm run build:scss",
     "start": "vite"
   },
   "devDependencies": {

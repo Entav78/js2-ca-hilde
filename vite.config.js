@@ -4,14 +4,14 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   resolve: {
     alias: {
-      'bootstrap-css': 'node_modules/bootstrap/dist/css/bootstrap.min.css',
-      'bootstrap-js': 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+      'bootstrap-css': '/node_modules/bootstrap/dist/css/bootstrap.min.css', // Ensure absolute path for deployment
+      'bootstrap-js': '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
     },
   },
-  appType: 'mpa',
-  base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/',
+  appType: 'mpa', // Multi-Page Application
+  base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/', // Base path for development and production
   build: {
-    target: 'esnext',
+    target: 'esnext', // Modern build target
     rollupOptions: {
       input: {
         main: resolve(__dirname, './index.html'),
@@ -28,11 +28,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        includePaths: [path.resolve(__dirname, 'node_modules')],
+        additionalData: `@use 'sass:color';`, // Inject global SCSS usage
+        includePaths: [path.resolve(__dirname, 'src/scss')], // Include SCSS paths
       },
     },
   },
-
   test: {
     environment: 'jsdom',
   },
