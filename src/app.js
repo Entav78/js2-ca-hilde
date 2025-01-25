@@ -1,8 +1,8 @@
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
-import '/node_modules/bootstrap/dist/css/bootstrap.min.css'; // Load Bootstrap CSS
-import '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'; // Load Bootstrap JS
-//import './scss/main.scss'; // Your custom SCSS
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; // Load Bootstrap CSS
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'; // Load Bootstrap JS
+//import './scss/main.scss'; //git agit 
 
 console.log('Router imported successfully');
 
