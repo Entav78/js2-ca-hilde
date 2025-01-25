@@ -1,23 +1,14 @@
-/*@use 'sass:color';
-@use './_index' as *;
-
-@use './components/header' as *;
-@use './components/footer' as *;
-@use './components/posts' as *;
-
-@use './pages/profile' as *;
-@use './pages/singlePost' as *;
-
-body {
-  background-color: vars.$neutral-light;
-}*/
-
-//cleanup from claude
 @use 'sass:color';
-@use './utilities/variables' as vars;
-@use './components' as components; 
-@use './pages' as pages;
+@use './utilities/_variables' as *;
+@use './_index';
+
+@use './components/header';
+@use './components/footer';
+@use './components/posts';
+
+@use './pages/profile';
+@use './pages/singlePost';
 
 body {
-  background-color: vars.$neutral-light;
+  background-color: $neutral-light;
 }

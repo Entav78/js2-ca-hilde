@@ -1,8 +1,0 @@
-@use 'bootstrap/scss/bootstrap' with (
-  $primary: red,
-  $secondary: blue
-);
-
-body {
-  background-color: $primary;
-}

@@ -1,7 +1,0 @@
-@use 'sass:color';
-
-$test: color.scale(#ff0000, $lightness: 50%);
-
-body {
-  background-color: $test;
-}
