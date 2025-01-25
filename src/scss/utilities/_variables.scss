@@ -1,21 +1,8 @@
-/*@use 'sass:color';
-
-$primary: #ade2fa;
-$secondary: #333;
-
-$header-bg: #000000;
-$header-text: #ffffff;
-$neutral-light: #f5f5f5;
-$primary-light: color.scale(#ade2fa, $lightness: 20%);
-$secondary-dark: color.scale(#333, $lightness: -15%);
-*/
-
-//Claude fixup
 @use 'sass:color';
 
 // Color Palette
-$primary: red !default;
-$secondary: blue !default;
+$primary: rgb(172, 171, 171) !default;
+$secondary: rgb(7, 7, 7) !default;
 
 // Semantic Colors
 $header-bg: #000000;

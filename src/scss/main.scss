@@ -8,3 +8,9 @@
 
 @use './pages/profile';
 @use './pages/singlePost';
+
+//@use 'bootstrap/scss/bootstrap';
+
+body {
+  background-color: $primary-light; // Default light background color
+}
