@@ -1,4 +1,4 @@
-@use 'sass:color'; // Import only what is required here
+/*@use 'sass:color';
 
 $primary: #ade2fa;
 $secondary: #333;
@@ -8,3 +8,20 @@ $header-text: #ffffff;
 $neutral-light: #f5f5f5;
 $primary-light: color.scale(#ade2fa, $lightness: 20%);
 $secondary-dark: color.scale(#333, $lightness: -15%);
+*/
+
+//Claude fixup
+@use 'sass:color';
+
+// Color Palette
+$primary: red !default;
+$secondary: blue !default;
+
+// Semantic Colors
+$header-bg: #000000;
+$header-text: #ffffff;
+$neutral-light: #f5f5f5 !default;
+
+// Color Variants
+$primary-light: color.scale($primary, $lightness: 20%);
+$secondary-dark: color.scale($secondary, $lightness: -15%);

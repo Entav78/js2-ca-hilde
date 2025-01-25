@@ -1,9 +1,8 @@
 import router from './js/router/index.js';
 import { Navigation } from './js/ui/global/navigation.js';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JS (includes Popper.js)
-
-import '/src/scss/main.scss';
+import 'bootstrap-css'; // Load Bootstrap CSS
+import 'bootstrap-js'; // Load Bootstrap JS
+import './scss/main.scss'; // Your custom SCSS
 
 console.log('Router imported successfully');
 

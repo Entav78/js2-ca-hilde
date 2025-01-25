@@ -1,14 +1,22 @@
-import { resolve } from 'path';
+import path, { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   resolve: {
     alias: {
-      bootstrap: resolve(__dirname, 'node_modules/bootstrap'),
+      '@': path.resolve(__dirname, 'src'),
+      'bootstrap-css': path.resolve(
+        __dirname,
+        'node_modules/bootstrap/dist/css/bootstrap.min.css'
+      ),
+      'bootstrap-js': path.resolve(
+        __dirname,
+        'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
+      ),
     },
   },
   appType: 'mpa',
-  base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/', // Dynamically set the base path
+  base: process.env.NODE_ENV === 'development' ? '/' : '/js2-ca-hilde/',
 
   build: {
     target: 'esnext',
@@ -25,19 +33,16 @@ export default defineConfig({
       },
     },
   },
+
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `
-          @use 'sass:color';
-          @use 'src/scss/utilities/variables' as *;
-          @use 'src/scss/utilities/mixins' as *;
-        `,
+        includePaths: [path.resolve(__dirname, 'node_modules')],
       },
     },
   },
 
   test: {
-    environment: 'jsdom', // Use jsdom for DOM testing
+    environment: 'jsdom',
   },
 });

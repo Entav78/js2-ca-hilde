@@ -1,11 +1,23 @@
-@use 'sass:color';
-@use './utilities/_variables' as vars;
+/*@use 'sass:color';
+
+@use 'bootstrap/scss/functions';
 @use 'bootstrap/scss/variables' with (
   $primary: vars.$primary,
   $secondary: vars.$secondary
 );
-
 @use 'bootstrap/scss/maps';
 @use 'bootstrap/scss/mixins';
 @use 'bootstrap/scss/reboot';
 @use 'bootstrap/scss/type';
+*/
+
+// Import and configure Bootstrap
+@use 'bootstrap/scss/bootstrap' with (
+  $primary: vars.$primary,
+  $secondary: vars.$secondary
+);
+
+// Additional custom styles
+body {
+  background-color: $primary;
+}

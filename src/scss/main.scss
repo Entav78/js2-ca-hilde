@@ -1,4 +1,4 @@
-@use 'sass:color';
+/*@use 'sass:color';
 @use './_index' as *;
 
 @use './components/header' as *;
@@ -7,6 +7,16 @@
 
 @use './pages/profile' as *;
 @use './pages/singlePost' as *;
+
+body {
+  background-color: vars.$neutral-light;
+}*/
+
+//cleanup from claude
+@use 'sass:color';
+@use './utilities/variables' as vars;
+@use './components' as components; 
+@use './pages' as pages;
 
 body {
   background-color: vars.$neutral-light;

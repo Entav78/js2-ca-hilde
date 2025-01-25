@@ -1,10 +1,13 @@
-/* Error: Undefined variable.
- *    ,
- * 13 |   background-color: $secondary;
- *    |                     ^^^^^^^^^^
- *    '
- *   src\scss\_index.scss 13:21  @use
- *   src\scss\main.scss 1:1      root stylesheet */
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 3 | / @use 'bootstrap/scss/variables' with (
+ * 4 | |   $primary: vars.$primary,
+ * 5 | |   $secondary: vars.$secondary
+ * 6 | | );
+ *   | '-^
+ *   '
+ *   src\scss\_index.scss 3:1  @use
+ *   src\scss\main.scss 2:1    root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +17,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 13 \2502    background-color: $secondary;\d\a    \2502                      ^^^^^^^^^^\a    \2575 \a   src\\scss\\_index.scss 13:21  @use\a   src\\scss\\main.scss 1:1      root stylesheet";
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 3 \2502  \250c  @use 'bootstrap/scss/variables' with (\a 4 \2502  \2502    $primary: vars.$primary,\a 5 \2502  \2502    $secondary: vars.$secondary\a 6 \2502  \2502  );\a   \2502  \2514 \2500 ^\a   \2575 \a   src\\scss\\_index.scss 3:1  @use\a   src\\scss\\main.scss 2:1    root stylesheet";
 }
