@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "clean": "rimraf dist",
+    "clean": "npx rimraf dist",
     "build": "npm run clean && vite build && npm run build:scss",
     "sass-watch": "sass --watch src/scss:dist/css",
     "build:scss": "sass src/scss/main.scss dist/css/main.css",
