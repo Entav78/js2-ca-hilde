@@ -2,27 +2,34 @@
 @use '../../../node_modules/bootstrap/scss/mixins' as *;
 
 .post-container {
+  background-color: transparent;
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   justify-content: center;
+  padding: 1rem;
+  margin: 0 auto;
+
+  /* Ensure container adjusts to the card sizes */
+  max-width: calc(4 * 320px + 3 * 1.5rem); /* Adjust for 4 cards + gaps */
+  width: 100%; /* Allow flexibility for smaller screens */
 
   .post-card {
     background-color: $primary-light;
     border: 1px solid $primary-light;
     border-radius: 0.5rem;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: scale(1.05); /* Smooth scaling effect */
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
 
     .post-image {
       width: 100%;
-      height: auto;
-      object-fit: cover;
+      height: 200px; /* Fixed height for uniformity */
+      object-fit: cover; /* Ensures no distortion */
     }
 
     .post-content {
@@ -55,14 +62,32 @@
 
 .post-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
 
-  @media (min-width: 1200px) {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  @media (min-width: 900px) and (max-width: 1199px) {
+    grid-template-columns: repeat(
+      3,
+      minmax(300px, 1fr)
+    ); /* Slightly bigger cards */
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(
+      4,
+      minmax(320px, 1fr)
+    ); /* Wider cards for 4 columns */
+  }
+
+  @media (min-width: 1600px) {
+    grid-template-columns: repeat(
+      4,
+      minmax(400px, 1fr)
+    ); /* Cards grow further for very wide screens */
+  }
+
+  @media (max-width: 499px) {
+    grid-template-columns: 1fr; /* Single column for small screens */
   }
 }

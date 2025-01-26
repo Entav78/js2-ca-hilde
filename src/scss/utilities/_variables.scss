@@ -1,7 +1,7 @@
 @use 'sass:color';
 
 // Color Palette
-$primary: #1e88e5 !default; // A soft, modern blue
+$primary: #e0d5c0 !default; // A soft, modern blue
 $primary-light: color.scale($primary, $lightness: 20%); // Lightened variant
 $secondary: #37474f !default; // A muted dark gray for contrast
 $secondary-light: color.scale($secondary, $lightness: 20%);
@@ -29,3 +29,17 @@ $secondary-hover: #d32f2f; /* Darker red for hover */
 /* Neutral Colors */
 $neutral-background: #f9f9f9; /* Light neutral background */
 $text-color: #37474f; /* Muted dark gray */
+
+/*
+/* Neutral Palette */
+//$primary: #e0d5c0; /* Light beige for background */
+//$primary-light: color.scale($primary, $lightness: 20%); /* Lighter variation */
+
+/* Accent Colors */
+//$accent: #ff7043; /* Coral accent for buttons or highlights */
+//$secondary: #81c784; /* Soft green for tags or details */
+
+/* Grayscale */
+//$header-bg: #263238; /* Dark slate gray (header) */
+//$neutral-light: #eceff1; /* Very light gray */
+//$text-color: #37474f; /* Muted dark gray for text */
