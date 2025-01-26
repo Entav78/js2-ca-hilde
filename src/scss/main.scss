@@ -1,7 +1,8 @@
-@use 'sass:color';
 @use './_index';
-//@use 'bootstrap/scss/bootstrap';
+@use './utilities/_variables' as *;
+@use 'bootstrap/scss/bootstrap' as *;
 
-body {
-  background-color: $primary-light; // Default light background color
+$header-bg: #123456;
+.header {
+  background-color: color.scale($header-bg, $lightness: 10%);
 }

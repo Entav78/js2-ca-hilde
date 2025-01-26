@@ -1,14 +1,18 @@
 @use 'sass:color';
 
 // Color Palette
-$primary: rgb(172, 171, 171) !default;
-$secondary: rgb(7, 7, 7) !default;
-
-// Semantic Colors
-$header-bg: #000000;
-$header-text: #ffffff;
-$neutral-light: #f5f5f5 !default;
-
-// Color Variants
-$primary-light: color.scale($primary, $lightness: 20%);
+$primary: #1e88e5 !default; // A soft, modern blue
+$primary-light: color.scale($primary, $lightness: 20%); // Lightened variant
+$secondary: #37474f !default; // A muted dark gray for contrast
 $secondary-dark: color.scale($secondary, $lightness: -15%);
+$neutral-light: #eceff1 !default; // A subtle light gray for backgrounds
+
+//header
+$header-bg: #263238 !default; // A dark slate for headers
+$header-bg-light: color.scale($header-bg, $lightness: 10%);
+$header-text: #f3f3f3 !default; // White text for contrast
+$header-text-light: color.scale($header-text, $lightness: 10%);
+
+// Optional Accent Colors
+$accent: #ff7043 !default; // Warm orange for accents
+$accent-light: color.scale($accent, $lightness: 20%);

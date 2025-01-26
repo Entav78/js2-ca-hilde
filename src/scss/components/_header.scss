@@ -1,13 +1,10 @@
-@use 'sass:color'; // Required for color functions, but is globally available from vite.config.js
-
 @use '../utilities/variables' as *;
 
 header {
-  background-color: color.scale($header-bg, $lightness: 10%);
+  background-color: $header-bg-light;
   color: $header-text;
 
-  border-bottom: 1px solid color.scale($header-bg, $lightness: 20%);
-
+  border-bottom: 1px solid $header-bg;
   .navbar {
     padding: 1rem 2rem;
 
@@ -20,7 +17,7 @@ header {
       color: $header-text;
 
       &:hover {
-        color: color.scale($header-text, $lightness: 10%);
+        color: $header-text-light;
       }
     }
 

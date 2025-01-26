@@ -41,6 +41,7 @@ export default defineConfig({
         scss: {
           additionalData: `@use 'sass:color';`, // Inject global SCSS usage
           includePaths: [path.resolve(__dirname, 'src/scss')], // Include SCSS paths
+          quietDeps: true,
         },
       },
     },
