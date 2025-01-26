@@ -17,3 +17,15 @@ $header-text-light: color.scale($header-text, $lightness: 10%);
 // Optional Accent Colors
 $accent: #ff7043 !default; // Warm orange for accents
 $accent-light: color.scale($accent, $lightness: 20%);
+
+/* Primary Colors */
+$primary-color: #4caf50; /* Modern green */
+$primary-hover: #388e3c; /* Hover green */
+
+/* Secondary Colors */
+$secondary-color: #f44336; /* Bold red */
+$secondary-hover: #d32f2f; /* Darker red for hover */
+
+/* Neutral Colors */
+$neutral-background: #f9f9f9; /* Light neutral background */
+$text-color: #37474f; /* Muted dark gray */
