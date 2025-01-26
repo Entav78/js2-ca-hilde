@@ -1,8 +1,8 @@
 @use './_index';
 @use './utilities/_variables' as *;
-@use 'bootstrap/scss/bootstrap' as *;
+//@use 'bootstrap/scss/bootstrap' as *;
 
 $header-bg: #123456;
 .header {
-  background-color: color.scale($header-bg, $lightness: 10%);
+  background-color: $header-bg-light;
 }

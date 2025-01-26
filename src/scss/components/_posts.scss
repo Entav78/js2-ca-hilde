@@ -8,8 +8,8 @@
   justify-content: center;
 
   .post-card {
-    background-color: color.scale($primary, $lightness: 10%);
-    border: 1px solid color.scale($primary, $lightness: 20%);
+    background-color: $primary-light;
+    border: 1px solid $primary-light;
     border-radius: 0.5rem;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -41,13 +41,13 @@
 
       .post-body {
         margin: 0.5rem 0;
-        color: darken($secondary, 10%);
+        color: $secondary-dark;
       }
 
       .post-tags {
         margin-top: 1rem;
         font-size: 0.875rem;
-        color: color.scale($secondary, $lightness: 20%);
+        color: $secondary-light;
       }
     }
   }

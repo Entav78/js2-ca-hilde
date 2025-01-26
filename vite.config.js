@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   resolve: {
     alias: {
-      'bootstrap-css': '/node_modules/bootstrap/dist/css/bootstrap.min.css', // Ensure absolute path for deployment
+      'bootstrap-css': '/node_modules/bootstrap/dist/css/bootstrap.min.css',
       'bootstrap-js': '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
     },
   },

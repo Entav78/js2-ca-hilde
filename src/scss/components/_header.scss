@@ -25,7 +25,7 @@ header {
       border-color: $header-text;
 
       .navbar-toggler-icon {
-        filter: invert(1); // Make the toggler icon white
+        filter: invert(1);
       }
 
       &:focus,
@@ -70,8 +70,8 @@ header {
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {
-          background-color: color.scale($header-bg, $lightness: 10%);
-          color: color.scale($header-text, $lightness: -10%);
+          background-color: $header-bg-light;
+          color: $header-text-light;
         }
 
         &.active {
@@ -87,7 +87,7 @@ header {
     color: $header-text;
 
     .offcanvas-header {
-      border-bottom: 1px solid color.scale($header-bg, $lightness: 20%);
+      border-bottom: 1px solid $header-text-light;
     }
 
     .offcanvas-body {

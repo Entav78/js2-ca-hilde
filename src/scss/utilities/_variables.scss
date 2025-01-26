@@ -4,9 +4,10 @@
 $primary: #1e88e5 !default; // A soft, modern blue
 $primary-light: color.scale($primary, $lightness: 20%); // Lightened variant
 $secondary: #37474f !default; // A muted dark gray for contrast
+$secondary-light: color.scale($secondary, $lightness: 20%);
 $secondary-dark: color.scale($secondary, $lightness: -15%);
-$neutral-light: #eceff1 !default; // A subtle light gray for backgrounds
-
+$neutral-light: #e7e9eb !default; // A subtle light gray for backgrounds
+$neutral-light-lighter: color.scale($neutral-light, $lightness: -10%);
 //header
 $header-bg: #263238 !default; // A dark slate for headers
 $header-bg-light: color.scale($header-bg, $lightness: 10%);

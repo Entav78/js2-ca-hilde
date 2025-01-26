@@ -3,7 +3,8 @@ import { Navigation } from './js/ui/global/navigation.js';
 import 'bootstrap-css';
 import 'bootstrap-js';
 
-//import './scss/main.scss';
+//import '/dist/css/bootstrap.min.css';
+//import '/dist/js/bootstrap.bundle.min.js';
 
 console.log('Router imported successfully');
 
