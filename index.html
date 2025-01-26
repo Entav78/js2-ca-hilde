@@ -1,22 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CA CSS-Frameworks</title>
+    <link rel="stylesheet" href="/js2-ca-hilde/css/main.css">
+    <script type="module" src="./src/app.js"></script>
 
-<head>
-  <meta charset="UTF-8" />
+  </head>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noroff FED2 JS2 CA</title>
-  <link rel="stylesheet" href="./src/css/style.css">
-<script type="module" src="./src/app.js"></script>
-</head>
+  <body class="page-home">
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <h1>Welcome</h1>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNav"
+            aria-controls="offcanvasNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-<body>
-  <h1>Home</h1>
-  <div class="navigation-container"></div>
-  <div id="homeContainer"></div>
-  
+      <div
+        class="offcanvas offcanvas-start bg-dark text-white"
+        tabindex="-1"
+        id="offcanvasNav"
+        aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+          </ul>
+        </div>
+      </div>
 
-  <a href="./profile/">My Profile</a>
-  <a href="./auth/register/">Register</a>
-</body>
+      </div>
+    </header>
+
+    <div class="post-container">
+    </div>
+    
+
+
+    
+
+    <footer>
+      <p>&copy; 2025 H Vatne. All rights reserved.</p>
+    </footer>
+  </body>
 </html>

@@ -2,9 +2,9 @@
 // In Workflow we will learn how to secure this information
 //export const API_KEY = import.meta.env.VITE_API_KEY || "";//
 
-export const API_KEY = "e87bb321-e9d6-4af1-97fb-1bc12fe26578";
+export const API_KEY = 'e87bb321-e9d6-4af1-97fb-1bc12fe26578';
 
-export const API_BASE = "https://v2.api.noroff.dev";
+export const API_BASE = 'https://v2.api.noroff.dev';
 
 export const API_AUTH = `${API_BASE}/auth`;
 
@@ -20,7 +20,8 @@ export const API_SOCIAL_POSTS = `${API_SOCIAL}/posts`;
 
 export const API_SOCIAL_PROFILES = `${API_SOCIAL}/profiles`;
 
-export const basePath = window.location.hostname === "localhost" ? "" : "/js2-ca-hilde";
+export const basePath =
+  window.location.hostname === 'localhost' ? '' : '/js2-ca-hilde';
 
 /*Social endpoints:
 social-posts (social posts related endpoints)

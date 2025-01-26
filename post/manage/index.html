@@ -1,37 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manage Post</title>
-    <link rel="stylesheet" href="/js2-ca-hilde/src/css/style.css">
-<script type="module" src="/js2-ca-hilde/src/app.js"></script>
+    <link rel="stylesheet" href="../js2-ca-hilde/css/main.css" />
+<script type="module" src="../../src/app.js"></script>
+
   </head>
   <body>
-    <div class="navigation-container"></div>
-    <h1>Manage Post</h1>
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <h1>Manage Post</h1>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNav"
+            aria-controls="offcanvasNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        class="offcanvas offcanvas-start bg-dark text-white"
+        tabindex="-1"
+        id="offcanvasNav"
+        aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+          </ul>
+        </div>
+      </div>
+
+      </div>
+    </header>
 
     <form name="managePostForm" data-action="create">
       <label for="title">Title:</label>
       <input type="text" id="title" name="title" required />
-      
+
       <label for="body">Body:</label>
       <textarea id="body" name="body"></textarea>
-      
+
       <label for="tags">Tags (comma-separated):</label>
       <input type="text" id="tags" name="tags" />
-      
+
       <label for="mediaUrl">Media URL:</label>
       <input type="url" id="mediaUrl" name="mediaUrl" />
-      
+
       <label for="mediaAlt">Media Alt Text:</label>
       <input type="text" id="mediaAlt" name="mediaAlt" />
-      
+
       <button type="submit" id="saveButton">Create Post</button>
     </form>
-    
+
     <button id="deletePostButton" data-post-id="">Delete Post</button>
-    
-    
+    <footer>
+      <p>&copy; 2025 H Vatne. All rights reserved.</p>
+    </footer>
   </body>
 </html>

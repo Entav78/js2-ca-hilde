@@ -1,0 +1,100 @@
+@use '../utilities/variables' as *;
+
+header {
+  background-color: $header-bg-light;
+  color: $header-text;
+
+  border-bottom: 1px solid $header-bg;
+  .navbar {
+    padding: 1rem 2rem;
+
+    .container-fluid {
+      padding: 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      color: $header-text;
+
+      &:hover {
+        color: $header-text-light;
+      }
+    }
+
+    .navbar-toggler {
+      border-color: $header-text;
+
+      .navbar-toggler-icon {
+        filter: invert(1);
+      }
+
+      &:focus,
+      &:hover {
+        background-color: $header-text;
+        color: $header-bg;
+      }
+    }
+
+    .navbar-collapse {
+      @media (min-width: 992px) {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: flex-end !important; // Align buttons to the right
+        align-items: center; // Vertically center items
+        flex-grow: 0; // Prevent stretching
+        flex-basis: auto; // Prevent collapsing
+      }
+    }
+  }
+
+  .navbar-nav {
+    display: flex !important; // Ensure flex is applied
+    flex-direction: row !important; // Force horizontal layout
+    flex-wrap: nowrap !important; // Prevent wrapping
+    gap: 1rem; // Add spacing between buttons
+    align-items: center; // Vertically center items
+    justify-content: flex-end; // Align to the right
+
+    .nav-item {
+      list-style: none; // Remove bullets
+      margin: 0;
+      padding: 0;
+
+      .nav-link {
+        display: inline-block; // Ensure proper button alignment
+        padding: 0.5rem 1rem; // Button-like spacing
+        text-decoration: none; // Remove underline
+        color: $header-text;
+        background-color: transparent; // Transparent background
+        border-radius: 0.25rem; // Optional rounded corners
+        transition: background-color 0.3s, color 0.3s;
+
+        &:hover {
+          background-color: $header-bg-light;
+          color: $header-text-light;
+        }
+
+        &.active {
+          background-color: $header-text;
+          color: $header-bg;
+        }
+      }
+    }
+  }
+
+  .offcanvas {
+    background-color: $header-bg;
+    color: $header-text;
+
+    .offcanvas-header {
+      border-bottom: 1px solid $header-text-light;
+    }
+
+    .offcanvas-body {
+      .navbar-nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  }
+}

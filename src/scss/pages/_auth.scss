@@ -1,0 +1,16 @@
+@use '../utilities/variables' as *;
+
+.auth-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: $neutral-light;
+  border: 1px solid $neutral-dark;
+  border-radius: 8px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

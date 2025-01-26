@@ -1,12 +1,13 @@
-//import { setLogoutListener } from "../global/logout.js";
 import { basePath } from '../../api/constants.js';
 
 export class Navigation {
-  constructor(containerElement) {
-    if (!(containerElement instanceof HTMLElement)) {
-      throw new Error('Invalid container element provided to Navigation.');
+  constructor(containerElements) {
+    this.containers = Array.isArray(containerElements)
+      ? containerElements
+      : [containerElements];
+    if (!this.containers || this.containers.length === 0) {
+      throw new Error('No valid container elements provided to Navigation.');
     }
-    this.container = containerElement;
   }
 
   /**
@@ -15,26 +16,32 @@ export class Navigation {
    * @param {string} text - The text to display on the button.
    * @param {string} path - The path to navigate to when the button is clicked.
    * @param {string} className - The CSS class to apply to the button.
+   * @param {function} [onClick=null] - An optional click handler.
    * @returns {HTMLElement} - The created button element.
    */
-  createButton(nav, text, path, className) {
-    const button = document.createElement('button');
+  createButton(nav, text, path, className, onClick = null) {
+    console.log(`Creating button: ${text}`);
+
+    const listItem = document.createElement('li');
+    listItem.className = 'nav-item';
+
+    const button = document.createElement('a');
     button.textContent = text;
-    button.className = className;
-
-    // Add the basePath to the path
-    const fullPath = `${basePath}${path}`;
-
-    // Check if the button corresponds to the current page
-    if (window.location.pathname === fullPath) {
-      button.classList.add('active'); // Add the 'active' class for styling
-    }
+    button.className = `nav-link ${className}`;
 
     button.addEventListener('click', () => {
-      window.location.pathname = fullPath;
+      event.preventDefault();
+      event.stopPropagation(); // Prevent Bootstrap's offcanvas behavior interference
+
+      if (path) {
+        window.location.pathname = `${basePath}${path}`;
+      } else if (onClick) {
+        onClick();
+      }
     });
 
-    nav.appendChild(button);
+    listItem.appendChild(button);
+    nav.appendChild(listItem);
     return button;
   }
 
@@ -44,78 +51,133 @@ export class Navigation {
    * @param {Object} options - Additional options for the navigation.
    * @param {boolean} options.includeHomeButton - Whether to include the Home button.
    */
+  /* test
   createNavbar(isLoggedIn, options = { includeHomeButton: true }) {
-    if (!this.container) {
-      console.error('Navigation container not found.');
-      return;
-    }
-
-    // Clear existing navigation content
-    this.container.innerHTML = '';
-
-    const nav = document.createElement('nav');
-    const currentPage = window.location.pathname; // Get the current page
-
-    // Add Home button if includeHomeButton is true
-    if (options.includeHomeButton) {
-      // Add Home button regardless of the current page
-      if (currentPage !== `${basePath}/`) {
-        this.createButton(nav, 'Home', '/', 'home-button');
-        console.log('Creating Home button');
+    this.containers.forEach((container) => {
+      if (!container) {
+        console.error('Navigation container not found.');
+        return;
       }
-    }
+      console.log('Updating navigation for container:', container);
+      // Clear existing navigation content
+      container.innerHTML = '';
 
-    if (isLoggedIn && currentPage !== `${basePath}/post/manage/`) {
-      this.createButton(
-        nav,
-        'Manage Post',
-        '/post/manage/',
-        'manage-post-button'
-      );
-      console.log('Creating Manage Post button');
-    }
+      const nav = document.createElement('nav');
+      const currentPage = window.location.pathname;
 
-    // Add navigation buttons for logged-in users
-    if (isLoggedIn) {
-      // Add "My Profile" button unless you're already on the profile page
-      if (currentPage !== `${basePath}/profile/`) {
-        this.createButton(nav, 'My Profile', '/profile/', 'profile-button');
-        console.log('Creating My Profile button');
-      }
-
-      // Add Logout button
-      const logoutButton = document.createElement('button');
-      console.log('Creating Logout button');
-      logoutButton.textContent = 'Logout';
-      logoutButton.className = 'logout-button';
-      logoutButton.addEventListener('click', () => {
-        try {
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('userDetails');
-          console.log(
-            'User logged out. Token and user details cleared from localStorage.'
-          );
-          window.location.reload();
-        } catch (error) {
-          console.error('Error during logout:', error);
+      // Add Home button if includeHomeButton is true
+      if (options.includeHomeButton) {
+        if (currentPage !== `${basePath}/`) {
+          this.createButton(nav, 'Home', '/', 'home-button');
+          console.log('Creating Home button');
         }
-      });
-      nav.appendChild(logoutButton);
-    } else {
-      // Add Login and Register buttons for logged-out users
-      if (currentPage !== `${basePath}/auth/login/`) {
-        this.createButton(nav, 'Login', '/auth/login/', 'login-button');
       }
-      if (currentPage !== `${basePath}/auth/register/`) {
+
+      if (isLoggedIn && currentPage !== `${basePath}/post/manage/`) {
         this.createButton(
           nav,
-          'Register',
-          '/auth/register/',
-          'register-button'
+          'Manage Post',
+          '/post/manage/',
+          'manage-post-button'
         );
+        console.log('Creating Manage Post button');
       }
-    }
 
-    this.container.appendChild(nav);
+      if (isLoggedIn) {
+        if (currentPage !== `${basePath}/profile/`) {
+          this.createButton(nav, 'My Profile', '/profile/', 'profile-button');
+        }
+        this.createButton(nav, 'Logout', null, 'logout-button', () => {
+          try {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('userDetails');
+            console.log('User logged out.');
+            window.location.reload();
+          } catch (error) {
+            console.error('Error during logout:', error);
+          }
+        });
+      } else {
+        if (currentPage !== `${basePath}/auth/login/`) {
+          this.createButton(nav, 'Login', '/auth/login/', 'login-button');
+        }
+        if (currentPage !== `${basePath}/auth/register/`) {
+          this.createButton(
+            nav,
+            'Register',
+            '/auth/register/',
+            'register-button'
+          );
+        }
+      }
+
+      // Append the navigation to the current container
+      container.appendChild(nav);
+    });
+  } 
+    end test*/
+
+  createNavbar(isLoggedIn, options = { includeHomeButton: true }) {
+    this.containers.forEach((container) => {
+      if (!container) {
+        console.error('Navigation container not found.');
+        return;
+      }
+
+      console.log('Updating navigation for container:', container);
+      container.innerHTML = ''; // Clear existing navigation content
+
+      const nav = document.createElement('nav');
+      const currentPage = window.location.pathname;
+
+      // Add Home button
+      if (options.includeHomeButton) {
+        if (currentPage !== `${basePath}/`) {
+          this.createButton(nav, 'Home', '/', 'home-button');
+          console.log('Creating Home button');
+        }
+      }
+
+      // Add "Manage Post" button for logged-in users
+      if (isLoggedIn && currentPage !== `${basePath}/post/manage/`) {
+        this.createButton(
+          nav,
+          'Manage Post',
+          '/post/manage/',
+          'manage-post-button'
+        );
+        console.log('Creating Manage Post button');
+      }
+
+      // Add conditional buttons based on login state
+      if (isLoggedIn) {
+        if (currentPage !== `${basePath}/profile/`) {
+          this.createButton(nav, 'My Profile', '/profile/', 'profile-button');
+        }
+
+        this.createButton(nav, 'Logout', null, 'logout-button', () => {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('userDetails');
+          console.log('User logged out.');
+          window.location.reload();
+        });
+      } else {
+        if (currentPage !== `${basePath}/auth/login/`) {
+          this.createButton(nav, 'Login', '/auth/login/', 'login-button');
+        }
+
+        if (currentPage !== `${basePath}/auth/register/`) {
+          this.createButton(
+            nav,
+            'Register',
+            '/auth/register/',
+            'register-button'
+          );
+        }
+      }
+
+      // Append the navigation to the current container
+      container.appendChild(nav);
+    });
   }
 }

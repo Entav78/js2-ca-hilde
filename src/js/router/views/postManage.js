@@ -1,13 +1,3 @@
-/* this is the old postManage.js
-import { onCreatePost } from "../../ui/post/create";
-import { authGuard } from "../../utilities/authGuard";
-
-authGuard();
-
-const form = document.forms.createPost;
-
-form.addEventListener("submit", onCreatePost);
-*/
 
 import { authGuard } from "../../utilities/authGuard.js";
 import { PostManager } from "../../ui/post/postManager.js";
