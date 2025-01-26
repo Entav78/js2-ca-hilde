@@ -1,5 +1,54 @@
 # JS2-CA Project: Social Media Application
 
+JS2-CA Project: Social Media Application
+This project is a continuation of the JavaScript 2 course assignment at Noroff. The focus has shifted to applying responsive design and styling using Bootstrap and SASS to improve the user interface.
+
+Core Features
+User Registration: Allows users to create an account. Fully operational.
+User Login: Users can log in to access posts and their profile.
+Profile Page: Displays user-specific posts and profile information.
+Post Management: Users can create, view, and manage their posts.
+Styling Frameworks Used
+Bootstrap: Applied for layout consistency and responsiveness.
+SASS: Used for customized styling and CSS enhancements.
+What Works
+Responsive Design: Pages are optimized for different screen sizes (desktop, tablet, and mobile).
+Navigation: A fully functioning navigation menu that dynamically adjusts based on login state.
+Mobile Menu: A hamburger menu for smaller screens.
+Known Issues
+CSS Issues in Production: Occasionally, CSS may not load due to incorrect file paths in the production environment.
+Missing Features: Search bar, follow button, and other social functionalities are yet to be implemented.
+Future Improvements
+Fix pathing issues for CSS and JavaScript in production.
+Complete missing UI components (search bar, follow button).
+Improve animations and transitions for a smoother user experience.
+Perform cross-device testing on mobile, tablets, and desktops.
+How to Run the Project
+Clone the repository:
+bash
+Kopier
+Rediger
+git clone https://github.com/Entav78/js2-ca-hilde.git
+Install dependencies:
+bash
+Kopier
+Rediger
+npm install
+Run the development server:
+bash
+Kopier
+Rediger
+npm run dev
+Build for production:
+bash
+Kopier
+Rediger
+npm run build
+Acknowledgements
+Special thanks to Noroff for the API documentation and project setup.
+
+
+
 This project is a social media application created as part of the JavaScript 2 course assignment at Noroff. The app allows users to register, log in, create posts, and interact with a profile page. I thought I was on the right track, but this last day everything fell apart, and I wasn't able to fix the issues (that just became duplicatet for each bug I wanted to fix) I tried branching twice today to find back to where I was before everyting went to pieces, but while the clock was ticking I became more stressed and exhausted,
 
 ## **Core Features**
